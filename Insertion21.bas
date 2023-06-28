@@ -12,12 +12,12 @@ Sub Data_Insertion_21()
  On Error GoTo ExitHandler
  SheetName = "Processing21"
  DistinctYear = 2021
- Limit = 112 'последняя колонка базы
+ Limit = 118 'последняя колонка базы
  begin = 12 'первый ряд вставки
  CompanyName = ThisWorkbook.Sheets("Preferences").Range("C7").Value2 'имя проекта
  
- Dim aw(1 To 112) As Variant
- Dim iw(1 To 112) As Variant
+ Dim aw(1 To 118) As Variant
+ Dim iw(1 To 118) As Variant
  
 Application.ScreenUpdating = False
 Application.EnableEvents = False
@@ -103,7 +103,7 @@ For I = 1 To Limit
     If Worksheets(SheetName).Cells(DataRow, I) = "Имя Отчество" Then
         aw(8) = I
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Умершие" Then
+    If Worksheets(SheetName).Cells(DataRow, I) = "Приказ об увольнении.Статья ТК РФ" Then
         aw(9) = I
     End If
     If Worksheets(SheetName).Cells(DataRow, I) = "Анализ изменения фамилии" Then
@@ -421,6 +421,24 @@ For I = 1 To Limit
     If Worksheets(SheetName).Cells(DataRow, I) = "Премия квартальная объем продаж (ПМ)" Then
         aw(112) = I
     End If
+    If Worksheets(SheetName).Cells(DataRow, I) = "Премия Германия" Then
+        aw(113) = I
+    End If
+    If Worksheets(SheetName).Cells(DataRow, I) = "Оплата по окладу (по часам)" Then
+        aw(114) = I
+    End If
+    If Worksheets(SheetName).Cells(DataRow, I) = "Оклад по часам" Then
+        aw(115) = I
+    End If
+    If Worksheets(SheetName).Cells(DataRow, I) = "Надбавка за сложность и напряженность (по часам)" Then
+        aw(116) = I
+    End If
+    If Worksheets(SheetName).Cells(DataRow, I) = "Надбавка за сложность и напряженность (пропорционально отработанным дням)" Then
+        aw(117) = I
+    End If
+    If Worksheets(SheetName).Cells(DataRow, I) = "Медицинский осмотр" Then
+        aw(118) = I
+    End If
     
 Next I
  
@@ -463,7 +481,7 @@ For I = 1 To Limit
     If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Имя Отчество" Then
         iw(8) = I
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Умершие" Then
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Приказ об увольнении.Статья ТК РФ" Then
         iw(9) = I
     End If
     If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Анализ изменения фамилии" Then
@@ -781,6 +799,24 @@ For I = 1 To Limit
     If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Премия квартальная объем продаж (ПМ)" Then '-
         iw(112) = I
     End If
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Премия Германия" Then '-
+        iw(113) = I
+    End If
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Оплата по окладу (по часам)" Then '-
+        iw(114) = I
+    End If
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Оклад по часам" Then '-
+        iw(115) = I
+    End If
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Надбавка за сложность и напряженность (по часам)" Then '-
+        iw(116) = I
+    End If
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Надбавка за сложность и напряженность (пропорционально отработанным дням)" Then '-
+        iw(117) = I
+    End If
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Медицинский осмотр" Then '-
+        iw(118) = I
+    End If
 
 Next I
 
@@ -864,7 +900,7 @@ Cells(begin, aw(2)).Select
 K = 3
 Cells(begin, aw(K)).Select
     ActiveCell.FormulaR1C1 = _
-       "=IF(OR(CONCATENATE(RC[-1],"" 2022"")=RC[-2],VLOOKUP(RC[-2],RC1:RC108,MATCH(R8C4,R9C1:R9C108,0),0)>0,RC[4]=TRUE),"""",VLOOKUP(RC[-1],'2022 произ. календарь'!C1:C65,HLOOKUP(RC[13],'2022 произ. календарь'!R2:R3,2,0),0))"
+       "=IF(OR(CONCATENATE(RC[-1],"" 2021"")=RC[-2],VLOOKUP(RC[-2],RC1:RC108,MATCH(R8C4,R9C1:R9C108,0),0)>0,RC[4]=TRUE),"""",VLOOKUP(RC[-1],'2021 произ. календарь'!C1:C65,HLOOKUP(RC[13],'2021 произ. календарь'!R2:R3,2,0),0))"
     Cells(begin, aw(K)).Select
     Selection.AutoFill Destination:=Range(Cells(begin, aw(K)), Cells(iwLastRow, aw(K)))
 
@@ -886,7 +922,7 @@ Application.StatusBar = "Выполнено: 93 %"
 K = 5
 Cells(begin, aw(K)).Select
     ActiveCell.FormulaR1C1 = _
-        "=IF(OR(CONCATENATE(RC[-3],"" 2022"")=RC[-4],VLOOKUP(RC[-4],RC1:RC108,MATCH(R8C4,R9C1:R9C108,0),0)>0,RC[2]=TRUE),"""",VLOOKUP(RC[-3],'2022 произ. календарь'!R18C1:R31C65,HLOOKUP(RC[11],'2022 произ. календарь'!R18:R19,2,0),0))"
+        "=IF(OR(CONCATENATE(RC[-3],"" 2021"")=RC[-4],VLOOKUP(RC[-4],RC1:RC108,MATCH(R8C4,R9C1:R9C108,0),0)>0,RC[2]=TRUE),"""",VLOOKUP(RC[-3],'2021 произ. календарь'!R18C1:R31C65,HLOOKUP(RC[11],'2021 произ. календарь'!R18:R19,2,0),0))"
     Cells(begin, aw(K)).Select
     Selection.AutoFill Destination:=Range(Cells(begin, aw(K)), Cells(iwLastRow, aw(K)))
 
@@ -913,7 +949,7 @@ Cells(begin, aw(K)).Select
 K = 8
 Cells(begin, aw(K)).Select
     ActiveCell.FormulaR1C1 = _
-       "=IF(CONCATENATE(RC[-6],"" 2022"")=RC[-7],"""",(MID(RC[-7],SEARCH("" "",RC[-7],1),LEN(RC[-7]))))"
+       "=IF(CONCATENATE(RC[-6],"" " & DistinctYear & """)=RC[-7],"""",(MID(RC[-7],SEARCH("" "",RC[-7],1),LEN(RC[-7]))))"
     Cells(begin, aw(K)).Select
     Selection.AutoFill Destination:=Range(Cells(begin, aw(K)), Cells(iwLastRow, aw(K)))
 
