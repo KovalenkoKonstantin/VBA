@@ -12,12 +12,12 @@ Sub Data_Insertion_23()
  On Error GoTo ExitHandler
  SheetName = "Processing23"
  DistinctYear = 2023
- Limit = 118 'последняя колонка базы
+ Limit = 119 'последняя колонка базы
  begin = 12 'первый ряд вставки
  CompanyName = ThisWorkbook.Sheets("Preferences").Range("C7").Value2 'имя проекта
  
- Dim aw(1 To 118) As Variant
- Dim iw(1 To 118) As Variant
+ Dim aw(1 To 119) As Variant
+ Dim iw(1 To 119) As Variant
  
 Application.ScreenUpdating = False
 Application.EnableEvents = False
@@ -67,8 +67,8 @@ On Error Resume Next
 ActiveSheet.ShowAllData
 
 ThisWorkbook.Activate
-'статус бар
-Application.StatusBar = "Выполнено: 1 %"
+''статус бар
+'Application.StatusBar = "Выполнено: 1 %"
 
 'определение колонок рабочей книги
 On Error Resume Next
@@ -103,10 +103,10 @@ For I = 1 To Limit
     If Worksheets(SheetName).Cells(DataRow, I) = "Имя Отчество" Then
         aw(8) = I
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Приказ об увольнении.Статья ТК РФ" Then
+    If Worksheets(SheetName).Cells(DataRow, I) = "Анализ изменения фамилии" Then
         aw(9) = I
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Анализ изменения фамилии" Then
+    If Worksheets(SheetName).Cells(DataRow, I) = "Приказ об увольнении.Статья ТК РФ" Then
         aw(10) = I
     End If
     If Worksheets(SheetName).Cells(DataRow, I) = "Подразделение история" Then
@@ -439,6 +439,9 @@ For I = 1 To Limit
     If Worksheets(SheetName).Cells(DataRow, I) = "Медицинский осмотр" Then
         aw(118) = I
     End If
+    If Worksheets(SheetName).Cells(DataRow, I) = "Компенсация расходов по договорам подряда" Then
+        aw(119) = I
+    End If
     
 Next I
  
@@ -481,10 +484,10 @@ For I = 1 To Limit
     If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Имя Отчество" Then
         iw(8) = I
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Приказ об увольнении.Статья ТК РФ" Then
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Анализ изменения фамилии" Then
         iw(9) = I
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Анализ изменения фамилии" Then
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Приказ об увольнении.Статья ТК РФ" Then
         iw(10) = I
     End If
     If importWB.Sheets(1).Cells(ImportSecondDataRow, I) = "Подразделение история" Then '-
@@ -817,6 +820,9 @@ For I = 1 To Limit
     If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Медицинский осмотр" Then '-
         iw(118) = I
     End If
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Компенсация расходов по договорам подряда" Then '-
+        iw(119) = I
+    End If
 
 Next I
 
@@ -900,7 +906,11 @@ Cells(begin, aw(2)).Select
 K = 3
 Cells(begin, aw(K)).Select
     ActiveCell.FormulaR1C1 = _
-       "=IF(OR(CONCATENATE(RC[-1],"" 2023"")=RC[-2],VLOOKUP(RC[-2],RC1:RC108,MATCH(R8C4,R9C1:R9C108,0),0)>0,RC[4]=TRUE),"""",VLOOKUP(RC[-1],'2023 произ. календарь'!C1:C65,HLOOKUP(RC[13],'2023 произ. календарь'!R2:R3,2,0),0))"
+       "=IF(OR(CONCATENATE(RC[-1],"" " & DistinctYear & """)=RC[-2]," _
+       & "VLOOKUP(RC[-2],RC1:RC108,MATCH(R8C4,R9C1:R9C108,0),0)>0,VLOOKUP(RC[-2]," _
+       & "RC1:RC108,MATCH(R7C4,R9C1:R9C108,0),0)>0,RC[4]=TRUE),""""," _
+       & "VLOOKUP(RC[-1],'" & DistinctYear & " произ. календарь'!C1:C65,HLOOKUP(RC[13]," _
+       & "'" & DistinctYear & " произ. календарь'!R2:R3,2,0),0))"
     Cells(begin, aw(K)).Select
     Selection.AutoFill Destination:=Range(Cells(begin, aw(K)), Cells(iwLastRow, aw(K)))
 
@@ -908,7 +918,8 @@ Cells(begin, aw(K)).Select
 K = 4
 Cells(begin, aw(K)).Select
     ActiveCell.FormulaR1C1 = _
-        "=OR(RC[-1]="""",OR(RC[-1]=VALUE(RC[14]),VLOOKUP(RC[-3],RC1:RC108,MATCH(R8C4,R9C1:R9C108,0),0)>0))"
+        "=OR(RC[-1]="""",OR(RC[-1]=VALUE(RC[14]),VLOOKUP(RC[-3],RC1:RC108," _
+        & "MATCH(R8C4,R9C1:R9C108,0),0)>0))"
     Range("A1").Copy
     Cells(begin, aw(K)).Select
     Selection.PasteSpecial Paste:=xlPasteFormats
@@ -922,7 +933,10 @@ Application.StatusBar = "Выполнено: 93 %"
 K = 5
 Cells(begin, aw(K)).Select
     ActiveCell.FormulaR1C1 = _
-        "=IF(OR(CONCATENATE(RC[-3],"" 2023"")=RC[-4],VLOOKUP(RC[-4],RC1:RC108,MATCH(R8C4,R9C1:R9C108,0),0)>0,RC[2]=TRUE),"""",VLOOKUP(RC[-3],'2023 произ. календарь'!R18C1:R31C65,HLOOKUP(RC[11],'2023 произ. календарь'!R18:R19,2,0),0))"
+        "=IF(OR(CONCATENATE(RC[-3],"" " & DistinctYear & """)=RC[-4],VLOOKUP(RC[-4]," _
+        & "RC1:RC108,MATCH(R8C4,R9C1:R9C108,0),0)>0,RC[2]=TRUE),"""",VLOOKUP(RC[-3]," _
+        & "'" & DistinctYear & " произ. календарь'!R18C1:R31C65,HLOOKUP(RC[11]," _
+        & "'" & DistinctYear & " произ. календарь'!R18:R19,2,0),0))"
     Cells(begin, aw(K)).Select
     Selection.AutoFill Destination:=Range(Cells(begin, aw(K)), Cells(iwLastRow, aw(K)))
 
@@ -954,7 +968,7 @@ Cells(begin, aw(K)).Select
     Selection.AutoFill Destination:=Range(Cells(begin, aw(K)), Cells(iwLastRow, aw(K)))
 
 'Анализ изменения фамилии
-K = 10
+K = 9
 Cells(begin, aw(K)).Select
     ActiveCell.FormulaR1C1 = "=CONCATENATE(RC[-8],RC[-7],RC[5])"
     Cells(begin, aw(K)).Select
@@ -977,12 +991,12 @@ Columns("I:I").Select
 'статус бар
 Application.StatusBar = "Выполнено: 96 %"
 
-'Умершие
-K = 9
-Cells(begin, aw(K)).Select
-    ActiveCell.FormulaR1C1 = "=IF(AND(RC[89]>0,RC[95]=""""),""пИчаль"","""")"
-    Cells(begin, aw(K)).Select
-    Selection.AutoFill Destination:=Range(Cells(begin, aw(K)), Cells(iwLastRow, aw(K)))
+''Умершие
+'K = 9
+'Cells(begin, aw(K)).Select
+'    ActiveCell.FormulaR1C1 = "=IF(AND(RC[89]>0,RC[95]=""""),""пИчаль"","""")"
+'    Cells(begin, aw(K)).Select
+'    Selection.AutoFill Destination:=Range(Cells(begin, aw(K)), Cells(iwLastRow, aw(K)))
 
 'Сумма по Доход в натуральной форме
 K = 78
@@ -1023,9 +1037,9 @@ Range("C:C,E:E").Select
         .HorizontalAlignment = xlCenter
     End With
 
-'сообщение
-MsgBoxEx "Почти всё готово" _
-& vbCr & "Выполнено 98%", 0, "98%", 5
+''сообщение
+'MsgBoxEx "Почти всё готово" _
+'& vbCr & "Выполнено 98%", 0, "98%", 5
 
 'статус бар
 Application.StatusBar = "Выполнено: 100 %"
@@ -1076,6 +1090,10 @@ ErrHandler:
  MsgBox Err.Description
  Resume ExitHandler
 End Sub
+
+
+
+
 
 
 
