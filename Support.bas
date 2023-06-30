@@ -450,7 +450,13 @@ End Sub
 Sub HideSys()
  Dim ws As Worksheet
     For Each ws In ThisWorkbook.Worksheets
-        If Not ws.Range("ZZ500").Value2 = Empty Then
+        If ws.Range("A1").Value2 = "sys" _
+        Or ws.Range("A1").Value2 = "Трудоёмкость" _
+        Or ws.Range("A1").Value2 = "Статья затрат" Or ws.Range("A1").Value2 = "Имя" _
+        Or ws.Range("A1").Value2 = "company_name" _
+        Or ws.Range("A1").Value2 = "Наименование статей в 1С" _
+        Or ws.Range("H2").Value2 = "Отчет о финансовых результатах" _
+        Or ws.Range("J1").Value2 = "Сумма" Then
             ws.Visible = False
         End If
     Next ws
@@ -460,7 +466,13 @@ End Sub
 Sub UnhideSys()
  Dim ws As Worksheet
     For Each ws In ThisWorkbook.Worksheets
-        If Not ws.Range("ZZ500").Value2 = Empty Then
+        If ws.Range("A1").Value2 = "sys" _
+        Or ws.Range("A1").Value2 = "Трудоёмкость" _
+        Or ws.Range("A1").Value2 = "Статья затрат" Or ws.Range("A1").Value2 = "Имя" _
+        Or ws.Range("A1").Value2 = "company_name" _
+        Or ws.Range("A1").Value2 = "Наименование статей в 1С" _
+        Or ws.Range("H2").Value2 = "Отчет о финансовых результатах" _
+        Or ws.Range("J1").Value2 = "Сумма" Then
             ws.Visible = True
         End If
     Next ws
@@ -470,7 +482,7 @@ End Sub
 Sub HideEmpty()
  Dim ws As Worksheet
     For Each ws In ThisWorkbook.Worksheets
-        If Not ws.Range("ZZ501").Value2 = Empty Then
+        If ws.Range("A1").Value2 = "1" Then
             ws.Visible = True
             ws.Select
             With ws.Tab
