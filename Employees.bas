@@ -8,9 +8,9 @@ Sub EmployeesInsertion()
  Set ThisWorkbook = ActiveWorkbook
  On Error GoTo ErrHandler
  SheetName = "Employees"
- awLastCol = 37
+ awLastCol = 2
  SearchRow = "A"
- UserMessage = "Óðà!"
+' UserMessage = "Óðà!"
 
 Application.ScreenUpdating = False
 Application.EnableEvents = False
