@@ -11,14 +11,14 @@ Sub Project_Payroll_Insertion()
  Set ThisWorkbook = ActiveWorkbook
  On Error GoTo ExitHandler
  SheetName = "РВ_Проекта"
- Limit = 125 'последняя колонка базы
+ Limit = 127 'последняя колонка базы
  begin = 12 'первый ряд вставки
 ' LimitIW = 170 'последняя колонка импортируемой книги
 ProjectName = ThisWorkbook.Sheets("Preferences").Range("C13").Value2 'имя проекта
 
  
- Dim aw(1 To 125) As Variant
- Dim iw(1 To 125) As Variant
+ Dim aw(1 To 127) As Variant
+ Dim iw(1 To 127) As Variant
  
 Application.ScreenUpdating = False
 Application.EnableEvents = False
@@ -422,6 +422,12 @@ Application.StatusBar = "Определение колонок рабочей книги." & _
     End If
     If Worksheets(SheetName).Cells(DataRow, I) = "Премия квартальная" Then
         aw(125) = I
+    End If
+    If Worksheets(SheetName).Cells(DataRow, I) = "Премия квартальная (с учетом РК)" Then
+        aw(126) = I
+    End If
+    If Worksheets(SheetName).Cells(DataRow, I) = "Премия месячная (с учетом РК)" Then
+        aw(127) = I
     End If
     
 Next I
@@ -846,8 +852,14 @@ Application.StatusBar = "Определение колонок импортируемой книги" & _
     If importWB.Sheets(1).Cells(ImportSecondDataRow, I) = "Анализ расхождений по зарплате" Then '-
         iw(124) = I
     End If
-    If importWB.Sheets(1).Cells(ImportSecondDataRow, I) = "Премия квартальная" Then '-
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Премия квартальная" Then
         iw(125) = I
+    End If
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Премия квартальная (с учетом РК)" Then
+        iw(126) = I
+    End If
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Премия месячная (с учетом РК)" Then
+        iw(127) = I
     End If
     
 Next I
@@ -906,6 +918,8 @@ Application.StatusBar = "Добавление проверочных формул"
 'вставка проверочных формул
 ThisWorkbook.Sheets(SheetName).Activate
 'месяц
+'статус бар
+Application.StatusBar = "Добавление проверочных формул нормы месяца"
 Cells(begin, aw(2)).Select
     ActiveCell.FormulaR1C1 = _
         "=IF(IFERROR(SEARCH("" 20"",RC[-1],1)>0,FALSE),TRIM(MID(IF(IFERROR(SEARCH("" 20"",RC[-1],1)>0,FALSE),RC[-1],R[-1]C),1,SEARCH("" "",IF(IFERROR(SEARCH("" 20"",RC[-1],1)>0,FALSE),RC[-1],R[-1]C),1)-1)),R[-1]C)"
@@ -913,6 +927,8 @@ Cells(begin, aw(2)).Select
     Selection.AutoFill Destination:=Range(Cells(begin, aw(2)), Cells(iwLastRow, aw(2)))
     
 'расчётная норма часов
+'статус бар
+Application.StatusBar = "Добавление проверочных формул нормы часов"
 K = 3
 Cells(begin, aw(K)).Select
     ActiveCell.FormulaR1C1 = _
@@ -930,6 +946,8 @@ Cells(begin, aw(K)).Select
     Selection.AutoFill Destination:=Range(Cells(begin, aw(K)), Cells(iwLastRow, aw(K)))
     
 'анализ часов
+'статус бар
+Application.StatusBar = "Добавление проверочных формул анализа расхождений между часами"
 K = 4
 Cells(begin, aw(K)).Select
     ActiveCell.FormulaR1C1 = _
@@ -941,6 +959,8 @@ Cells(begin, aw(K)).Select
     Selection.AutoFill Destination:=Range(Cells(begin, aw(K)), Cells(iwLastRow, aw(K)))
     
 'Анализ расхождений по зарплате
+'статус бар
+Application.StatusBar = "Добавление проверочных формул анализа расхождений по заработной плате"
 K = 124
 Cells(begin, aw(K)).Select
     ActiveCell.FormulaR1C1 = _
@@ -952,6 +972,8 @@ Cells(begin, aw(K)).Select
     Selection.AutoFill Destination:=Range(Cells(begin, aw(K)), Cells(iwLastRow, aw(K)))
     
 'расчётная норма дней
+'статус бар
+Application.StatusBar = "Добавление проверочных формул нормы дней"
 K = 5
 Cells(begin, aw(K)).Select
     ActiveCell.FormulaR1C1 = _
@@ -970,6 +992,8 @@ Cells(begin, aw(K)).Select
     Selection.AutoFill Destination:=Range(Cells(begin, aw(K)), Cells(iwLastRow, aw(K)))
     
 'анализ дней
+'статус бар
+Application.StatusBar = "Добавление проверочных формул анализа расхождений по дням"
 K = 6
 Cells(begin, aw(K)).Select
     ActiveCell.FormulaR1C1 = _
@@ -981,6 +1005,8 @@ Cells(begin, aw(K)).Select
     Selection.AutoFill Destination:=Range(Cells(begin, aw(K)), Cells(iwLastRow, aw(K)))
     
 'Исключение всех кроме 20,26,44 счёта
+'статус бар
+Application.StatusBar = "Добавление формул включения в расчёт 20,46,44 счетов"
 K = 7
 Cells(begin, aw(K)).Select
     ActiveCell.FormulaR1C1 = _
@@ -989,6 +1015,8 @@ Cells(begin, aw(K)).Select
     Selection.AutoFill Destination:=Range(Cells(begin, aw(K)), Cells(iwLastRow, aw(K)))
     
 'Имя Отчество
+'статус бар
+Application.StatusBar = "Добавление проверочных формул анализа имени и отчества"
 K = 8
 Cells(begin, aw(K)).Select
     ActiveCell.FormulaR1C1 = _
@@ -997,6 +1025,8 @@ Cells(begin, aw(K)).Select
     Selection.AutoFill Destination:=Range(Cells(begin, aw(K)), Cells(iwLastRow, aw(K)))
     
 'Анализ изменения фамилии
+'статус бар
+Application.StatusBar = "Добавление проверочных формул анализа изменения фамилии"
 K = 10
 Cells(begin, aw(K)).Select
     ActiveCell.FormulaR1C1 = "=CONCATENATE(RC[-8],RC[-7],RC[5])"
@@ -1018,6 +1048,8 @@ Columns("I:I").Select
     Selection.FormatConditions(1).StopIfTrue = False
     
 'Год
+'статус бар
+Application.StatusBar = "Добавление формул выделения года"
 K = 9
 Cells(begin, aw(K)).Select
     ActiveCell.FormulaR1C1 = "=VALUE(IF(IFERROR(SEARCH("" 20"",RC[-9],1)>0,FALSE),MID(RC[-9],SEARCH("" "",RC[-9],1)+1,4),R[-1]C))"
@@ -1025,6 +1057,8 @@ Cells(begin, aw(K)).Select
     Selection.AutoFill Destination:=Range(Cells(begin, aw(K)), Cells(iwLastRow, aw(K)))
 
 'Сокращённое Ф.И.О.
+'статус бар
+Application.StatusBar = "Добавление формул сокращения Ф.И.О. для анализа табеля рабочего времени"
 K = 115
 Cells(begin, aw(K)).Select
     ActiveCell.FormulaR1C1 = "=IFERROR(CONCATENATE(MID(RC[-18],1,FIND("" "",RC[-18])+1),"". "",MID(RC[-18],FIND("" "",RC[-18],FIND("" "",RC[-18])+1)+1,1),"".""),"""")"
@@ -1032,6 +1066,8 @@ Cells(begin, aw(K)).Select
     Selection.AutoFill Destination:=Range(Cells(begin, aw(K)), Cells(iwLastRow, aw(K)))
     
 'Основная заработная плата
+'статус бар
+Application.StatusBar = "Добавление формул вычисления заработной платы"
 K = 119
 Cells(begin, aw(K)).Select
     ActiveCell.FormulaR1C1 = "=ROUND(RC[10]/(RC[7]/RC[-2]),0)" & _
@@ -1040,6 +1076,8 @@ Cells(begin, aw(K)).Select
     Selection.AutoFill Destination:=Range(Cells(begin, aw(K)), Cells(iwLastRow, aw(K)))
 
 'Месяц числом
+'статус бар
+Application.StatusBar = "Добавление формулы преобразования месяца в число"
 K = 120
 Cells(begin, aw(K)).Select
 '    ActiveCell.FormulaR1C1 = "=SUM(RC[5]:RC[6])"
@@ -1048,6 +1086,8 @@ Cells(begin, aw(K)).Select
     Selection.AutoFill Destination:=Range(Cells(begin, aw(K)), Cells(iwLastRow, aw(K)))
     
 'Временное решение
+'статус бар
+Application.StatusBar = "Добавление формул переноса ФОТ из расчётной ведомости"
 K = 121
 Cells(begin, aw(K)).Select
     ActiveCell.FormulaR1C1 = "=SUMIFS(РВ!C4,РВ!C2,RC[-21],РВ!C[-6],RC[-20],РВ!C11,RC[-12])"
@@ -1055,6 +1095,8 @@ Cells(begin, aw(K)).Select
     Selection.AutoFill Destination:=Range(Cells(begin, aw(K)), Cells(iwLastRow, aw(K)))
 
 'Сумма по Доход в натуральной форме
+'статус бар
+Application.StatusBar = "Добавление формул по доходу в натуральном виде"
 K = 78
 Cells(begin, aw(K)).Select
     ActiveCell.FormulaR1C1 = "=SUM(RC[1]:RC[9])"
