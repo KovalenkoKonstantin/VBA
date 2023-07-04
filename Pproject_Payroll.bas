@@ -6,18 +6,19 @@ Sub Project_Payroll_Insertion()
  Dim ws, this As Worksheet
  Dim MyRange, MyCell As Range
  Dim SheetName, ProjectName As String
+ Dim K As Variant 'ключ из 11 строки
 
  Set ThisWorkbook = ActiveWorkbook
  On Error GoTo ExitHandler
  SheetName = "РВ_Проекта"
- Limit = 121 'последняя колонка базы
+ Limit = 125 'последняя колонка базы
  begin = 12 'первый ряд вставки
 ' LimitIW = 170 'последняя колонка импортируемой книги
 ProjectName = ThisWorkbook.Sheets("Preferences").Range("C13").Value2 'имя проекта
 
  
- Dim aw(1 To 121) As Variant
- Dim iw(1 To 121) As Variant
+ Dim aw(1 To 125) As Variant
+ Dim iw(1 To 125) As Variant
  
 Application.ScreenUpdating = False
 Application.EnableEvents = False
@@ -37,6 +38,10 @@ For I = 1 To 20
 Next I
 
 For I = 1 To Limit
+'статус бар
+Application.StatusBar = "Определение колонок рабочей книги." & _
+" Выполнено: " & Int(90 * I / Limit) & "%"
+
     If Worksheets(SheetName).Cells(DataRow, I) = "Сотрудник" Then
         aw(1) = I
     End If
@@ -363,7 +368,7 @@ For I = 1 To Limit
     If Worksheets(SheetName).Cells(DataRow, I) = "% процент страховых взносов" Then
         aw(107) = I
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "База взносов" Then
+    If Worksheets(SheetName).Cells(DataRow, I) = "База взносов на проекте" Then
         aw(108) = I
     End If
 ' ----------------------------------------------------------------------------------------------------
@@ -406,6 +411,18 @@ For I = 1 To Limit
     If Worksheets(SheetName).Cells(DataRow, I) = "Временное решение" Then
         aw(121) = I
     End If
+    If Worksheets(SheetName).Cells(DataRow, I) = "Таб.№" Then
+        aw(122) = I
+    End If
+    If Worksheets(SheetName).Cells(DataRow, I) = "ФОТ" Then
+        aw(123) = I
+    End If
+    If Worksheets(SheetName).Cells(DataRow, I) = "Анализ расхождений по зарплате" Then
+        aw(124) = I
+    End If
+    If Worksheets(SheetName).Cells(DataRow, I) = "Премия квартальная" Then
+        aw(125) = I
+    End If
     
 Next I
 
@@ -447,6 +464,10 @@ Next I
 LimitIW = Cells(ImportSecondDataRow, Columns.Count).End(xlToLeft).column
 
 For I = 1 To LimitIW
+'статус бар
+Application.StatusBar = "Определение колонок импортируемой книги" & _
+" Выполнено: " & Int(90 * I / LimitIW) & "%"
+
     If importWB.Sheets(1).Cells(ImportSecondDataRow, I) = "ФИОСотрудник" Then '-
         iw(1) = I
     End If
@@ -773,7 +794,7 @@ For I = 1 To LimitIW
     If importWB.Sheets(1).Cells(ImportSecondDataRow, I) = "% процент страховых взносов" Then
         iw(107) = I
     End If
-    If importWB.Sheets(1).Cells(ImportSecondDataRow, I) = "База взносов" Then '-
+    If importWB.Sheets(1).Cells(ImportSecondDataRow, I) = "База взносов на проекте" Then '-
         iw(108) = I
     End If
 ' ----------------------------------------------------------------------------------------------------
@@ -816,6 +837,18 @@ For I = 1 To LimitIW
     If importWB.Sheets(1).Cells(ImportSecondDataRow, I) = "Временное решение" Then '-
         iw(121) = I
     End If
+    If importWB.Sheets(1).Cells(ImportSecondDataRow, I) = "Таб.№" Then '-
+        iw(122) = I
+    End If
+    If importWB.Sheets(1).Cells(ImportSecondDataRow, I) = "ФОТ" Then '-
+        iw(123) = I
+    End If
+    If importWB.Sheets(1).Cells(ImportSecondDataRow, I) = "Анализ расхождений по зарплате" Then '-
+        iw(124) = I
+    End If
+    If importWB.Sheets(1).Cells(ImportSecondDataRow, I) = "Премия квартальная" Then '-
+        iw(125) = I
+    End If
     
 Next I
 
@@ -839,6 +872,10 @@ Application.StatusBar = "Вставка данных"
  iwLastRow = Cells(Rows.Count, "A").End(xlUp).row
  
 For I = 1 To Limit
+'статус бар
+Application.StatusBar = "Вставка данных." & _
+" Выполнено: " & Int(90 * I / Limit) & "%"
+
  importWB.Activate
  Range(Cells(begin, iw(I)), Cells(iwLastRow, iw(I))).Copy
  
@@ -897,6 +934,17 @@ K = 4
 Cells(begin, aw(K)).Select
     ActiveCell.FormulaR1C1 = _
         "=OR(RC[-1]="""",OR(RC[-1]=VALUE(RC[14]),VLOOKUP(RC[-3],RC1:RC108,MATCH(R8C4,R9C1:R9C108,0),0)>0))"
+    Range("A1").Copy
+    Cells(begin, aw(K)).Select
+    Selection.PasteSpecial Paste:=xlPasteFormats
+    Cells(begin, aw(K)).Select
+    Selection.AutoFill Destination:=Range(Cells(begin, aw(K)), Cells(iwLastRow, aw(K)))
+    
+'Анализ расхождений по зарплате
+K = 124
+Cells(begin, aw(K)).Select
+    ActiveCell.FormulaR1C1 = _
+        "=IF(RC[-2]="""",TRUE,RC[-3]=RC[-1])"
     Range("A1").Copy
     Cells(begin, aw(K)).Select
     Selection.PasteSpecial Paste:=xlPasteFormats
@@ -986,8 +1034,8 @@ Cells(begin, aw(K)).Select
 'Основная заработная плата
 K = 119
 Cells(begin, aw(K)).Select
-'    ActiveCell.FormulaR1C1 = "=SUM(RC[5]:RC[6])"
-    ActiveCell.FormulaR1C1 = "=ROUND(RC[6]/(RC[3]/RC[-2]),0)+ROUND(RC[7]/(RC[3]/RC[-2]),0)"
+    ActiveCell.FormulaR1C1 = "=ROUND(RC[10]/(RC[7]/RC[-2]),0)" & _
+    "+ROUND(RC[11]/(RC[7]/RC[-2]),0)"
     Cells(begin, aw(K)).Select
     Selection.AutoFill Destination:=Range(Cells(begin, aw(K)), Cells(iwLastRow, aw(K)))
 
@@ -1102,8 +1150,6 @@ ErrHandler:
  MsgBox Err.Description
  Resume ExitHandler
 End Sub
-
-
 
 
 
