@@ -33,11 +33,11 @@ For Each ws In ThisWorkbook.Worksheets
     + Str(Int(aws / tottal * 100)) + " %. " + "Расчётное время до конца выполнения программы: " _
     + Str(Int((Str(tottal) - Str(aws)) * 3)) + " секунд."
 
-        ActiveSheet.PageSetup.CenterHeaderPicture.Filename = _
-        "D:\Аннотация.png"
+'        ActiveSheet.PageSetup.CenterHeaderPicture.Filename = _
+'        "D:\Аннотация.png"
 
             With ActiveSheet.PageSetup
-                .CenterHeader = "&G"
+'                .CenterHeader = "&G"
                 .CenterHeader = _
                 "&""Times New Roman,обычный""&KFF0000Данный документ не согласован."
 '                .RightHeader = _
