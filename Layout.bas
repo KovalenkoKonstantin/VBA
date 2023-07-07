@@ -31,7 +31,7 @@ For Each ws In ThisWorkbook.Worksheets
     Application.StatusBar = "Обрабатывается " + Str(aws) _
     + " лист из " + Str(tottal) + " листов. Выполнено: " _
     + Str(Int(aws / tottal * 100)) + " %. " + "Расчётное время до конца выполнения программы: " _
-    + Str(Int((Str(tottal) - Str(aws)) * 3)) + " секунд."
+    + Str(Int((Str(tottal) - Str(aws)) * 3)) + " секунд(ы)."
 
 '        ActiveSheet.PageSetup.CenterHeaderPicture.Filename = _
 '        "D:\Аннотация.png"
