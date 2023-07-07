@@ -430,7 +430,7 @@ Application.StatusBar = "Определение колонок рабочей книги." & _
         aw(127) = I
     End If
     If Worksheets(SheetName).Cells(DataRow, I) = "Премия по итогам года (с учетом РК)" Then
-        aw(127) = I
+        aw(128) = I
     End If
     
 Next I
