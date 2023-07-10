@@ -115,6 +115,11 @@ UserForm1.Hide
 EmployeesInsertion
 End Sub
 
+Private Sub CommandButton12_Click()
+    UserForm1.Hide
+    UserForm6.Show
+End Sub
+
 Private Sub CommandButton3_Click()
  UserForm1.Hide
   Dim FilesToOpen
