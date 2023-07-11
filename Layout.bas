@@ -14,6 +14,7 @@ Sub LayoutOn()
 'tottal = I
 
 Set ThisWorkbook = ActiveWorkbook
+CompanyName = ThisWorkbook.Sheets("Preferences").Range("C7").Value2 'имя компании
  On Error GoTo ExitHandler
  
 Application.ScreenUpdating = False
@@ -43,7 +44,7 @@ For Each ws In ThisWorkbook.Worksheets
 '                .RightHeader = _
 '                "&""Times New Roman,обычный""&KFF0000Любое несанкционированное раскрытие, распространение или копирование ЗАПРЕЩЕНО."
                 .RightFooter = _
-                "&""Times New Roman,обычный""&KFF0000Настоящий документ и любые приложения к нему содержат информацию относящуюся к коммерческой тайне АО ""ИнфоТеКс"". "
+                "&""Times New Roman,обычный""&KFF0000Настоящий документ и любые приложения к нему содержат информацию относящуюся к коммерческой тайне " & CompanyName
             End With
     End If
 Next ws
