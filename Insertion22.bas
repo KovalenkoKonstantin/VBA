@@ -12,12 +12,12 @@ Sub Data_Insertion_22()
  On Error GoTo ExitHandler
  SheetName = "Processing22"
  DistinctYear = 2022
- Limit = 124 'последняя колонка базы
+ Limit = 125 'последняя колонка базы
  begin = 12 'первый ряд вставки
  CompanyName = ThisWorkbook.Sheets("Preferences").Range("C7").Value2 'имя проекта
  
- Dim aw(1 To 124) As Variant
- Dim iw(1 To 124) As Variant
+ Dim aw(1 To 125) As Variant
+ Dim iw(1 To 125) As Variant
  
 Application.ScreenUpdating = False
 Application.EnableEvents = False
@@ -457,6 +457,9 @@ For I = 1 To Limit
     If Worksheets(SheetName).Cells(DataRow, I) = "Надбавка за сложность и напряженность (по часам пропорц. отработанному времени)" Then
         aw(124) = I
     End If
+    If Worksheets(SheetName).Cells(DataRow, I) = "Премия разовая (с учетом РК)" Then
+        aw(125) = I
+    End If
     
 Next I
  
@@ -852,6 +855,9 @@ For I = 1 To Limit
     End If
     If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Надбавка за сложность и напряженность (по часам пропорц. отработанному времени)" Then '-
         iw(124) = I
+    End If
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Премия разовая (с учетом РК)" Then '-
+        iw(125) = I
     End If
 
 Next I
