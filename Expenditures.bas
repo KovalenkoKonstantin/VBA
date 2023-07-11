@@ -99,7 +99,7 @@ For I = 1 To Limit
     If Worksheets(SheetName).Cells(DataRow, I) = "анализ дней" Then
         aw(6) = I
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Исключение всех кроме 20,26,44 счёта" Then
+    If Worksheets(SheetName).Cells(DataRow, I) = "Год" Then
         aw(7) = I
     End If
     If Worksheets(SheetName).Cells(DataRow, I) = "Имя Отчество" Then
@@ -498,7 +498,7 @@ For I = 1 To Limit
     If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "анализ дней" Then
         iw(6) = I
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Исключение всех кроме 20,26,44 счёта" Then
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Год" Then
         iw(7) = I
     End If
     If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Имя Отчество" Then
@@ -989,11 +989,12 @@ Cells(begin, aw(K)).Select
     Cells(begin, aw(K)).Select
     Selection.AutoFill Destination:=Range(Cells(begin, aw(K)), Cells(iwLastRow, aw(K)))
 
-'Исключение всех кроме 20,26,44 счёта
+'Год
 K = 7
 Cells(begin, aw(K)).Select
     ActiveCell.FormulaR1C1 = _
-       "=NOT(OR(IFERROR(SEARCH(20,RC[8],1),FALSE),IFERROR(SEARCH(26,RC[8],1),FALSE),IFERROR(SEARCH(44,RC[8],1),FALSE)))"
+       "=VALUE(IF(IFERROR(SEARCH("" 20"",RC[-6],1)>0,FALSE)," _
+        & "MID(RC[-6],SEARCH("" "",RC[-6],1)+1,4),R[-1]C))"
     Cells(begin, aw(K)).Select
     Selection.AutoFill Destination:=Range(Cells(begin, aw(K)), Cells(iwLastRow, aw(K)))
 
