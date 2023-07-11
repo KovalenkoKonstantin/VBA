@@ -13,7 +13,7 @@ End Sub
 'FileSaving() - название функции в скрипте
 
 Sub PythonПоиск()
-    Application.StatusBar = "Сохранение этой книги"
+    Application.StatusBar = "Сохранение книги " & ActiveWorkbook.Name
     ActiveWorkbook.Save
     Application.StatusBar = "Перенос данных в BackUp"
     RunPython ("import Поиск; Поиск.FileSaving()")
