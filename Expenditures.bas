@@ -1,5 +1,5 @@
-Attribute VB_Name = "Insertion23"
-Sub Data_Insertion_23()
+Attribute VB_Name = "Expenditures"
+Sub Overheads()
  
  Start = Now()
  Dim FilesToOpen
@@ -10,8 +10,8 @@ Sub Data_Insertion_23()
   
  Set ThisWorkbook = ActiveWorkbook
  On Error GoTo ExitHandler
- SheetName = "Processing23"
- DistinctYear = 2023
+ SheetName = "Expenditures"
+' DistinctYear = 2021
  Limit = 120 'последняя колонка базы
  begin = 12 'первый ряд вставки
  CompanyName = ThisWorkbook.Sheets("Preferences").Range("C7").Value2 'имя проекта
@@ -27,7 +27,7 @@ Application.DisplayAlerts = False
 
 FilesToOpen = Application.GetOpenFilename _
  (FileFilter:="Microsoft Excel Files (*.xlsx), *.xlsx", _
- MultiSelect:=True, Title:="Выберите расчётную ведомость по компании " & CompanyName & " за " & DistinctYear & " год")
+ MultiSelect:=True, Title:="Выберите расчётную ведомость по компании " & CompanyName & " за весь период действия проекта")
  
  'статус бар
 Application.StatusBar = "Анализ данных..."
@@ -44,20 +44,20 @@ On Error Resume Next
  'проверка правильности выбора данных
  importWB.Sheets(1).Activate
  Range("G2").Select
- ActiveCell.FormulaR1C1 = "=YEAR(MID(RC[-4],SEARCH("" "",RC[-4],1)+1,10))"
- If Range("G2").Value2 <> DistinctYear Or Range("A11").Value2 <> CompanyName Then
-    Range("G2").Select
-    With Selection:
-        .Clear
-    End With
+' ActiveCell.FormulaR1C1 = "=YEAR(MID(RC[-4],SEARCH("" "",RC[-4],1)+1,10))"
+ If Range("A11").Value2 <> CompanyName Then
+'    Range("G2").Select
+'    With Selection:
+'        .Clear
+'    End With
     MsgBoxEx "Выбрана неправильная расчётная ведомость." _
     & vbCr & "Процесс прерван.", vbCritical, "Bad Day", 20
     GoTo ExitHandler
  ElseIf Range("G2").Value2 = DistinctYear Then
- Range("G2").Select
-    With Selection:
-        .Clear
-    End With
+' Range("G2").Select
+'    With Selection:
+'        .Clear
+'    End With
     MsgBoxEx "Выбрана правильная расчётная ведомость." _
     & vbCr & "Продолжаем.", 0, "Succes", 5
  End If
@@ -865,30 +865,30 @@ Application.StatusBar = "Промежуточный цикл. Выполнено: " & Int(100 * I / Limit)
            .MergeCells = False
            .Font.Size = 8
     End With
-    If I = Int(Limit / 4) Then
-        'сообщение
-        MsgBoxEx "Активно тружусь ..." _
-    & vbCr & "Ищу столбцы, сопоставляю значения, вычисляю диапазоны", 0, "Выполнено " & _
-    Int(90 * I / Limit) & "%", 5
-    End If
-
-    If I = Int(Limit / 2) Then
-        'сообщение
-        MsgBoxEx "Всё в порядке" _
-    & vbCr & "Выполнено " & Int(90 * I / Limit) & "%", 0, "Достигли середины", 5
-    End If
-
-    If I = Int(Limit / 4 * 3) Then
-        'сообщение
-        MsgBoxEx "Обрабатывается " & iwLastRow & " строк и " & Limit & " колонок" _
-    & vbCr & "Выполнено " & Int(90 * I / Limit) & "%", 0, "Скоро...", 5
-    End If
+'    If I = Int(Limit / 4) Then
+'        'сообщение
+'        MsgBoxEx "Активно тружусь ..." _
+'    & vbCr & "Ищу столбцы, сопоставляю значения, вычисляю диапазоны", 0, "Выполнено " & _
+'    Int(90 * I / Limit) & "%", 5
+'    End If
+'
+'    If I = Int(Limit / 2) Then
+'        'сообщение
+'        MsgBoxEx "Всё в порядке" _
+'    & vbCr & "Выполнено " & Int(90 * I / Limit) & "%", 0, "Достигли середины", 5
+'    End If
+'
+'    If I = Int(Limit / 4 * 3) Then
+'        'сообщение
+'        MsgBoxEx "Обрабатывается " & iwLastRow & " строк и " & Limit & " колонок" _
+'    & vbCr & "Выполнено " & Int(90 * I / Limit) & "%", 0, "Скоро...", 5
+'    End If
 
 Next I
 
-'сообщение
-MsgBoxEx "Ускоряемся ..." _
-& vbCr & "Выполнено 90%", 0, "Нет, я не завис.", 5
+''сообщение
+'MsgBoxEx "Ускоряемся ..." _
+'& vbCr & "Выполнено 90%", 0, "Нет, я не завис.", 5
 
 'статус бар
 Application.StatusBar = "Выполнено: 90 %"
@@ -1055,7 +1055,7 @@ ThisWorkbook.Sheets(SheetName).Activate
 MsgBoxEx "Расчётная ведомость " _
     & "по компании " & vbCr & ThisWorkbook.Sheets("Calculation22").Range("E2").Value2 _
     & vbCr & "за " & ThisWorkbook.Sheets(SheetName).Range("B2").Value2 & " год" _
-    & vbCr & "добавлена успешно", 0, "Выполнено", 25
+    & vbCr & "добавлена успешно", 0, "Выполнено", 15
 
 ThisWorkbook.Sheets("Calculation22").Activate
 'If Range("E1").Value2 = True Then
@@ -1096,6 +1096,8 @@ ErrHandler:
  MsgBox Err.Description
  Resume ExitHandler
 End Sub
+
+
 
 
 
