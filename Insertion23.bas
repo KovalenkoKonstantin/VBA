@@ -12,12 +12,12 @@ Sub Data_Insertion_23()
  On Error GoTo ExitHandler
  SheetName = "Processing23"
  DistinctYear = 2023
- Limit = 121 'последняя колонка базы
+ Limit = 122 'последняя колонка базы
  begin = 12 'первый ряд вставки
  CompanyName = ThisWorkbook.Sheets("Preferences").Range("C7").Value2 'имя проекта
  
- Dim aw(1 To 121) As Variant
- Dim iw(1 To 121) As Variant
+ Dim aw(1 To 122) As Variant
+ Dim iw(1 To 122) As Variant
  
 Application.ScreenUpdating = False
 Application.EnableEvents = False
@@ -448,6 +448,9 @@ For I = 1 To Limit
     If Worksheets(SheetName).Cells(DataRow, I) = "Премия квартальная" Then
         aw(121) = I
     End If
+    If Worksheets(SheetName).Cells(DataRow, I) = "Премия квартальная (с учетом РК)" Then
+        aw(122) = I
+    End If
     
 Next I
  
@@ -835,6 +838,9 @@ For I = 1 To Limit
     If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Премия квартальная" Then '-
         iw(121) = I
     End If
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Премия квартальная (с учетом РК)" Then '-
+        iw(122) = I
+    End If
 
 Next I
 
@@ -1059,7 +1065,7 @@ Application.StatusBar = "Выполнено: 100 %"
 'завершение
 ThisWorkbook.Sheets(SheetName).Activate
 MsgBoxEx "Расчётная ведомость " _
-    & "по компании " & vbCr & ThisWorkbook.Sheets("Calculation22").Range("E2").Value2 _
+    & "по компании " & vbCr & ThisWorkbook.Sheets("Preferences").Range("C7").Value2 _
     & vbCr & "за " & ThisWorkbook.Sheets(SheetName).Range("B2").Value2 & " год" _
     & vbCr & "добавлена успешно", 0, "Выполнено", 25
 
