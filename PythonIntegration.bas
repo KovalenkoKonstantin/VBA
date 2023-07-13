@@ -19,7 +19,7 @@ Sub Python()
     If ActiveWorkbook.Name = "РКМ_Поиск.xlsm" Then
         RunPython ("import Поиск; Поиск.FileSaving()")
     ElseIf ActiveWorkbook.Name = "РКМ_45622?075_v.1.0.xlsm" Then
-        RunPython ("import Поиск; Поиск.FileSaving()")
+        RunPython ("import 45622С075; 45622С075.FileSaving()")
     End If
 '    Application.StatusBar = "Создание PDF"
 '    SaveToPDF
