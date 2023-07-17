@@ -10,6 +10,8 @@ Sub Python()
         RunPython ("import C075; C075.FileSaving()")
     ElseIf ActiveWorkbook.Name = "ОРЦ Улей-23 работа_v1.6.xlsm" Then
         RunPython ("import Улей_23; Улей_23.FileSaving()")
+    ElseIf ActiveWorkbook.Name = "ТФЦ 022-7 1 этап_v1.7.xlsm" Then
+        RunPython ("import Профитроль2207; Профитроль2207.FileSaving()")
     End If
 '    Application.StatusBar = "Создание PDF"
 '    SaveToPDF
