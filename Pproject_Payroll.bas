@@ -11,14 +11,14 @@ Sub Project_Payroll_Insertion()
  Set ThisWorkbook = ActiveWorkbook
  On Error GoTo ExitHandler
  SheetName = "РВ_Проекта"
- Limit = 128 'последняя колонка базы
+ Limit = 129 'последняя колонка базы
  begin = 12 'первый ряд вставки
 ' LimitIW = 170 'последняя колонка импортируемой книги
 ProjectName = ThisWorkbook.Sheets("Preferences").Range("C13").Value2 'имя проекта
 
  
- Dim aw(1 To 128) As Variant
- Dim iw(1 To 128) As Variant
+ Dim aw(1 To 129) As Variant
+ Dim iw(1 To 129) As Variant
  
 Application.ScreenUpdating = False
 Application.EnableEvents = False
@@ -432,6 +432,9 @@ Application.StatusBar = "Определение колонок рабочей книги." & _
     If Worksheets(SheetName).Cells(DataRow, I) = "Премия по итогам года (с учетом РК)" Then
         aw(128) = I
     End If
+    If Worksheets(SheetName).Cells(DataRow, I) = "ФОТ на проекте" Then
+        aw(129) = I
+    End If
     
 Next I
 
@@ -819,6 +822,7 @@ Application.StatusBar = "Определение колонок импортируемой книги" & _
     If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Премия квартальная объем продаж (ПМ)" Then '-
         iw(112) = I
     End If
+' ----------------------------------------------------------------------------------------------------
     If importWB.Sheets(1).Cells(ImportSecondDataRow, I) = "Отработано дней на проекте" Then '-
         iw(113) = I
     End If
@@ -855,6 +859,7 @@ Application.StatusBar = "Определение колонок импортируемой книги" & _
     If importWB.Sheets(1).Cells(ImportSecondDataRow, I) = "Анализ расхождений по зарплате" Then '-
         iw(124) = I
     End If
+' ----------------------------------------------------------------------------------------------------
     If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Премия квартальная" Then
         iw(125) = I
     End If
@@ -866,6 +871,10 @@ Application.StatusBar = "Определение колонок импортируемой книги" & _
     End If
     If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Премия по итогам года (с учетом РК)" Then
         iw(128) = I
+    End If
+' ----------------------------------------------------------------------------------------------------
+    If importWB.Sheets(1).Cells(ImportSecondDataRow, I) = "ФОТ на проекте" Then
+        iw(129) = I
     End If
     
 Next I
@@ -923,14 +932,16 @@ Application.StatusBar = "Добавление проверочных формул"
 
 'вставка проверочных формул
 ThisWorkbook.Sheets(SheetName).Activate
-'месяц
+
 'статус бар
 Application.StatusBar = "Добавление проверочных формул нормы месяца"
+
+'месяц
 Cells(begin, aw(2)).Select
     ActiveCell.FormulaR1C1 = _
         "=IF(IFERROR(SEARCH("" 20"",RC[-1],1)>0,FALSE),TRIM(MID(IF(IFERROR(SEARCH("" 20"",RC[-1],1)>0,FALSE),RC[-1],R[-1]C),1,SEARCH("" "",IF(IFERROR(SEARCH("" 20"",RC[-1],1)>0,FALSE),RC[-1],R[-1]C),1)-1)),R[-1]C)"
     Cells(begin, aw(2)).Select
-    Selection.AutoFill Destination:=Range(Cells(begin, aw(2)), Cells(iwLastRow, aw(2)))
+    Selection.AutoFill Destination:=Range(Cells(begin, aw(2)), Cells(iwLastRow - 1, aw(2)))
     
 'расчётная норма часов
 'статус бар
