@@ -1,5 +1,5 @@
 Attribute VB_Name = "Aligment"
-Sub Aligment()
+Sub aligment()
 Start = Now()
 Dim ThisWorkbook As Workbook
 Set ThisWorkbook = ActiveWorkbook
@@ -129,6 +129,34 @@ ThisWorkbook.Sheets(sh).Range("D" & RowData & ":" & "D" & RowData).ClearContents
     I = "D"
     ThisWorkbook.Sheets(sh).Range(I & RowData) = 0
     Range(I & RowData + 1).GoalSeek Goal:=0, ChangingCell:=Range(I & RowData)
+    
+'_________________________________________________________________________________
+
+I = 1
+J = "variable"
+sh = "11. НР"
+ThisWorkbook.Sheets(sh).Activate
+RowData = Columns(I).Find(J, LookIn:=xlValues).row 'ряд значения
+
+'ThisWorkbook.Sheets(sh).Activate
+
+'очистка коэффициентов
+'ThisWorkbook.Sheets(sh).Range("D" & RowData & ":" & "D" & RowData).ClearContents
+
+    I = "C"
+    ThisWorkbook.Sheets(sh).Range(I & RowData) = 0
+    Range(I & RowData - 1).GoalSeek Goal:=0, ChangingCell:=Range(I & RowData)
+    
+    I = "F"
+    ThisWorkbook.Sheets(sh).Range(I & RowData) = 0
+    Range(I & RowData - 1).GoalSeek Goal:=0, ChangingCell:=Range(I & RowData)
+    
+    I = "I"
+    ThisWorkbook.Sheets(sh).Range(I & RowData) = 0
+    Range(I & RowData - 1).GoalSeek Goal:=0, ChangingCell:=Range(I & RowData)
+    
+    
+    
     
     
 Application.StatusBar = False
