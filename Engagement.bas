@@ -45,7 +45,7 @@ ActiveSheet.Copy
 ActiveWorkbook.SaveAs Path & "\" & "Задействование" & "\" & SaveName & ".xlsx"
 ActiveWorkbook.Close
 
-MsgBoxEx "Данные сохранены в папке Задействование", 0, "Выполнено", 3
+MsgBoxEx "Данные сохранены в папке Задействование", 0, "Выполнено", 1
 
 ExitHandler:
     Application.ScreenUpdating = True
