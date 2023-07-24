@@ -1155,6 +1155,7 @@ Application.StatusBar = "Завершение"
 'завершение
 importWB.Close
 ThisWorkbook.Sheets(SheetName).Activate
+If Range("DZ4").Value2 = True Then
 MsgBoxEx "Расчётная ведомость " _
     & "по компании " & vbCr & ThisWorkbook.Sheets("РВ_Проекта").Range("A12").Value2 _
     & vbCr & "за " & ThisWorkbook.Sheets("РВ_Проекта").Range("B2").Value2 & " - " _
@@ -1162,29 +1163,12 @@ MsgBoxEx "Расчётная ведомость " _
     & vbCr & "по проекту:" _
     & vbCr & ThisWorkbook.Sheets("РВ_Проекта").Range("C2").Value2 _
     & vbCr & "добавлена успешно.", 0, "Microsoft Excel", 15
+End If
 
-'ThisWorkbook.Sheets("Calculation").Activate
-'If Range("E1").Value2 = True Then
-'    MsgBox ("Ошибок нет")
-'Finish = (Now() - Start) * 24 * 60 * 60
-'MsgBox (Finish)
-'ElseIf Range("E1").Value2 = False Then
-'    result = MsgBox("Расчётная ведомость загружена по компании" _
-'    & vbCr & ThisWorkbook.Sheets("РВ_Проекта").Range("A12").Value2 _
-'    & vbCr & "Отчёт по среднесписочной численности сотрудников загружен по компании" _
-'    & vbCr & ThisWorkbook.Sheets("ССЧ").Range("AG5").Value2 _
-'    & vbCr & "Загрузить корректный отчёт по средней списочности компании" _
-'    & vbCr & ThisWorkbook.Sheets("Calculation").Range("E2").Value2 _
-'    & "?", vbYesNo)
-'    If result = vbYes Then
-'        Application.Run "Data_insertion_SS4"
-'    Else
-'        MsgBox "Действие отменено!" _
-'    & vbCr & "Выберите корректный отчёт с расчётной ведомостью по компании " _
-'    & vbCr & ThisWorkbook.Sheets("ССЧ").Range("AG5").Value2
-'    End If
-'    GoTo ExitHandler2
-'End If
+ThisWorkbook.Sheets(SheetName).Activate
+If Range("DZ4").Value2 = False Then
+    MsgBoxEx "Проверки не пройдены", vbCritical, "Ошибка", 15
+End If
 
 ExitHandler:
     Application.StatusBar = False
