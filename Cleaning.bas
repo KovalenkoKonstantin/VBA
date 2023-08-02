@@ -408,6 +408,12 @@ Next I
  With Selection
         .Clear
  End With
+ ThisWorkbook.Sheets(SheetName).Range("C5").Select
+ With Selection
+        .Clear
+ End With
+ 
+ 
  'завершение
 ThisWorkbook.Sheets("Preferences").Activate
 MsgBoxEx "Data cleaned", 0, "Done!", 5
