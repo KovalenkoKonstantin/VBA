@@ -862,7 +862,8 @@ For I = 1 To Limit
     If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Премия разовая (с учетом РК)" Then '-
         iw(125) = I
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Дата увольнения" Then '-
+' ----------------------------------------------------------------------------------------------------
+    If importWB.Sheets(1).Cells(ImportSecondDataRow, I) = "Дата увольнения" Then '-
         iw(126) = I
     End If
 
@@ -951,7 +952,7 @@ Cells(begin, aw(K)).Select
        "=IF(OR(CONCATENATE(RC[-1],"" " & DistinctYear & """)=RC[-2]," _
        & "VLOOKUP(RC[-2],RC1:RC108,MATCH(R8C4,R9C1:R9C108,0),0)>0,VLOOKUP(RC[-2]," _
        & "RC1:RC108,MATCH(R7C4,R9C1:R9C108,0),0)>0,RC[4]=TRUE),""""," _
-       & "VLOOKUP(RC[-1],'" & DistinctYear & " произ. календарь'!C1:C65,HLOOKUP(RC[13]," _
+       & "VLOOKUP(RC[-1],'" & DistinctYear & " произ. календарь'!C1:C65,HLOOKUP(RC[14]," _
        & "'" & DistinctYear & " произ. календарь'!R2:R3,2,0),0))"
     Cells(begin, aw(K)).Select
     Selection.AutoFill Destination:=Range(Cells(begin, aw(K)), Cells(iwLastRow, aw(K)))
@@ -960,7 +961,7 @@ Cells(begin, aw(K)).Select
 K = 4
 Cells(begin, aw(K)).Select
     ActiveCell.FormulaR1C1 = _
-        "=OR(RC[-1]="""",OR(RC[-1]=VALUE(RC[14]),VLOOKUP(RC[-3],RC1:RC108," _
+        "=OR(RC[-1]="""",OR(RC[-1]=VALUE(RC[15]),VLOOKUP(RC[-3],RC1:RC108," _
         & "MATCH(R8C4,R9C1:R9C108,0),0)>0))"
     Range("A1").Copy
     Cells(begin, aw(K)).Select
@@ -977,7 +978,7 @@ Cells(begin, aw(K)).Select
     ActiveCell.FormulaR1C1 = _
         "=IF(OR(CONCATENATE(RC[-3],"" " & DistinctYear & """)=RC[-4],VLOOKUP(RC[-4]," _
         & "RC1:RC108,MATCH(R8C4,R9C1:R9C108,0),0)>0,RC[2]=TRUE),"""",VLOOKUP(RC[-3]," _
-        & "'" & DistinctYear & " произ. календарь'!R18C1:R31C65,HLOOKUP(RC[11]," _
+        & "'" & DistinctYear & " произ. календарь'!R18C1:R31C65,HLOOKUP(RC[12]," _
         & "'" & DistinctYear & " произ. календарь'!R18:R19,2,0),0))"
     Cells(begin, aw(K)).Select
     Selection.AutoFill Destination:=Range(Cells(begin, aw(K)), Cells(iwLastRow, aw(K)))
@@ -986,7 +987,7 @@ Cells(begin, aw(K)).Select
 K = 6
 Cells(begin, aw(K)).Select
     ActiveCell.FormulaR1C1 = _
-        "=OR(RC[-3]="""",OR(RC[-1]=VALUE(RC[11]),VLOOKUP(RC[-5],RC1:RC108,MATCH(R8C4,R9C1:R9C108,0),0)>0))"
+        "=OR(RC[-3]="""",OR(RC[-1]=VALUE(RC[12]),VLOOKUP(RC[-5],RC1:RC108,MATCH(R8C4,R9C1:R9C108,0),0)>0))"
     Range("A1").Copy
     Cells(begin, aw(K)).Select
     Selection.PasteSpecial Paste:=xlPasteFormats
