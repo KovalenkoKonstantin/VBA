@@ -10,7 +10,7 @@ ActiveSheet.DisplayPageBreaks = False
 'Application.DisplayStatusBar = False
 Application.DisplayAlerts = False
 
-Application.StatusBar = "Программа выполняется " & (Now() - Start) * 24 * 60 * 60 & " секунд"
+'Application.StatusBar = "Программа выполняется " & (Now() - Start) * 24 * 60 * 60 & " секунд"
 
 On Error Resume Next
 
