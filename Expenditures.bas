@@ -12,12 +12,12 @@ Sub Overheads()
  On Error GoTo ExitHandler
  SheetName = "Expenditures"
 ' DistinctYear = 2021
- Limit = 125 'последняя колонка базы
+ Limit = 134 'последняя колонка базы
  begin = 12 'первый ряд вставки
  CompanyName = ThisWorkbook.Sheets("Preferences").Range("C7").Value2 'имя проекта
  
- Dim aw(1 To 125) As Variant
- Dim iw(1 To 125) As Variant
+ Dim aw(1 To 134) As Variant
+ Dim iw(1 To 134) As Variant
  
 Application.ScreenUpdating = False
 Application.EnableEvents = False
@@ -27,7 +27,7 @@ Application.DisplayAlerts = False
 
 FilesToOpen = Application.GetOpenFilename _
  (FileFilter:="Microsoft Excel Files (*.xlsx), *.xlsx", _
- MultiSelect:=True, Title:="Выберите расчётную ведомость по компании " & CompanyName & " за весь период действия проекта")
+ MultiSelect:=True, Title:="Выберите расчётную ведомость по компании " & CompanyName)
  
  'статус бар
 Application.StatusBar = "Анализ данных..."
@@ -44,7 +44,8 @@ On Error Resume Next
  'проверка правильности выбора данных
  importWB.Sheets(1).Activate
  Range("G2").Select
-' ActiveCell.FormulaR1C1 = "=YEAR(MID(RC[-4],SEARCH("" "",RC[-4],1)+1,10))"
+ ActiveCell.FormulaR1C1 = "=YEAR(MID(RC[-4],SEARCH("" "",RC[-4],1)+1,10))"
+' If Range("G2").Value2 <> DistinctYear Or Range("A11").Value2 <> CompanyName Then
  If Range("A11").Value2 <> CompanyName Then
 '    Range("G2").Select
 '    With Selection:
@@ -53,24 +54,23 @@ On Error Resume Next
     MsgBoxEx "Выбрана неправильная расчётная ведомость." _
     & vbCr & "Процесс прерван.", vbCritical, "Bad Day", 20
     GoTo ExitHandler
- ElseIf Range("G2").Value2 = DistinctYear Then
+' ElseIf Range("G2").Value2 = DistinctYear Then
 ' Range("G2").Select
 '    With Selection:
 '        .Clear
 '    End With
-'    MsgBoxEx "Выбрана правильная расчётная ведомость." _
-'    & vbCr & "Продолжаем.", 0, "Succes", 1
-'статус бар
-Application.StatusBar = "Продолжаем"
  End If
+ 
+  Range("G2").Select
+    With Selection:
+        .Clear
+    End With
 
 ThisWorkbook.Sheets(SheetName).Activate
 On Error Resume Next
 ActiveSheet.ShowAllData
 
 ThisWorkbook.Activate
-''статус бар
-'Application.StatusBar = "Выполнено: 1 %"
 
 'определение колонок рабочей книги
 On Error Resume Next
@@ -99,7 +99,7 @@ For I = 1 To Limit
     If Worksheets(SheetName).Cells(DataRow, I) = "анализ дней" Then
         aw(6) = I
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Год" Then
+    If Worksheets(SheetName).Cells(DataRow, I) = "Исключение всех кроме 20,26,44 счёта" Then
         aw(7) = I
     End If
     If Worksheets(SheetName).Cells(DataRow, I) = "Имя Отчество" Then
@@ -462,6 +462,18 @@ For I = 1 To Limit
     If Worksheets(SheetName).Cells(DataRow, I) = "Премия разовая (с учетом РК)" Then
         aw(125) = I
     End If
+    If Worksheets(SheetName).Cells(DataRow, I) = "Дата увольнения" Then
+        aw(126) = I
+    End If
+    If Worksheets(SheetName).Cells(DataRow, I) = "Премия месячная" Then
+        aw(127) = I
+    End If
+    If Worksheets(SheetName).Cells(DataRow, I) = "Год" Then
+        aw(128) = I
+    End If
+    If Worksheets(SheetName).Cells(DataRow, I) = "Доплата за работу в ночное время (праздничные и выходные дни)" Then
+        aw(134) = I
+    End If
     
 Next I
  
@@ -498,7 +510,7 @@ For I = 1 To Limit
     If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "анализ дней" Then
         iw(6) = I
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Год" Then
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Исключение всех кроме 20,26,44 счёта" Then
         iw(7) = I
     End If
     If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Имя Отчество" Then
@@ -507,7 +519,7 @@ For I = 1 To Limit
     If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Анализ изменения фамилии" Then
         iw(9) = I
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Приказ об увольнении.Статья ТК РФ" Then
+    If importWB.Sheets(1).Cells(ImportSecondDataRow, I) = "Приказ об увольнении.Статья ТК РФ" Then
         iw(10) = I
     End If
     If importWB.Sheets(1).Cells(ImportSecondDataRow, I) = "Подразделение история" Then '-
@@ -861,6 +873,18 @@ For I = 1 To Limit
     If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Премия разовая (с учетом РК)" Then '-
         iw(125) = I
     End If
+' ----------------------------------------------------------------------------------------------------
+    If importWB.Sheets(1).Cells(ImportSecondDataRow, I) = "Дата увольнения" Then '-
+        iw(126) = I
+    End If
+' ----------------------------------------------------------------------------------------------------
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Премия месячная" Then '-
+        iw(127) = I
+    End If
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Доплата за работу в ночное время (праздничные и выходные дни)" Then '-
+        iw(134) = I
+    End If
+    
 
 Next I
 
@@ -873,8 +897,8 @@ Range(Cells(begin, 1), Cells(awLastRow, Limit)).Select
         .Clear
  End With
 
-'  'сообщение
-' MsgBoxEx "Выполнено 5%", 0, "5%. Мы только начали...", 5
+ 'статус бар
+Application.StatusBar = "Вставка данных"
 
  'вставка данных
  importWB.Sheets(1).Activate
@@ -883,7 +907,9 @@ Range(Cells(begin, 1), Cells(awLastRow, Limit)).Select
 For I = 1 To Limit
 'статус бар
 Application.StatusBar = "Промежуточный цикл. Выполнено: " & Int(100 * I / Limit) & "%." & _
-" Общий прогресс: " & Int(90 * I / Limit) & "%"
+" Общий прогресс: " & Int(87 * I / Limit) & "%" & _
+" Расчётное время до конца выполнения программы: " & _
+Int((100 - Int(87 * I / Limit)) * (((Now() - Start) * 24 * 60 * 60) / (Int(87 * I / Limit)))) & " секунд"
  importWB.Activate
  Range(Cells(begin - 1, iw(I)), Cells(iwLastRow, iw(I))).Copy
 
@@ -901,29 +927,25 @@ Application.StatusBar = "Промежуточный цикл. Выполнено: " & Int(100 * I / Limit)
 '        'сообщение
 '        MsgBoxEx "Активно тружусь ..." _
 '    & vbCr & "Ищу столбцы, сопоставляю значения, вычисляю диапазоны", 0, "Выполнено " & _
-'    Int(90 * I / Limit) & "%", 5
+'    Int(87 * I / Limit) & "%", 5
 '    End If
 '
 '    If I = Int(Limit / 2) Then
 '        'сообщение
 '        MsgBoxEx "Всё в порядке" _
-'    & vbCr & "Выполнено " & Int(90 * I / Limit) & "%", 0, "Достигли середины", 5
+'    & vbCr & "Выполнено " & Int(87 * I / Limit) & "%", 0, "Достигли середины промежуточного цикла", 5
 '    End If
 '
 '    If I = Int(Limit / 4 * 3) Then
 '        'сообщение
 '        MsgBoxEx "Обрабатывается " & iwLastRow & " строк и " & Limit & " колонок" _
-'    & vbCr & "Выполнено " & Int(90 * I / Limit) & "%", 0, "Скоро...", 5
+'    & vbCr & "Выполнено " & Int(87 * I / Limit) & "%", 0, "Скоро...", 5
 '    End If
 
 Next I
 
-''сообщение
-'MsgBoxEx "Ускоряемся ..." _
-'& vbCr & "Выполнено 90%", 0, "Нет, я не завис.", 5
-
 'статус бар
-Application.StatusBar = "Выполнено: 90 %"
+Application.StatusBar = "Форматирование ячеек. Выполнено: 87 %"
 
 'форматы
 ThisWorkbook.Sheets(SheetName).Activate
@@ -933,31 +955,69 @@ Columns("Q:DD").Select
 
 'вставка проверочных формул
 ThisWorkbook.Sheets(SheetName).Activate
+'статус бар
+Application.StatusBar = "Добавление проверочных формул месяца. Выполнено: 88 %"
 'месяц
 Cells(begin, aw(2)).Select
     ActiveCell.FormulaR1C1 = _
-        "=IF(IFERROR(SEARCH("" 20"",RC[-1],1)>0,FALSE),TRIM(MID(IF(IFERROR(SEARCH("" 20"",RC[-1],1)>0,FALSE),RC[-1],R[-1]C),1,SEARCH("" "",IF(IFERROR(SEARCH("" 20"",RC[-1],1)>0,FALSE),RC[-1],R[-1]C),1)-1)),R[-1]C)"
+        "=IF(IFERROR(SEARCH("" 20"",RC[-1],1)>0,FALSE)," _
+        & "TRIM(MID(IF(IFERROR(SEARCH("" 20"",RC[-1],1)>0,FALSE)," _
+        & "RC[-1],R[-1]C),1,SEARCH("" "",IF(IFERROR(SEARCH("" 20"",RC[-1],1)>0,FALSE)," _
+        & "RC[-1],R[-1]C),1)-1)),R[-1]C)"
     Cells(begin, aw(2)).Select
     Selection.AutoFill Destination:=Range(Cells(begin, aw(2)), Cells(iwLastRow, aw(2)))
 
+'статус бар
+Application.StatusBar = "Добавление формул расчётной нормы часов. Выполнено: 89 %"
 'расчётная норма часов
 K = 3
 Cells(begin, aw(K)).Select
     ActiveCell.FormulaR1C1 = _
-       "=IF(OR(CONCATENATE(RC[-1],"" " & DistinctYear & """)=RC[-2]," _
-       & "VLOOKUP(RC[-2],RC1:RC108,MATCH(R8C4,R9C1:R9C108,0),0)>0,VLOOKUP(RC[-2]," _
-       & "RC1:RC108,MATCH(R7C4,R9C1:R9C108,0),0)>0,RC[4]=TRUE),""""," _
-       & "VLOOKUP(RC[-1],'" & DistinctYear & " произ. календарь'!C1:C65,HLOOKUP(RC[13]," _
-       & "'" & DistinctYear & " произ. календарь'!R2:R3,2,0),0))"
+        "=IF(OR(CONCATENATE(RC[-1],"" "",RC[5])=RC[-2]," _
+        & "VLOOKUP(RC[-2],RC1:RC114,MATCH(R8C4,R9C1:R9C114,0),0)>0," _
+        & "VLOOKUP(RC[-2],RC1:RC114,MATCH(R7C4,R9C1:R9C114,0),0)>0," _
+        & "RC[4]=TRUE),"""",VLOOKUP(RC[-1],INDIRECT(CONCATENATE(""'"",VALUE(RC[5])," _
+        & """ произ. календарь'!$A:$BM"")),HLOOKUP(RC[20]," _
+        & "INDIRECT(CONCATENATE(""'"",VALUE(RC[5]),"" произ. календарь'!$2:$3"")),2,0),0))"
     Cells(begin, aw(K)).Select
     Selection.AutoFill Destination:=Range(Cells(begin, aw(K)), Cells(iwLastRow, aw(K)))
-
+    
+'статус бар
+Application.StatusBar = "Добавление формул анализа нормы часов. Выполнено: 90 %"
 'анализ часов
 K = 4
 Cells(begin, aw(K)).Select
     ActiveCell.FormulaR1C1 = _
-        "=OR(RC[-1]="""",OR(RC[-1]=VALUE(RC[14]),VLOOKUP(RC[-3],RC1:RC108," _
-        & "MATCH(R8C4,R9C1:R9C108,0),0)>0))"
+        "=OR(RC[-1]="""",OR(RC[-1]=VALUE(RC[21]),VLOOKUP(RC[-3],RC1:RC114," _
+        & "MATCH(R8C4,R9C1:R9C114,0),0)>0))"
+    Range("A1").Copy
+    Cells(begin, aw(K)).Select
+    Selection.PasteSpecial Paste:=xlPasteFormats
+    Cells(begin, aw(K)).Select
+    Selection.AutoFill Destination:=Range(Cells(begin, aw(K)), Cells(iwLastRow, aw(K)))
+   
+'статус бар
+Application.StatusBar = "Добавление формул нормы дней. Выполнено: 91 %"
+'расчётная норма дней
+K = 5
+Cells(begin, aw(K)).Select
+    ActiveCell.FormulaR1C1 = _
+        "=IF(OR(CONCATENATE(RC[-3],"" "",RC[3])=RC[-4]," _
+        & "VLOOKUP(RC[-4],RC1:RC114,MATCH(R8C4,R9C1:R9C114,0),0)>0," _
+        & "RC[2]=TRUE),"""",VLOOKUP(RC[-3],INDIRECT(CONCATENATE(""'"",VALUE(RC[3])," _
+        & """ произ. календарь'!$A$18:$BM$31"")),HLOOKUP(RC[18]," _
+        & "INDIRECT(CONCATENATE(""'"",VALUE(RC[3]),"" произ. календарь'!$18:$19"")),2,0),0))"
+    Cells(begin, aw(K)).Select
+    Selection.AutoFill Destination:=Range(Cells(begin, aw(K)), Cells(iwLastRow, aw(K)))
+    
+'статус бар
+Application.StatusBar = "Добавление формул анализа нормы дней. Выполнено: 92 %"
+'анализ дней
+K = 6
+Cells(begin, aw(K)).Select
+    ActiveCell.FormulaR1C1 = _
+        "=OR(RC[-3]="""",OR(RC[-1]=VALUE(RC[18])," _
+        & "VLOOKUP(RC[-5],RC1:RC114,MATCH(R8C4,R9C1:R9C114,0),0)>0))"
     Range("A1").Copy
     Cells(begin, aw(K)).Select
     Selection.PasteSpecial Paste:=xlPasteFormats
@@ -965,54 +1025,37 @@ Cells(begin, aw(K)).Select
     Selection.AutoFill Destination:=Range(Cells(begin, aw(K)), Cells(iwLastRow, aw(K)))
 
 'статус бар
-Application.StatusBar = "Выполнено: 93 %"
-
-'расчётная норма дней
-K = 5
-Cells(begin, aw(K)).Select
-    ActiveCell.FormulaR1C1 = _
-        "=IF(OR(CONCATENATE(RC[-3],"" " & DistinctYear & """)=RC[-4],VLOOKUP(RC[-4]," _
-        & "RC1:RC108,MATCH(R8C4,R9C1:R9C108,0),0)>0,RC[2]=TRUE),"""",VLOOKUP(RC[-3]," _
-        & "'" & DistinctYear & " произ. календарь'!R18C1:R31C65,HLOOKUP(RC[11]," _
-        & "'" & DistinctYear & " произ. календарь'!R18:R19,2,0),0))"
-    Cells(begin, aw(K)).Select
-    Selection.AutoFill Destination:=Range(Cells(begin, aw(K)), Cells(iwLastRow, aw(K)))
-
-'анализ дней
-K = 6
-Cells(begin, aw(K)).Select
-    ActiveCell.FormulaR1C1 = _
-        "=OR(RC[-3]="""",OR(RC[-1]=VALUE(RC[11]),VLOOKUP(RC[-5],RC1:RC108,MATCH(R8C4,R9C1:R9C108,0),0)>0))"
-    Range("A1").Copy
-    Cells(begin, aw(K)).Select
-    Selection.PasteSpecial Paste:=xlPasteFormats
-    Cells(begin, aw(K)).Select
-    Selection.AutoFill Destination:=Range(Cells(begin, aw(K)), Cells(iwLastRow, aw(K)))
-
-'Год
+Application.StatusBar = "Добавление формул исключения из расчёта всех кроме 20,26,44 счетов. Выполнено: 93 %"
+'Исключение всех кроме 20,26,44 счёта
 K = 7
 Cells(begin, aw(K)).Select
     ActiveCell.FormulaR1C1 = _
-       "=VALUE(IF(IFERROR(SEARCH("" 20"",RC[-6],1)>0,FALSE)," _
-        & "MID(RC[-6],SEARCH("" "",RC[-6],1)+1,4),R[-1]C))"
+       "=NOT(OR(IFERROR(SEARCH(20,RC[15],1),FALSE)," _
+       & "IFERROR(SEARCH(26,RC[15],1),FALSE),IFERROR(SEARCH(44,RC[15],1),FALSE)))"
     Cells(begin, aw(K)).Select
     Selection.AutoFill Destination:=Range(Cells(begin, aw(K)), Cells(iwLastRow, aw(K)))
-
+    
+'статус бар
+Application.StatusBar = "Добавление формул выделения Имени Отчества сотрудников. Выполнено: 94 %"
 'Имя Отчество
 K = 8
 Cells(begin, aw(K)).Select
     ActiveCell.FormulaR1C1 = _
-       "=IF(CONCATENATE(RC[-6],"" " & DistinctYear & """)=RC[-7],"""",(MID(RC[-7],SEARCH("" "",RC[-7],1),LEN(RC[-7]))))"
+        "=IF(CONCATENATE(RC[-12],"" "",RC[-6])=RC[-13],""""," _
+        & "(MID(RC[-13],SEARCH("" "",RC[-13],1),LEN(RC[-13]))))"
     Cells(begin, aw(K)).Select
     Selection.AutoFill Destination:=Range(Cells(begin, aw(K)), Cells(iwLastRow, aw(K)))
 
+'статус бар
+Application.StatusBar = "Добавление формул и форматирование анализа изменения фамилии. Выполнено: 95 %"
 'Анализ изменения фамилии
 K = 9
 Cells(begin, aw(K)).Select
-    ActiveCell.FormulaR1C1 = "=CONCATENATE(RC[-8],RC[-7],RC[5])"
+    ActiveCell.FormulaR1C1 = "=CONCATENATE(RC[-14],RC[-13],RC[5])"
     Cells(begin, aw(K)).Select
     Selection.AutoFill Destination:=Range(Cells(begin, aw(K)), Cells(iwLastRow, aw(K)))
-Columns("I:I").Select
+        
+Columns("O:O").Select
     Selection.FormatConditions.AddUniqueValues
     Selection.FormatConditions(Selection.FormatConditions.Count).SetFirstPriority
     Selection.FormatConditions(1).DupeUnique = xlDuplicate
@@ -1027,16 +1070,9 @@ Columns("I:I").Select
     End With
     Selection.FormatConditions(1).StopIfTrue = False
 
+
 'статус бар
-Application.StatusBar = "Выполнено: 96 %"
-
-''Умершие
-'K = 9
-'Cells(begin, aw(K)).Select
-'    ActiveCell.FormulaR1C1 = "=IF(AND(RC[89]>0,RC[95]=""""),""пИчаль"","""")"
-'    Cells(begin, aw(K)).Select
-'    Selection.AutoFill Destination:=Range(Cells(begin, aw(K)), Cells(iwLastRow, aw(K)))
-
+Application.StatusBar = "Добавление формул по доходу в натуральной форме. Выполнено: 96 %"
 'Сумма по Доход в натуральной форме
 K = 78
 Cells(begin, aw(K)).Select
@@ -1055,9 +1091,21 @@ Cells(begin, aw(K)).Select
     End With
     Cells(begin, aw(K)).Select
     Selection.AutoFill Destination:=Range(Cells(begin, aw(K)), Cells(iwLastRow, aw(K)))
+    
+'статус бар
+Application.StatusBar = "Добавление формул выделения года. Выполнено: 97 %"
+'Год
+K = 128
+Cells(begin, aw(K)).Select
+    ActiveCell.FormulaR1C1 = _
+       "=VALUE(IF(IFERROR(SEARCH("" 20"",RC[-7],1)>0,FALSE)," _
+        & "MID(RC[-7],SEARCH("" "",RC[-7],1)+1,4),R[-1]C))"
+    Cells(begin, aw(K)).Select
+    Selection.AutoFill Destination:=Range(Cells(begin, aw(K)), Cells(iwLastRow, aw(K)))
+
 
 'статус бар
-Application.StatusBar = "Выполнено: 97 %"
+Application.StatusBar = "Форматирование диапазонов. Выполнено: 98 %"
 
 Columns("A:A").Select
     With Selection
@@ -1075,10 +1123,16 @@ Range("C:C,E:E").Select
     With Selection
         .HorizontalAlignment = xlCenter
     End With
-
-''сообщение
-'MsgBoxEx "Почти всё готово" _
-'& vbCr & "Выполнено 98%", 0, "98%", 5
+    
+'статус бар
+Application.StatusBar = "Форматирование диапазонов. Выполнено: 99 %"
+' форматирование колонки базы страховых взносов
+Columns("EC:EC").Select
+    Selection.NumberFormat = _
+        "_-* #,##0.00 _?_-;-* #,##0.00 _?_-;_-* ""-""?? _?_-;_-@_-"
+Columns("DW:DW").Select
+    Selection.NumberFormat = _
+        "_-* #,##0.00 _?_-;-* #,##0.00 _?_-;_-* ""-""?? _?_-;_-@_-"
 
 'статус бар
 Application.StatusBar = "Выполнено: 100 %"
@@ -1088,30 +1142,9 @@ ThisWorkbook.Sheets(SheetName).Activate
 MsgBoxEx "Расчётная ведомость " _
     & "по компании " & vbCr & ThisWorkbook.Sheets("Preferences").Range("C7").Value2 _
     & vbCr & "за " & ThisWorkbook.Sheets(SheetName).Range("B2").Value2 & " год" _
-    & vbCr & "добавлена успешно", 0, "Выполнено", 15
+    & vbCr & "добавлена успешно", 0, "Выполнено", 25
 
 ThisWorkbook.Sheets("Calculation22").Activate
-'If Range("E1").Value2 = True Then
-'    MsgBox ("Ошибок нет")
-'Finish = (Now() - Start) * 24 * 60 * 60
-'MsgBox (Finish)
-'ElseIf Range("E1").Value2 = False Then
-'    result = MsgBox("Расчётная ведомость загружена по компании" _
-'    & vbCr & ThisWorkbook.Sheets("Calculation22").Range("E2").Value2 _
-'    & vbCr & "Отчёт по среднесписочной численности сотрудников загружен по компании" _
-'    & vbCr & ThisWorkbook.Sheets("ССЧ22").Range("AG5").Value2 _
-'    & vbCr & "Загрузить корректный отчёт по средней списочности компании" _
-'    & vbCr & ThisWorkbook.Sheets("Calculation22").Range("E2").Value2 _
-'    & "?", vbYesNo)
-'    If result = vbYes Then
-'        Application.Run "Data_insertion_SS4"
-'    Else
-'        MsgBox "Действие отменено!" _
-'    & vbCr & "Выберите корректный отчёт с расчётной ведомостью по компании " _
-'    & vbCr & ThisWorkbook.Sheets("ССЧ22").Range("AG5").Value2
-'    End If
-'    GoTo ExitHandler2
-'End If
 
 ExitHandler:
     On Error Resume Next
@@ -1128,6 +1161,7 @@ ExitHandler:
 ErrHandler:
  MsgBox Err.Description
  Resume ExitHandler
+
 End Sub
 
 

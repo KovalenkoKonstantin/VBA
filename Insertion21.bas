@@ -12,12 +12,12 @@ Sub Data_Insertion_21()
  On Error GoTo ExitHandler
  SheetName = "Processing21"
  DistinctYear = 2021
- Limit = 133 'последняя колонка базы
+ Limit = 134 'последняя колонка базы
  begin = 12 'первый ряд вставки
  CompanyName = ThisWorkbook.Sheets("Preferences").Range("C7").Value2 'имя проекта
  
- Dim aw(1 To 133) As Variant
- Dim iw(1 To 133) As Variant
+ Dim aw(1 To 134) As Variant
+ Dim iw(1 To 134) As Variant
  
 Application.ScreenUpdating = False
 Application.EnableEvents = False
@@ -45,7 +45,8 @@ On Error Resume Next
  importWB.Sheets(1).Activate
  Range("G2").Select
  ActiveCell.FormulaR1C1 = "=YEAR(MID(RC[-4],SEARCH("" "",RC[-4],1)+1,10))"
- If Range("G2").Value2 <> DistinctYear Or Range("A11").Value2 <> CompanyName Then
+' If Range("G2").Value2 <> DistinctYear Or Range("A11").Value2 <> CompanyName Then
+ If Range("A11").Value2 <> CompanyName Then
     Range("G2").Select
     With Selection:
         .Clear
@@ -465,6 +466,9 @@ For I = 1 To Limit
     If Worksheets(SheetName).Cells(DataRow, I) = "Год" Then
         aw(128) = I
     End If
+    If Worksheets(SheetName).Cells(DataRow, I) = "Доплата за работу в ночное время (праздничные и выходные дни)" Then
+        aw(134) = I
+    End If
     
 Next I
  
@@ -872,6 +876,9 @@ For I = 1 To Limit
     If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Премия месячная" Then '-
         iw(127) = I
     End If
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Доплата за работу в ночное время (праздничные и выходные дни)" Then '-
+        iw(134) = I
+    End If
     
 
 Next I
@@ -897,7 +904,7 @@ For I = 1 To Limit
 Application.StatusBar = "Промежуточный цикл. Выполнено: " & Int(100 * I / Limit) & "%." & _
 " Общий прогресс: " & Int(87 * I / Limit) & "%" & _
 " Расчётное время до конца выполнения программы: " & _
-(100 - Int(87 * I / Limit)) * (((Now() - Start) * 24 * 60 * 60) / (Int(87 * I / Limit))) & " секунд"
+Int((100 - Int(87 * I / Limit)) * (((Now() - Start) * 24 * 60 * 60) / (Int(87 * I / Limit)))) & " секунд"
  importWB.Activate
  Range(Cells(begin - 1, iw(I)), Cells(iwLastRow, iw(I))).Copy
 
@@ -1118,6 +1125,9 @@ Application.StatusBar = "Форматирование диапазонов. Выполнено: 99 %"
 Columns("EC:EC").Select
     Selection.NumberFormat = _
         "_-* #,##0.00 _?_-;-* #,##0.00 _?_-;_-* ""-""?? _?_-;_-@_-"
+Columns("DW:DW").Select
+    Selection.NumberFormat = _
+        "_-* #,##0.00 _?_-;-* #,##0.00 _?_-;_-* ""-""?? _?_-;_-@_-"
 
 'статус бар
 Application.StatusBar = "Выполнено: 100 %"
@@ -1147,3 +1157,9 @@ ErrHandler:
  MsgBox Err.Description
  Resume ExitHandler
 End Sub
+
+
+
+
+
+
