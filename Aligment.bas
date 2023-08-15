@@ -27,16 +27,24 @@ ThisWorkbook.Sheets(sh).Range("D" & RowData & ":" & "Q" & RowData).ClearContents
 
     I = "K"
     ThisWorkbook.Sheets(sh).Range(I & RowData) = 0
-    Range(I & RowData + 1).GoalSeek Goal:=0, ChangingCell:=Range(I & RowData)
+    If Range(I & RowData + 1) <> 0 Then
+        Range(I & RowData + 1).GoalSeek Goal:=0, ChangingCell:=Range(I & RowData)
+    End If
     I = "N"
     ThisWorkbook.Sheets(sh).Range(I & RowData) = 0
-    Range(I & RowData + 1).GoalSeek Goal:=0, ChangingCell:=Range(I & RowData)
+    If Range(I & RowData + 1) <> 0 Then
+        Range(I & RowData + 1).GoalSeek Goal:=0, ChangingCell:=Range(I & RowData)
+    End If
     I = "G"
     ThisWorkbook.Sheets(sh).Range(I & RowData) = 0
-    Range(I & RowData + 1).GoalSeek Goal:=0, ChangingCell:=Range(I & RowData)
+    If Range(I & RowData + 1) <> 0 Then
+        Range(I & RowData + 1).GoalSeek Goal:=0, ChangingCell:=Range(I & RowData)
+    End If
     I = "Q"
     ThisWorkbook.Sheets(sh).Range(I & RowData) = 0
-    Range(I & RowData + 1).GoalSeek Goal:=0, ChangingCell:=Range(I & RowData)
+    If Range(I & RowData + 1) <> 0 Then
+        Range(I & RowData + 1).GoalSeek Goal:=0, ChangingCell:=Range(I & RowData)
+    End If
     
 Application.StatusBar = "Выполнено 30%"
     
@@ -55,16 +63,24 @@ ThisWorkbook.Sheets(sh).Range("F" & RowData & ":" & "O" & RowData).ClearContents
 
     I = "F"
     ThisWorkbook.Sheets(sh).Range(I & RowData) = 0
-    Range(I & RowData - 2).GoalSeek Goal:=0, ChangingCell:=Range(I & RowData)
+    If Range(I & RowData - 2) <> 0 Then
+        Range(I & RowData - 2).GoalSeek Goal:=0, ChangingCell:=Range(I & RowData)
+    End If
     I = "I"
     ThisWorkbook.Sheets(sh).Range(I & RowData) = 0
-    Range(I & RowData - 2).GoalSeek Goal:=0, ChangingCell:=Range(I & RowData)
+    If Range(I & RowData - 2) <> 0 Then
+        Range(I & RowData - 2).GoalSeek Goal:=0, ChangingCell:=Range(I & RowData)
+    End If
     I = "L"
     ThisWorkbook.Sheets(sh).Range(I & RowData) = 0
-    Range(I & RowData - 2).GoalSeek Goal:=0, ChangingCell:=Range(I & RowData)
+    If Range(I & RowData - 2) <> 0 Then
+        Range(I & RowData - 2).GoalSeek Goal:=0, ChangingCell:=Range(I & RowData)
+    End If
     I = "O"
     ThisWorkbook.Sheets(sh).Range(I & RowData) = 0
-    Range(I & RowData - 2).GoalSeek Goal:=0, ChangingCell:=Range(I & RowData)
+    If Range(I & RowData - 2) <> 0 Then
+        Range(I & RowData - 2).GoalSeek Goal:=0, ChangingCell:=Range(I & RowData)
+    End If
     
 Application.StatusBar = "Выполнено 60%"
     
@@ -83,10 +99,14 @@ ThisWorkbook.Sheets(sh).Range("D" & RowData & ":" & "Q" & RowData).ClearContents
 
     I = "L"
     ThisWorkbook.Sheets(sh).Range(I & RowData) = 0
-    Range(I & RowData + 2).GoalSeek Goal:=0, ChangingCell:=Range(I & RowData)
+    If Range(I & RowData + 2) <> 0 Then
+        Range(I & RowData + 2).GoalSeek Goal:=0, ChangingCell:=Range(I & RowData)
+    End If
     I = "O"
     ThisWorkbook.Sheets(sh).Range(I & RowData) = 0
-    Range(I & RowData + 2).GoalSeek Goal:=0, ChangingCell:=Range(I & RowData)
+    If Range(I & RowData + 2) <> 0 Then
+        Range(I & RowData + 2).GoalSeek Goal:=0, ChangingCell:=Range(I & RowData)
+    End If
     
 Application.StatusBar = "Выполнено 90%"
     

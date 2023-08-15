@@ -14,6 +14,8 @@ Sub Python()
         RunPython ("import Профитроль2207; Профитроль2207.FileSaving()")
     ElseIf ActiveWorkbook.Name = "РКМ_Улей-Режим-ПЗ_v.1.1.xlsm" Then
         RunPython ("import Улей_Режим_ПЗ; Улей_Режим_ПЗ.FileSaving()")
+    ElseIf ActiveWorkbook.Name = "РКМ_ОБД-СНГ-23_v.1.0.xlsm" Then
+        RunPython ("import ОБД-СНГ-23; ОБД-СНГ-23.FileSaving()")
     End If
 '    Application.StatusBar = "Создание PDF"
 '    SaveToPDF
