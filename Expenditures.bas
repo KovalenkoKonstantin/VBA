@@ -952,6 +952,9 @@ ThisWorkbook.Sheets(SheetName).Activate
 Columns("Q:DD").Select
     Selection.NumberFormat = _
         "_-* #,##0.00 _?_-;-* #,##0.00 _?_-;_-* ""-""?? _?_-;_-@_-"
+Columns("ED").Select
+    Selection.NumberFormat = _
+        "_-* #,##0.00 _?_-;-* #,##0.00 _?_-;_-* ""-""?? _?_-;_-@_-"
 
 'вставка проверочных формул
 ThisWorkbook.Sheets(SheetName).Activate
