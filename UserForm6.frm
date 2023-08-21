@@ -1,7 +1,7 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} UserForm6 
    Caption         =   "Î÷èñòêà"
-   ClientHeight    =   3015
+   ClientHeight    =   3840
    ClientLeft      =   120
    ClientTop       =   465
    ClientWidth     =   5265
@@ -51,4 +51,14 @@ End Sub
 Private Sub CommandButton8_Click()
     UserForm6.Hide
     DecreaseWeightÑÑ×24
+End Sub
+
+Private Sub CommandButton9_Click()
+    UserForm6.Hide
+    DecreaseWeightBudget
+End Sub
+
+Private Sub CommandButton10_Click()
+    UserForm6.Hide
+    DecreaseWeightExpenditures
 End Sub
