@@ -12,7 +12,7 @@ Sub SaveToPDF()
  On Error GoTo ExitHandler
  
  ThisWorkbook.Sheets("Preferences").Activate
- SaveName = ActiveSheet.Range("R30").Text
+ SaveName = ActiveSheet.Range("S30").Text
  ThisWorkbook.Activate
  Path = ActiveWorkbook.Path
  
@@ -39,15 +39,16 @@ Else
 '        "10", "12", _
 '        "20", "20_1", "20_2", _
 '        "21ô", "22ô", "23Ô", _
-'        "Ï5", "Ï6", "Ï7", "Ï8", "Í×", "Ïðèêàç", "ÊÓÇ_1", "ÊÓÇ_2")).Select
+'        "Ï5", "ï6", "Ï7", "Ï8", "Í×", "Ïðèêàç", "ÊÓÇ_1", "ÊÓÇ_2")).Select
 'End If
 ThisWorkbook.Sheets(Array("1", _
         "2", "2_23", "2_1", "2_1_23", _
-        "9", "9_23", "9_1_23", _
+        "4ä", _
+        "9", "9_23", "9_1", "9_1_23", _
         "10", "12", _
-        "20", "20_1", "20_2", _
+        "20", _
         "21ô", "22ô", "23Ô", _
-        "Ï5", "Ï6", "Ï7", "Ï8", "Í×", "Ïðèêàç", "ÊÓÇ_1", "ÊÓÇ_2")).Select
+        "Ï5", "Ï6", "Ï7", "Ï8", "Í×", "ÊÓÇ_1")).Select
 End If
         
         
