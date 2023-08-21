@@ -1,7 +1,7 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} UserForm6 
    Caption         =   "Очистка"
-   ClientHeight    =   3840
+   ClientHeight    =   4440
    ClientLeft      =   120
    ClientTop       =   465
    ClientWidth     =   5265
@@ -17,6 +17,7 @@ Private Sub CommandButton1_Click()
     UserForm6.Hide
     DecreaseWeightProcessing21
 End Sub
+
 
 Private Sub CommandButton2_Click()
     UserForm6.Hide
@@ -61,4 +62,9 @@ End Sub
 Private Sub CommandButton10_Click()
     UserForm6.Hide
     DecreaseWeightExpenditures
+End Sub
+
+Private Sub CommandButton11_Click()
+    UserForm6.Hide
+    DecreaseWeightTabel
 End Sub

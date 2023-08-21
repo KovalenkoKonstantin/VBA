@@ -591,3 +591,57 @@ MsgBoxEx "Data cleaned", 0, "Done!", 2
     ThisWorkbook.Sheets("Preferences").Activate
     
 End Sub
+Sub DecreaseWeightTabel()
+
+ Dim ThisWorkbook As Workbook
+ Dim SheetName As String
+ Set ThisWorkbook = ActiveWorkbook
+ 
+Application.ScreenUpdating = False
+Application.EnableEvents = False
+ActiveSheet.DisplayPageBreaks = False
+Application.DisplayStatusBar = False
+Application.DisplayAlerts = False
+
+ SheetName = "“абель"
+ SearchingString = "√рафик работы" 'ключ последней удал€емой колонки
+ begin = 5 'первый р€д вставки
+ 
+ 'определение колонок рабочей книги
+'On Error Resume Next
+'For I = 1 To 20
+'    If Worksheets(SheetName).Cells(I, 1) = "ƒолжность" Then
+'        DataRow = I
+'    End If
+'Next I
+
+ 'определение последней удал€емой колоноки рабочей книги
+'On Error Resume Next
+'For I = 1 To 200
+'    If Worksheets(SheetName).Cells(DataRow, I) = SearchingString Then
+'        awLastCol = I
+'    End If
+'Next I
+awLastCol = 63
+
+'удаление предыдущих данных
+ ThisWorkbook.Sheets(SheetName).Activate
+ awLastRow = Cells(Rows.Count, "AU").End(xlUp).row
+ Range(Cells(begin, 1), Cells(awLastRow, awLastCol)).Select
+ With Selection
+        .Clear
+ End With
+' [a5] = 1
+ 'завершение
+ThisWorkbook.Sheets("Preferences").Activate
+MsgBoxEx "Data cleaned", 0, "Done!", 2
+
+    Application.StatusBar = False
+    Application.ScreenUpdating = True
+    Application.EnableEvents = True
+    ActiveSheet.DisplayPageBreaks = True
+    Application.DisplayStatusBar = True
+    Application.DisplayAlerts = True
+    ThisWorkbook.Sheets("Preferences").Activate
+    
+End Sub
