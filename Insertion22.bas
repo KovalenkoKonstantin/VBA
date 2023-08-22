@@ -1128,6 +1128,9 @@ Columns("EC:EC").Select
 Columns("DW:DW").Select
     Selection.NumberFormat = _
         "_-* #,##0.00 _?_-;-* #,##0.00 _?_-;_-* ""-""?? _?_-;_-@_-"
+Columns("ED:ED").Select
+    Selection.NumberFormat = _
+        "_-* #,##0.00 _?_-;-* #,##0.00 _?_-;_-* ""-""?? _?_-;_-@_-"
 
 'статус бар
 Application.StatusBar = "Выполнено: 100 %"
