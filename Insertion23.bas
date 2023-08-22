@@ -12,12 +12,12 @@ Sub Data_Insertion_23()
  On Error GoTo ExitHandler
  SheetName = "Processing23"
  DistinctYear = 2023
- Limit = 134 'последняя колонка базы
+ Limit = 136 'последняя колонка базы
  begin = 12 'первый ряд вставки
  CompanyName = ThisWorkbook.Sheets("Preferences").Range("C7").Value2 'имя проекта
  
- Dim aw(1 To 134) As Variant
- Dim iw(1 To 134) As Variant
+ Dim aw(1 To 136) As Variant
+ Dim iw(1 To 136) As Variant
  
 Application.ScreenUpdating = False
 Application.EnableEvents = False
@@ -469,6 +469,12 @@ For I = 1 To Limit
     If Worksheets(SheetName).Cells(DataRow, I) = "Доплата за работу в ночное время (праздничные и выходные дни)" Then
         aw(134) = I
     End If
+    If Worksheets(SheetName).Cells(DataRow, I) = "Премия полугодовая (с учетом РК)" Then
+        aw(135) = I
+    End If
+    If Worksheets(SheetName).Cells(DataRow, I) = "Премия полугодовая" Then
+        aw(136) = I
+    End If
     
 Next I
  
@@ -878,6 +884,12 @@ For I = 1 To Limit
     End If
     If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Доплата за работу в ночное время (праздничные и выходные дни)" Then '-
         iw(134) = I
+    End If
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Премия полугодовая (с учетом РК)" Then '-
+        iw(135) = I
+    End If
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Премия полугодовая" Then '-
+        iw(136) = I
     End If
     
 
