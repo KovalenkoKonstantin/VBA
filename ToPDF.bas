@@ -25,7 +25,7 @@ Sub SaveToPDF()
 If ThisWorkbook.Sheets("Preferences").Range("C13").Value2 = "Поиск-ПМ" Then
     ThisWorkbook.Sheets(Array("ПМ.Прот", "ПМ.ПЗ", "ПМ.П2", "ПМ.ОК" _
         , "ПМ.Ф2", "ПМ.Вед", "ПМ.ОжЗп", "ПМ.КУЗ", "ПМ.НР")).Select
-Else
+
 
 'ThisWorkbook.Sheets(Array("1. Акт", "2. Прот", "3. ЭП", "4. СЦ" _
 '        , "5. ПЗ", "6. Мат", "7. ЗП", "8. Проч", "9. КУЗ", "10. КЗП", _
@@ -41,14 +41,30 @@ Else
 '        "21ф", "22ф", "23Ф", _
 '        "П5", "п6", "П7", "П8", "НЧ", "Приказ", "КУЗ_1", "КУЗ_2")).Select
 'End If
+ElseIf ThisWorkbook.Sheets("Preferences").Range("C13").Value2 = _
+"Программно-аппаратный комплекс ViPNet Coordinator HW2000" Then
 ThisWorkbook.Sheets(Array("1", _
-        "2", "2_23", "2_1", "2_1_23", _
+        "2", "4д", "6", "9", _
+        "10", "12", _
+        "20", "21ф", "22ф", "23Ф", _
+        "Труд", "Прайс")).Select
+ElseIf ThisWorkbook.Sheets("Preferences").Range("C13").Value2 = _
+"Дружба" Then
+ThisWorkbook.Sheets(Array("1", _
+        "2", "4д", "6", "9", _
+        "10", "12", _
+        "20", "21ф", "22ф", "23Ф", _
+        "Труд", "Прайс")).Select
+Else
+ThisWorkbook.Sheets(Array("1", _
+        "2", _
         "4д", _
-        "9", "9_23", "9_1", "9_1_23", _
+        "9", _
         "10", "12", _
         "20", _
         "21ф", "22ф", "23Ф", _
-        "П5", "П6", "П7", "П8", "НЧ", "КУЗ_1")).Select
+        "П5", "П6", "П7", "П8", _
+        "НЧ", "КУЗ_1", "Табель")).Select
 End If
         
         
