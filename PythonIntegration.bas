@@ -20,6 +20,8 @@ Sub Python()
         RunPython ("import HW_2000; HW_2000.FileSaving()")
     ElseIf ActiveWorkbook.Name = "РКМ_HW 2000 & HW 100_v.1.0.xlsm" Then
         RunPython ("import HW_2000_HW_100; HW_2000_HW_100.FileSaving()")
+    ElseIf ActiveWorkbook.Name = "ТФЦ Улей-23_v1.0.xlsm" Then
+        RunPython ("import ТФЦ_Улей23; ТФЦ_Улей23.FileSaving()")
     End If
 '    Application.StatusBar = "Создание PDF"
 '    SaveToPDF
@@ -28,3 +30,4 @@ Sub Python()
 End Sub
 'РКМ_v.1.0 - название скрипта
 'FileSaving() - название функции в скрипте
+
