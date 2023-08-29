@@ -135,6 +135,7 @@ Next
         "Выполнено: " & Int(100 * i / 4) & "%."
   Next i
 
+ThisWorkbook.Sheets("Preferences").Activate
 Application.StatusBar = False
 Application.ScreenUpdating = True
 Application.EnableEvents = True
