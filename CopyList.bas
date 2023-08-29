@@ -144,3 +144,154 @@ Application.DisplayStatusBar = True
 Application.DisplayAlerts = True
     
 End Sub
+
+Sub Clone2()
+  Dim kolvo As Variant
+  Dim i As Long
+  Dim list As Worksheet
+  Dim ThisWorkbook As Workbook
+  Dim SheetName As String
+  Dim Sht As Worksheet
+  
+Application.ScreenUpdating = False
+Application.EnableEvents = False
+ActiveSheet.DisplayPageBreaks = False
+'Application.DisplayStatusBar = False
+Application.DisplayAlerts = False
+  
+  Set ThisWorkbook = ActiveWorkbook
+  SheetName = "2"
+  kolvo = 14
+  
+  'удаление предыдущих данных
+  
+  
+
+  On Error Resume Next
+  
+  For i = 1 To kolvo
+    Sheets("2" & i).delete
+    'статус бар
+    Application.StatusBar = "Удаление листов. Первий диапазон. " & _
+    "Выполнено: " & Int(100 * i / kolvo) & "%."
+  Next i
+  
+  For i = 1 To 4
+    Sheets("2_2" & i).delete
+    'статус бар
+    Application.StatusBar = "Удаление листов. Второй диапазон. " & _
+    "Выполнено: " & Int(100 * i / 4) & "%."
+  Next i
+  
+  For i = 1 To 2
+    Sheets("2_" & i).delete
+    'статус бар
+    Application.StatusBar = "Удаление листов. Третий диапазон. " & _
+    "Выполнено: " & Int(100 * i / 2) & "%."
+  Next i
+  
+  For i = 1 To 4
+    Sheets("2_1_2" & i).delete
+    'статус бар
+    Application.StatusBar = "Удаление листов. Четвёртый диапазон. " & _
+    "Выполнено: " & Int(100 * i / 4) & "%."
+  Next i
+  
+  For i = 1 To 4
+    Sheets("2_2_2" & i).delete
+    'статус бар
+    Application.StatusBar = "Удаление листов. Пятый диапазон. " & _
+    "Выполнено: " & Int(100 * i / 4) & "%."
+  Next i
+ 
+  'копирвоание листов
+  ThisWorkbook.Sheets(SheetName).Activate
+  Set list = ActiveSheet
+'kolvo = InputBox("Укажите необходимое количество листов")
+
+'If kolvo = "" Then Exit Sub
+'If IsNumeric(kolvo) Then
+'    kolvo = Fix(kolvo)
+    For i = 1 To kolvo
+        list.Copy after:=ActiveSheet
+        ActiveSheet.Name = list.Name & i
+        'статус бар
+        Application.StatusBar = "Копирование листов. " & _
+        "Выполнено: " & Int(100 * i / kolvo) & "%."
+    Next
+'Else
+'    MsgBox "Неправильное число"
+'End If
+
+'переименование листов
+On Error Resume Next
+For Each Sht In Worksheets
+    'статус бар
+    Application.StatusBar = "Переименование листов."
+    If Sht.Name = "21" Then Sht.Name = "2_21"
+    If Sht.Name = "22" Then Sht.Name = "2_22"
+    If Sht.Name = "23" Then Sht.Name = "2_23"
+    If Sht.Name = "24" Then Sht.Name = "2_24"
+    If Sht.Name = "25" Then Sht.Name = "2_1"
+    If Sht.Name = "26" Then Sht.Name = "2_1_21"
+    If Sht.Name = "27" Then Sht.Name = "2_1_22"
+    If Sht.Name = "28" Then Sht.Name = "2_1_23"
+    If Sht.Name = "29" Then Sht.Name = "2_1_24"
+    If Sht.Name = "210" Then Sht.Name = "2_2"
+    If Sht.Name = "211" Then Sht.Name = "2_2_21"
+    If Sht.Name = "212" Then Sht.Name = "2_2_22"
+    If Sht.Name = "213" Then Sht.Name = "2_2_23"
+    If Sht.Name = "214" Then Sht.Name = "2_2_24"
+Next
+
+'выставление настроек
+  On Error Resume Next
+  
+  For i = 1 To 4
+    Sheets("2_2" & i).Activate
+        [Q4] = "202" & i
+        'статус бар
+        Application.StatusBar = "Выставление настроек листов. Первий диапазон. " & _
+        "Выполнено: " & Int(100 * i / 4) & "%."
+        Range("X19:AC60").ClearContents
+  Next i
+  
+  For i = 1 To 2
+    Sheets("2_" & i).Activate
+        [Q3] = "Этап " & i
+        'статус бар
+        Application.StatusBar = "Выставление настроек листов. Второй диапазон. " & _
+        "Выполнено: " & Int(100 * i / 2) & "%."
+        Range("X19:AC60").ClearContents
+  Next i
+  
+  For i = 1 To 4
+    Sheets("2_1_2" & i).Activate
+        [Q3] = "Этап 1"
+        [Q4] = "202" & i
+        'статус бар
+        Application.StatusBar = "Выставление настроек листов. Третий диапазон. " & _
+        "Выполнено: " & Int(100 * i / 4) & "%."
+        Range("X19:AC60").ClearContents
+  Next i
+  
+  For i = 1 To 4
+    Sheets("2_2_2" & i).Activate
+        [Q3] = "Этап 2"
+        [Q4] = "202" & i
+        'статус бар
+        Application.StatusBar = "Выставление настроек листов. Четвёртый диапазон. " & _
+        "Выполнено: " & Int(100 * i / 4) & "%."
+        Range("X19:AC60").ClearContents
+  Next i
+
+ThisWorkbook.Sheets("Preferences").Activate
+Application.StatusBar = False
+Application.ScreenUpdating = True
+Application.EnableEvents = True
+ActiveSheet.DisplayPageBreaks = True
+Application.DisplayStatusBar = True
+Application.DisplayAlerts = True
+    
+End Sub
+
