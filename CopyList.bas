@@ -247,6 +247,7 @@ Next
 'выставление настроек
   On Error Resume Next
   
+  'года
   For i = 1 To 4
     Sheets("2_2" & i).Activate
         [Q4] = "202" & i
@@ -261,35 +262,56 @@ Next
         "Выполнено: " & Int(100 * i / 4) & "%."
   Next i
   
+  'этапы
   For i = 1 To 2
     Sheets("2_" & i).Activate
         [Q3] = "Этап " & i
         Range("X3:AC60").Clear
+        Range("E73:I74").ClearContents
         [D71] = "20_" & i
+        [E72] = "Этап " & i
+        [F72] = "Этап " & i
+        [G72] = "Этап " & i
+        [H72] = "Этап " & i
+        [I72] = "Этап " & i
         'статус бар
         Application.StatusBar = "Выставление настроек листов. Второй диапазон. " & _
         "Выполнено: " & Int(100 * i / 2) & "%."
         
   Next i
   
+  'Этап 1
   For i = 1 To 4
     Sheets("2_1_2" & i).Activate
         [Q3] = "Этап 1"
         [Q4] = "202" & i
         Range("X3:AC60").Clear
         [D71] = 0
+        Range("E73:I74").ClearContents
+        [E72] = "Этап 1"
+        [F72] = "Этап 1"
+        [G72] = "Этап 1"
+        [H72] = "Этап 1"
+        [I72] = "Этап 1"
         'статус бар
         Application.StatusBar = "Выставление настроек листов. Третий диапазон. " & _
         "Выполнено: " & Int(100 * i / 4) & "%."
         
   Next i
   
+  'Этап 2
   For i = 1 To 4
     Sheets("2_2_2" & i).Activate
         [Q3] = "Этап 2"
         [Q4] = "202" & i
-        [D71] = 0
         Range("X3:AC60").Clear
+        [D71] = 0
+        Range("E73:I74").ClearContents
+        [E72] = "Этап 2"
+        [F72] = "Этап 2"
+        [G72] = "Этап 2"
+        [H72] = "Этап 2"
+        [I72] = "Этап 2"
         'статус бар
         Application.StatusBar = "Выставление настроек листов. Четвёртый диапазон. " & _
         "Выполнено: " & Int(100 * i / 4) & "%."
