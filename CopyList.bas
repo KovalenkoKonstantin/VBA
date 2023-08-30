@@ -286,7 +286,7 @@ Next
         [Q3] = "Этап 1"
         [Q4] = "202" & i
         Range("X3:AC60").Clear
-        [D71] = 0
+        [D71] = "20_1_2" & i
         Range("E73:I74").ClearContents
         [E72] = "Этап 1"
         [F72] = "Этап 1"
@@ -305,7 +305,7 @@ Next
         [Q3] = "Этап 2"
         [Q4] = "202" & i
         Range("X3:AC60").Clear
-        [D71] = 0
+        [D71] = "20_2_2" & i
         Range("E73:I74").ClearContents
         [E72] = "Этап 2"
         [F72] = "Этап 2"
@@ -317,6 +317,38 @@ Next
         "Выполнено: " & Int(100 * i / 4) & "%."
         
   Next i
+  
+  'донастройка диапазонов
+  Sheets("2_1_21").Activate
+  Range("F68:I68").ClearContents
+  
+  Sheets("2_1_22").Activate
+  Range("G68:I68").ClearContents
+  Range("E68:E68").ClearContents
+  
+  Sheets("2_1_23").Activate
+  Range("E68:F68").ClearContents
+  Range("I68:I68").ClearContents
+  
+  Sheets("2_1_24").Activate
+  Range("E68:H68").ClearContents
+  
+'____________________________________________________________________
+  
+  Sheets("2_2_21").Activate
+  Range("F68:I68").ClearContents
+  
+  Sheets("2_2_22").Activate
+  Range("G68:I68").ClearContents
+  Range("E68:E68").ClearContents
+  
+  Sheets("2_2_23").Activate
+  Range("E68:F68").ClearContents
+  Range("I68:I68").ClearContents
+  
+  Sheets("2_2_24").Activate
+  Range("E68:H68").ClearContents
+  
 
 ThisWorkbook.Sheets("Preferences").Activate
 Application.StatusBar = False
