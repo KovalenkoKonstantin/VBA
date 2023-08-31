@@ -55,6 +55,14 @@ ThisWorkbook.Sheets(Array("1", _
         "10", "12", _
         "20", "21ф", "22ф", "23Ф", _
         "Труд", "Прайс")).Select
+ElseIf ThisWorkbook.Sheets("Preferences").Range("C13").Value2 = _
+"Улей-23" Then
+ThisWorkbook.Sheets(Array("1", _
+        "2", "9", _
+        "10", "12", _
+        "20", "21ф", "22ф", "23ф", _
+        "П5", "П6", "П7", "П8", "НЧ", _
+        "Табель")).Select
 Else
 ThisWorkbook.Sheets(Array("1", _
         "2", _
@@ -73,7 +81,7 @@ ActiveSheet.ExportAsFixedFormat Type:=xlTypePDF, _
 Filename:=Path & "\" & _
 SaveName & ".pdf", Quality:=xlQualityStandard _
 , IncludeDocProperties:=True, IgnorePrintAreas:=False, OpenAfterPublish:= _
-False
+True
 
 Finish = (Now() - Start) * 24 * 60 * 60
 
