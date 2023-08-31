@@ -22,6 +22,8 @@ Sub Python()
         RunPython ("import HW_2000_HW_100; HW_2000_HW_100.FileSaving()")
     ElseIf ActiveWorkbook.Name = "ׂװײ ׃כוי-23_v1.0.xlsm" Then
         RunPython ("import ׂװײ_׃כוי23; ׂװײ_׃כוי23.FileSaving()")
+    ElseIf ActiveWorkbook.Name = "׀Êּ_־ֱִ-ֳֽׁ-24_v.1.0.xlsm" Then
+        RunPython ("import ־ֱִ_ֳֽׁ_24; ־ֱִ_ֳֽׁ_24.FileSaving()")
     End If
 '    Application.StatusBar = "ׁמחהאםטו PDF"
 '    SaveToPDF
