@@ -926,7 +926,7 @@ For i = 1 To Limit
 'статус бар
 Application.StatusBar = "Промежуточный цикл. Выполнено: " & Int(100 * i / Limit) & "%." & _
 " Общий прогресс: " & Int(87 * i / Limit) & "%" & _
-" Расчётное время до конца выполнения программы: " & _
+" Расчётное время до конца выполнения цикла: " & _
 Int((100 - Int(87 * i / Limit)) * (((Now() - Start) * 24 * 60 * 60) / (Int(87 * i / Limit)))) & " секунд"
  importWB.Activate
  Range(Cells(begin - 1, iw(i)), Cells(iwLastRow, iw(i))).Copy
