@@ -12,12 +12,12 @@ Sub Overheads()
  On Error GoTo ExitHandler
  SheetName = "Expenditures"
 ' DistinctYear = 2021
- Limit = 137 'последняя колонка базы
+ Limit = 138 'последняя колонка базы
  begin = 12 'первый ряд вставки
  CompanyName = ThisWorkbook.Sheets("Preferences").Range("C7").Value2 'имя проекта
  
- Dim aw(1 To 137) As Variant
- Dim iw(1 To 137) As Variant
+ Dim aw(1 To 138) As Variant
+ Dim iw(1 To 138) As Variant
  
 Application.ScreenUpdating = False
 Application.EnableEvents = False
@@ -483,6 +483,9 @@ For i = 1 To Limit
     If Worksheets(SheetName).Cells(DataRow, i) = "Надбавка за профессионализм и качество выполняемых работ (по часам пропорц. отраб. времени)" Then
         aw(137) = i
     End If
+    If Worksheets(SheetName).Cells(DataRow, i) = "Сотовая связь" Then
+        aw(138) = i
+    End If
     
 Next i
  
@@ -901,6 +904,9 @@ For i = 1 To Limit
     End If
     If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Надбавка за профессионализм и качество выполняемых работ (по часам пропорц. отраб. времени)" Then '-
         iw(137) = i
+    End If
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Сотовая связь" Then '-
+        iw(138) = i
     End If
     
 
