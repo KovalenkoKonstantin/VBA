@@ -4,14 +4,16 @@ Sub Clone9()
   Dim i As Long
   Dim list As Worksheet
   Dim ThisWorkbook As Workbook
-  Dim SheetName As String
+  Dim SheetName, var As String
   Dim Sht As Worksheet
+  Dim WorkRng As Range
   
 Application.ScreenUpdating = False
 Application.EnableEvents = False
 ActiveSheet.DisplayPageBreaks = False
 'Application.DisplayStatusBar = False
 Application.DisplayAlerts = False
+Application.Calculation = xlManual
   
   Set ThisWorkbook = ActiveWorkbook
   SheetName = "9"
@@ -58,7 +60,7 @@ Application.DisplayAlerts = False
     "Выполнено: " & Int(100 * i / 4) & "%."
   Next i
  
-  'копирвоание листов
+  'копирование листов
   ThisWorkbook.Sheets(SheetName).Activate
   Set list = ActiveSheet
 'kolvo = InputBox("Укажите необходимое количество листов")
@@ -101,35 +103,51 @@ Next
 'выставление настроек
   On Error Resume Next
   
+  'года
   For i = 1 To 4
     Sheets("9_2" & i).Activate
         [O2] = "202" & i
-        'статус бар
-        Application.StatusBar = "Выставление настроек листов. Первий диапазон. " & _
-        "Выполнено: " & Int(100 * i / 4) & "%."
+        Range("Z:AI").Clear
+        
+'        var = Int("202" & i)
+'    For j = 210 To 13 Step -1
+'        If Range("S" & j).Value2 <> var Then
+'            Range("S" & j).EntireRow.delete
+'        End If
+'    Next j
+
+    'статус бар
+    Application.StatusBar = "Выставление настроек листов. Первий диапазон. " & _
+    "Выполнено: " & Int(100 * i / 4) & "%."
   Next i
   
+  'этапы
   For i = 1 To 2
     Sheets("9_" & i).Activate
         [O1] = "Этап " & i
+        Range("Z:AI").Clear
         'статус бар
         Application.StatusBar = "Выставление настроек листов. Второй диапазон. " & _
         "Выполнено: " & Int(100 * i / 2) & "%."
   Next i
   
+  'Этап 1
   For i = 1 To 4
     Sheets("9_1_2" & i).Activate
         [O1] = "Этап 1"
         [O2] = "202" & i
+        Range("Z:AI").Clear
         'статус бар
         Application.StatusBar = "Выставление настроек листов. Третий диапазон. " & _
         "Выполнено: " & Int(100 * i / 4) & "%."
   Next i
   
+  'Этап 2
   For i = 1 To 4
     Sheets("9_2_2" & i).Activate
         [O1] = "Этап 2"
         [O2] = "202" & i
+        Range("Z:AI").Clear
         'статус бар
         Application.StatusBar = "Выставление настроек листов. Четвёртый диапазон. " & _
         "Выполнено: " & Int(100 * i / 4) & "%."
@@ -142,6 +160,7 @@ Application.EnableEvents = True
 ActiveSheet.DisplayPageBreaks = True
 Application.DisplayStatusBar = True
 Application.DisplayAlerts = True
+Application.Calculation = xlAutomatic
     
 End Sub
 
@@ -158,6 +177,7 @@ Application.EnableEvents = False
 ActiveSheet.DisplayPageBreaks = False
 'Application.DisplayStatusBar = False
 Application.DisplayAlerts = False
+Application.Calculation = xlManual
   
   Set ThisWorkbook = ActiveWorkbook
   SheetName = "2"
@@ -357,6 +377,7 @@ Application.EnableEvents = True
 ActiveSheet.DisplayPageBreaks = True
 Application.DisplayStatusBar = True
 Application.DisplayAlerts = True
+Application.Calculation = xlAutomatic
     
 End Sub
 
@@ -373,6 +394,7 @@ Application.EnableEvents = False
 ActiveSheet.DisplayPageBreaks = False
 'Application.DisplayStatusBar = False
 Application.DisplayAlerts = False
+Application.Calculation = xlManual
   
   Set ThisWorkbook = ActiveWorkbook
   SheetName = "20"
@@ -515,5 +537,6 @@ Application.EnableEvents = True
 ActiveSheet.DisplayPageBreaks = True
 Application.DisplayStatusBar = True
 Application.DisplayAlerts = True
+Application.Calculation = xlAutomatic
     
 End Sub
