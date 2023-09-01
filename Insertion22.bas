@@ -24,6 +24,7 @@ Application.EnableEvents = False
 ActiveSheet.DisplayPageBreaks = False
 'Application.DisplayStatusBar = False
 Application.DisplayAlerts = False
+Application.Calculation = xlManual
 
 FilesToOpen = Application.GetOpenFilename _
  (FileFilter:="Microsoft Excel Files (*.xlsx), *.xlsx", _
@@ -69,831 +70,831 @@ ThisWorkbook.Activate
 
 'определение колонок рабочей книги
 On Error Resume Next
-For I = 1 To 20
-    If Worksheets(SheetName).Cells(I, 1) = "Сотрудник" Then
-        DataRow = I
+For i = 1 To 20
+    If Worksheets(SheetName).Cells(i, 1) = "Сотрудник" Then
+        DataRow = i
     End If
-Next I
+Next i
 
-For I = 1 To Limit
-    If Worksheets(SheetName).Cells(DataRow, I) = "Сотрудник" Then
-        aw(1) = I
+For i = 1 To Limit
+    If Worksheets(SheetName).Cells(DataRow, i) = "Сотрудник" Then
+        aw(1) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Месяц" Then
-        aw(2) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Месяц" Then
+        aw(2) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "расчётная норма часов" Then
-        aw(3) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "расчётная норма часов" Then
+        aw(3) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "анализ часов" Then
-        aw(4) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "анализ часов" Then
+        aw(4) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "расчётная норма дней" Then
-        aw(5) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "расчётная норма дней" Then
+        aw(5) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "анализ дней" Then
-        aw(6) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "анализ дней" Then
+        aw(6) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Исключение всех кроме 20,26,44 счёта" Then
-        aw(7) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Исключение всех кроме 20,26,44 счёта" Then
+        aw(7) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Имя Отчество" Then
-        aw(8) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Имя Отчество" Then
+        aw(8) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Анализ изменения фамилии" Then
-        aw(9) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Анализ изменения фамилии" Then
+        aw(9) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Приказ об увольнении.Статья ТК РФ" Then
-        aw(10) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Приказ об увольнении.Статья ТК РФ" Then
+        aw(10) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Подразделение история" Then
-        aw(11) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Подразделение история" Then
+        aw(11) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Должность" Then
-        aw(12) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Должность" Then
+        aw(12) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Вид занятости" Then
-        aw(13) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Вид занятости" Then
+        aw(13) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Дата рождения" Then
-        aw(14) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Дата рождения" Then
+        aw(14) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Способ отражения зарплаты в бух учете" Then
-        aw(15) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Способ отражения зарплаты в бух учете" Then
+        aw(15) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "График работы" Then
-        aw(16) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "График работы" Then
+        aw(16) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Норма дней" Then
-        aw(17) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Норма дней" Then
+        aw(17) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Норма часов" Then
-        aw(18) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Норма часов" Then
+        aw(18) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Отработано дней" Then
-        aw(19) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Отработано дней" Then
+        aw(19) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Отработано часов" Then
-        aw(20) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Отработано часов" Then
+        aw(20) = i
     End If
 ' ----------------------------------------------------------------------------------------------------
-    If Worksheets(SheetName).Cells(DataRow, I) = "Начислено" Then
-        aw(21) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Начислено" Then
+        aw(21) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Оплата больничных листов за счет работодателя" Then
-        aw(22) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Оплата больничных листов за счет работодателя" Then
+        aw(22) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Оплата больничных листов" Then
-        aw(23) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Оплата больничных листов" Then
+        aw(23) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Оклад по дням" Then
-        aw(24) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Оклад по дням" Then
+        aw(24) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Отсутствие по болезни (больничный еще не закрыт)" Then
-        aw(25) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Отсутствие по болезни (больничный еще не закрыт)" Then
+        aw(25) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Надбавка за сложность и напряженность" Then
-        aw(26) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Надбавка за сложность и напряженность" Then
+        aw(26) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Оплата отпуска по календарным дням" Then
-        aw(27) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Оплата отпуска по календарным дням" Then
+        aw(27) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Премия за объем продаж" Then
-        aw(28) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Премия за объем продаж" Then
+        aw(28) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Надбавка за профессионализм и качество выполняемых работ" Then
-        aw(29) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Надбавка за профессионализм и качество выполняемых работ" Then
+        aw(29) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Премия по итогам года" Then
-        aw(30) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Премия по итогам года" Then
+        aw(30) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Отпуск за свой счет" Then
-        aw(31) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Отпуск за свой счет" Then
+        aw(31) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Компенсация отпуска (Отпуск основной)" Then
-        aw(32) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Компенсация отпуска (Отпуск основной)" Then
+        aw(32) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Квартальная премия" Then
-        aw(33) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Квартальная премия" Then
+        aw(33) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Премия разовая" Then
-        aw(34) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Премия разовая" Then
+        aw(34) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Выходное пособие при увольнении" Then
-        aw(35) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Выходное пособие при увольнении" Then
+        aw(35) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Пособие по уходу за ребенком до полутора лет" Then
-        aw(36) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Пособие по уходу за ребенком до полутора лет" Then
+        aw(36) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Оклад по дням (пропорционально отработанным дням)" Then
-        aw(37) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Оклад по дням (пропорционально отработанным дням)" Then
+        aw(37) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Надбавка за профессионализм и качество выполняемых работ (пропорционально отработанным дням)" Then
-        aw(38) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Надбавка за профессионализм и качество выполняемых работ (пропорционально отработанным дням)" Then
+        aw(38) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Надбавка за работу со сведениями, составляющими государственную тайну" Then
-        aw(39) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Надбавка за работу со сведениями, составляющими государственную тайну" Then
+        aw(39) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Оклад по дням 26 Нерезиденты" Then
-        aw(40) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Оклад по дням 26 Нерезиденты" Then
+        aw(40) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Премия не учитываемая" Then
-        aw(41) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Премия не учитываемая" Then
+        aw(41) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Северная надбавка" Then
-        aw(42) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Северная надбавка" Then
+        aw(42) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Районный коэффициент" Then
-        aw(43) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Районный коэффициент" Then
+        aw(43) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Премия с учетом районного коэффициента(квартальная)" Then
-        aw(44) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Премия с учетом районного коэффициента(квартальная)" Then
+        aw(44) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Ежегодный дополнительный оплачиваемый отпуск" Then
-        aw(45) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Ежегодный дополнительный оплачиваемый отпуск" Then
+        aw(45) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Премия по итогам года с учетом РК" Then
-        aw(46) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Премия по итогам года с учетом РК" Then
+        aw(46) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Вознаграждение за изобретение" Then
-        aw(47) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Вознаграждение за изобретение" Then
+        aw(47) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Договор (работы, услуги)" Then
-        aw(48) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Договор (работы, услуги)" Then
+        aw(48) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Компенсация за фитнес" Then
-        aw(49) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Компенсация за фитнес" Then
+        aw(49) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Премия с учетом районного коэффициента (месячная)" Then
-        aw(50) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Премия с учетом районного коэффициента (месячная)" Then
+        aw(50) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Прогул" Then
-        aw(51) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Прогул" Then
+        aw(51) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Доплата за совмещение должностей, исполнение обязанностей" Then
-        aw(52) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Доплата за совмещение должностей, исполнение обязанностей" Then
+        aw(52) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Месячная премия" Then
-        aw(53) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Месячная премия" Then
+        aw(53) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Военные сборы" Then
-        aw(54) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Военные сборы" Then
+        aw(54) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Дополнительный учебный отпуск (оплачиваемый)" Then
-        aw(55) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Дополнительный учебный отпуск (оплачиваемый)" Then
+        aw(55) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Оплата работы в праздничные и выходные дни" Then
-        aw(56) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Оплата работы в праздничные и выходные дни" Then
+        aw(56) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "вознаграждение членам Совета Директоров" Then
-        aw(57) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "вознаграждение членам Совета Директоров" Then
+        aw(57) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Премия Германия У.Е" Then
-        aw(58) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Премия Германия У.Е" Then
+        aw(58) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Отсутствие по невыясненной причине" Then
-        aw(59) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Отсутствие по невыясненной причине" Then
+        aw(59) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Отпуск без оплаты согласно ТК РФ" Then
-        aw(60) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Отпуск без оплаты согласно ТК РФ" Then
+        aw(60) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Оплата дней ухода за детьми-инвалидами" Then
-        aw(61) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Оплата дней ухода за детьми-инвалидами" Then
+        aw(61) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Пособие по уходу за ребёнком до 3 лет без оплаты" Then
-        aw(62) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Пособие по уходу за ребёнком до 3 лет без оплаты" Then
+        aw(62) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Оклад по часам (пропорциально отработанному времени)" Then
-        aw(63) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Оклад по часам (пропорциально отработанному времени)" Then
+        aw(63) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Надбавка за сложность и напряженность (по часам пропорционально отработаннму времени)" Then
-        aw(64) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Надбавка за сложность и напряженность (по часам пропорционально отработаннму времени)" Then
+        aw(64) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Надбавка за профессионализм и качество выполняемых работ (по часам пропорц отраб времени)" Then
-        aw(65) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Надбавка за профессионализм и качество выполняемых работ (по часам пропорц отраб времени)" Then
+        aw(65) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Отсутствие по болезни" Then
-        aw(66) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Отсутствие по болезни" Then
+        aw(66) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Доплата за работу в ночное время" Then
-        aw(67) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Доплата за работу в ночное время" Then
+        aw(67) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "По итогам работы за год" Then
-        aw(68) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "По итогам работы за год" Then
+        aw(68) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Премия директорам (Чефранова, Басов, Набережный, Таранов)" Then
-        aw(69) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Премия директорам (Чефранова, Басов, Набережный, Таранов)" Then
+        aw(69) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Надбавка за соблюдение конфиденциальности в отношении с" Then
-        aw(70) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Надбавка за соблюдение конфиденциальности в отношении с" Then
+        aw(70) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Отпуск по беременности и родам" Then
-        aw(71) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Отпуск по беременности и родам" Then
+        aw(71) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Доплата за работу в праздничные дни (дневное время)" Then
-        aw(72) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Доплата за работу в праздничные дни (дневное время)" Then
+        aw(72) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Доплата за работу в праздничные дни (ночное время)" Then
-        aw(73) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Доплата за работу в праздничные дни (ночное время)" Then
+        aw(73) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Доплата за переработки при суммированном учете рабочего времени" Then
-        aw(74) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Доплата за переработки при суммированном учете рабочего времени" Then
+        aw(74) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Неоплачиваемые дни отпуска по беременности и родам" Then
-        aw(75) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Неоплачиваемые дни отпуска по беременности и родам" Then
+        aw(75) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Доплата за ненормированный рабочий день" Then
-        aw(76) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Доплата за ненормированный рабочий день" Then
+        aw(76) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Материальная помощь" Then
-        aw(77) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Материальная помощь" Then
+        aw(77) = i
     End If
 ' ----------------------------------------------------------------------------------------------------
-    If Worksheets(SheetName).Cells(DataRow, I) = "Сумма по Доход в натуральной форме" Then
-        aw(78) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Сумма по Доход в натуральной форме" Then
+        aw(78) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Питание за счет средств предприятия" Then
-        aw(79) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Питание за счет средств предприятия" Then
+        aw(79) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Доход в натуральной форме (обл. НДФЛ)" Then
-        aw(80) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Доход в натуральной форме (обл. НДФЛ)" Then
+        aw(80) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Проездные" Then
-        aw(81) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Проездные" Then
+        aw(81) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "НДФЛ к зачету в счет будущих платежей" Then
-        aw(82) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "НДФЛ к зачету в счет будущих платежей" Then
+        aw(82) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Питание договорников" Then
-        aw(83) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Питание договорников" Then
+        aw(83) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Подарок" Then
-        aw(84) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Подарок" Then
+        aw(84) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Проездные Германия" Then
-        aw(85) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Проездные Германия" Then
+        aw(85) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Зачтено излишне удержанного НДФЛ" Then
-        aw(86) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Зачтено излишне удержанного НДФЛ" Then
+        aw(86) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "сотовая связь" Then
-        aw(87) = I
-    End If
-' ----------------------------------------------------------------------------------------------------
-    If Worksheets(SheetName).Cells(DataRow, I) = "Удержано" Then
-        aw(88) = I
-    End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "НДФЛ" Then
-        aw(89) = I
-    End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "НДФЛ с превышения" Then
-        aw(90) = I
-    End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Удержано из зарплаты за оплату медстраховки" Then
-        aw(91) = I
-    End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Удержание из з/п командировочных расходов" Then
-        aw(92) = I
-    End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Удержание по исп. листу процентом" Then
-        aw(93) = I
-    End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Удержание по заявлению" Then
-        aw(94) = I
-    End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Выплата родственникам умершего сотрудника" Then
-        aw(95) = I
-    End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Удержано из зарплаты за оплату физкультурно-оздоровительных услуг" Then
-        aw(96) = I
-    End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Удержание за обучение из зарплаты" Then
-        aw(97) = I
-    End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Удержание из зарплаты 73,03" Then
-        aw(98) = I
-    End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Удержание по исп. листу фикс. суммой" Then
-        aw(99) = I
-    End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Удержание по исполнительному документу" Then
-        aw(100) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "сотовая связь" Then
+        aw(87) = i
     End If
 ' ----------------------------------------------------------------------------------------------------
-    If Worksheets(SheetName).Cells(DataRow, I) = "ВЗНОСЫ" Then
-        aw(101) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Удержано" Then
+        aw(88) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "ПФР до превышения" Then
-        aw(102) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "НДФЛ" Then
+        aw(89) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "ПФР с превышения" Then
-        aw(103) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "НДФЛ с превышения" Then
+        aw(90) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "ФФОМС" Then
-        aw(104) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Удержано из зарплаты за оплату медстраховки" Then
+        aw(91) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "ФСС" Then
-        aw(105) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Удержание из з/п командировочных расходов" Then
+        aw(92) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "ФСС НС" Then
-        aw(106) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Удержание по исп. листу процентом" Then
+        aw(93) = i
+    End If
+    If Worksheets(SheetName).Cells(DataRow, i) = "Удержание по заявлению" Then
+        aw(94) = i
+    End If
+    If Worksheets(SheetName).Cells(DataRow, i) = "Выплата родственникам умершего сотрудника" Then
+        aw(95) = i
+    End If
+    If Worksheets(SheetName).Cells(DataRow, i) = "Удержано из зарплаты за оплату физкультурно-оздоровительных услуг" Then
+        aw(96) = i
+    End If
+    If Worksheets(SheetName).Cells(DataRow, i) = "Удержание за обучение из зарплаты" Then
+        aw(97) = i
+    End If
+    If Worksheets(SheetName).Cells(DataRow, i) = "Удержание из зарплаты 73,03" Then
+        aw(98) = i
+    End If
+    If Worksheets(SheetName).Cells(DataRow, i) = "Удержание по исп. листу фикс. суммой" Then
+        aw(99) = i
+    End If
+    If Worksheets(SheetName).Cells(DataRow, i) = "Удержание по исполнительному документу" Then
+        aw(100) = i
     End If
 ' ----------------------------------------------------------------------------------------------------
-    If Worksheets(SheetName).Cells(DataRow, I) = "% Страховых взносов" Then
-        aw(107) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "ВЗНОСЫ" Then
+        aw(101) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "База взносов" Then
-        aw(108) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "ПФР до превышения" Then
+        aw(102) = i
+    End If
+    If Worksheets(SheetName).Cells(DataRow, i) = "ПФР с превышения" Then
+        aw(103) = i
+    End If
+    If Worksheets(SheetName).Cells(DataRow, i) = "ФФОМС" Then
+        aw(104) = i
+    End If
+    If Worksheets(SheetName).Cells(DataRow, i) = "ФСС" Then
+        aw(105) = i
+    End If
+    If Worksheets(SheetName).Cells(DataRow, i) = "ФСС НС" Then
+        aw(106) = i
     End If
 ' ----------------------------------------------------------------------------------------------------
-    If Worksheets(SheetName).Cells(DataRow, I) = "Надбавка за стаж работы по защите государственной тайны" Then
-        aw(109) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "% Страховых взносов" Then
+        aw(107) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Оплата за дополнительный день (дни) отдыха донору" Then
-        aw(110) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "База взносов" Then
+        aw(108) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Командировка" Then
-        aw(111) = I
+' ----------------------------------------------------------------------------------------------------
+    If Worksheets(SheetName).Cells(DataRow, i) = "Надбавка за стаж работы по защите государственной тайны" Then
+        aw(109) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Премия квартальная объем продаж (ПМ)" Then
-        aw(112) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Оплата за дополнительный день (дни) отдыха донору" Then
+        aw(110) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Премия Германия" Then
-        aw(113) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Командировка" Then
+        aw(111) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Оплата по окладу (по часам)" Then
-        aw(114) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Премия квартальная объем продаж (ПМ)" Then
+        aw(112) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Оклад по часам" Then
-        aw(115) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Премия Германия" Then
+        aw(113) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Надбавка за сложность и напряженность (по часам)" Then
-        aw(116) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Оплата по окладу (по часам)" Then
+        aw(114) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Надбавка за сложность и напряженность (пропорционально отработанным дням)" Then
-        aw(117) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Оклад по часам" Then
+        aw(115) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Медицинский осмотр" Then
-        aw(118) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Надбавка за сложность и напряженность (по часам)" Then
+        aw(116) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Компенсация расходов по договорам подряда" Then
-        aw(119) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Надбавка за сложность и напряженность (пропорционально отработанным дням)" Then
+        aw(117) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Премия месячная (с учетом РК)" Then
-        aw(120) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Медицинский осмотр" Then
+        aw(118) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Премия квартальная" Then
-        aw(121) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Компенсация расходов по договорам подряда" Then
+        aw(119) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Премия квартальная (с учетом РК)" Then
-        aw(122) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Премия месячная (с учетом РК)" Then
+        aw(120) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Премия по итогам года (с учетом РК)" Then
-        aw(123) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Премия квартальная" Then
+        aw(121) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Надбавка за сложность и напряженность (по часам пропорц. отработанному времени)" Then
-        aw(124) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Премия квартальная (с учетом РК)" Then
+        aw(122) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Премия разовая (с учетом РК)" Then
-        aw(125) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Премия по итогам года (с учетом РК)" Then
+        aw(123) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Дата увольнения" Then
-        aw(126) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Надбавка за сложность и напряженность (по часам пропорц. отработанному времени)" Then
+        aw(124) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Премия месячная" Then
-        aw(127) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Премия разовая (с учетом РК)" Then
+        aw(125) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Год" Then
-        aw(128) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Дата увольнения" Then
+        aw(126) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Доплата за работу в ночное время (праздничные и выходные дни)" Then
-        aw(134) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Премия месячная" Then
+        aw(127) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Премия полугодовая (с учетом РК)" Then
-        aw(135) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Год" Then
+        aw(128) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, I) = "Премия полугодовая" Then
-        aw(136) = I
+    If Worksheets(SheetName).Cells(DataRow, i) = "Доплата за работу в ночное время (праздничные и выходные дни)" Then
+        aw(134) = i
+    End If
+    If Worksheets(SheetName).Cells(DataRow, i) = "Премия полугодовая (с учетом РК)" Then
+        aw(135) = i
+    End If
+    If Worksheets(SheetName).Cells(DataRow, i) = "Премия полугодовая" Then
+        aw(136) = i
     End If
     
-Next I
+Next i
  
  importWB.Sheets(1).Activate
 
 'определение колонок импортируемой книги
-For I = 1 To 20
-    If importWB.Sheets(1).Cells(I, 1) = "Организация" Then
-        ImportFirstDataRow = I
+For i = 1 To 20
+    If importWB.Sheets(1).Cells(i, 1) = "Организация" Then
+        ImportFirstDataRow = i
     End If
-Next I
-For I = 1 To 20
-    If importWB.Sheets(1).Cells(I, 1) = "Сотрудник" Then
-        ImportSecondDataRow = I
+Next i
+For i = 1 To 20
+    If importWB.Sheets(1).Cells(i, 1) = "Сотрудник" Then
+        ImportSecondDataRow = i
     End If
-Next I
+Next i
 
-For I = 1 To Limit
-    If importWB.Sheets(1).Cells(ImportSecondDataRow, I) = "Сотрудник" Then '-
-        iw(1) = I
+For i = 1 To Limit
+    If importWB.Sheets(1).Cells(ImportSecondDataRow, i) = "Сотрудник" Then '-
+        iw(1) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Месяц" Then
-        iw(2) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Месяц" Then
+        iw(2) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "расчётная норма часов" Then
-        iw(2) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "расчётная норма часов" Then
+        iw(2) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "анализ часов" Then
-        iw(4) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "анализ часов" Then
+        iw(4) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "расчётная норма дней" Then
-        iw(5) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "расчётная норма дней" Then
+        iw(5) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "анализ дней" Then
-        iw(6) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "анализ дней" Then
+        iw(6) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Исключение всех кроме 20,26,44 счёта" Then
-        iw(7) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Исключение всех кроме 20,26,44 счёта" Then
+        iw(7) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Имя Отчество" Then
-        iw(8) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Имя Отчество" Then
+        iw(8) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Анализ изменения фамилии" Then
-        iw(9) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Анализ изменения фамилии" Then
+        iw(9) = i
     End If
-    If importWB.Sheets(1).Cells(ImportSecondDataRow, I) = "Приказ об увольнении.Статья ТК РФ" Then
-        iw(10) = I
+    If importWB.Sheets(1).Cells(ImportSecondDataRow, i) = "Приказ об увольнении.Статья ТК РФ" Then
+        iw(10) = i
     End If
-    If importWB.Sheets(1).Cells(ImportSecondDataRow, I) = "Подразделение история" Then '-
-        iw(11) = I
+    If importWB.Sheets(1).Cells(ImportSecondDataRow, i) = "Подразделение история" Then '-
+        iw(11) = i
     End If
-    If importWB.Sheets(1).Cells(ImportSecondDataRow, I) = "Должность" Then '-
-        iw(12) = I
+    If importWB.Sheets(1).Cells(ImportSecondDataRow, i) = "Должность" Then '-
+        iw(12) = i
     End If
-    If importWB.Sheets(1).Cells(ImportSecondDataRow, I) = "Вид занятости" Then '-
-        iw(13) = I
+    If importWB.Sheets(1).Cells(ImportSecondDataRow, i) = "Вид занятости" Then '-
+        iw(13) = i
     End If
-    If importWB.Sheets(1).Cells(ImportSecondDataRow, I) = "Дата рождения" Then '-
-        iw(14) = I
+    If importWB.Sheets(1).Cells(ImportSecondDataRow, i) = "Дата рождения" Then '-
+        iw(14) = i
     End If
-    If importWB.Sheets(1).Cells(ImportSecondDataRow, I) = "Способ отражения зарплаты в бух учете" Then '-
-        iw(15) = I
+    If importWB.Sheets(1).Cells(ImportSecondDataRow, i) = "Способ отражения зарплаты в бух учете" Then '-
+        iw(15) = i
     End If
-    If importWB.Sheets(1).Cells(ImportSecondDataRow, I) = "График работы" Then '-
-        iw(16) = I
+    If importWB.Sheets(1).Cells(ImportSecondDataRow, i) = "График работы" Then '-
+        iw(16) = i
     End If
-    If importWB.Sheets(1).Cells(ImportSecondDataRow, I) = "Норма дней" Then '-
-        iw(17) = I
+    If importWB.Sheets(1).Cells(ImportSecondDataRow, i) = "Норма дней" Then '-
+        iw(17) = i
     End If
-    If importWB.Sheets(1).Cells(ImportSecondDataRow, I) = "Норма часов" Then '-
-        iw(18) = I
+    If importWB.Sheets(1).Cells(ImportSecondDataRow, i) = "Норма часов" Then '-
+        iw(18) = i
     End If
-    If importWB.Sheets(1).Cells(ImportSecondDataRow, I) = "Дней" Then '-
-        iw(19) = I
+    If importWB.Sheets(1).Cells(ImportSecondDataRow, i) = "Дней" Then '-
+        iw(19) = i
     End If
-    If importWB.Sheets(1).Cells(ImportSecondDataRow, I) = "Часов" Then '-
-        iw(20) = I
+    If importWB.Sheets(1).Cells(ImportSecondDataRow, i) = "Часов" Then '-
+        iw(20) = i
     End If
 ' ----------------------------------------------------------------------------------------------------
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Начислено" Then
-        iw(21) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Начислено" Then
+        iw(21) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Оплата больничных листов за счет работодателя" Then
-        iw(22) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Оплата больничных листов за счет работодателя" Then
+        iw(22) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Оплата больничных листов" Then
-        iw(23) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Оплата больничных листов" Then
+        iw(23) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Оклад по дням" Then
-        iw(24) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Оклад по дням" Then
+        iw(24) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Отсутствие по болезни (больничный еще не закрыт)" Then
-        iw(25) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Отсутствие по болезни (больничный еще не закрыт)" Then
+        iw(25) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Надбавка за сложность и напряженность" Then
-        iw(26) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Надбавка за сложность и напряженность" Then
+        iw(26) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Оплата отпуска по календарным дням" Then
-        iw(27) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Оплата отпуска по календарным дням" Then
+        iw(27) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Премия за объем продаж" Then
-        iw(28) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Премия за объем продаж" Then
+        iw(28) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Надбавка за профессионализм и качество выполняемых работ" Then
-        iw(29) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Надбавка за профессионализм и качество выполняемых работ" Then
+        iw(29) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Премия по итогам года" Then
-        iw(30) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Премия по итогам года" Then
+        iw(30) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Отпуск за свой счет" Then
-        iw(31) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Отпуск за свой счет" Then
+        iw(31) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Компенсация отпуска (Отпуск основной)" Then
-        iw(32) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Компенсация отпуска (Отпуск основной)" Then
+        iw(32) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Квартальная премия" Then
-        iw(33) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Квартальная премия" Then
+        iw(33) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Премия разовая" Then
-        iw(34) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Премия разовая" Then
+        iw(34) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Выходное пособие при увольнении" Then
-        iw(35) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Выходное пособие при увольнении" Then
+        iw(35) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Пособие по уходу за ребенком до полутора лет" Then
-        iw(36) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Пособие по уходу за ребенком до полутора лет" Then
+        iw(36) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Оклад по дням (пропорционально отработанным дням)" Then
-        iw(37) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Оклад по дням (пропорционально отработанным дням)" Then
+        iw(37) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Надбавка за профессионализм и качество выполняемых работ (пропорционально отработанным дням)" Then
-        iw(38) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Надбавка за профессионализм и качество выполняемых работ (пропорционально отработанным дням)" Then
+        iw(38) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Надбавка за работу со сведениями, составляющими государственную тайну" Then
-        iw(39) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Надбавка за работу со сведениями, составляющими государственную тайну" Then
+        iw(39) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Оклад по дням 26 Нерезиденты" Then
-        iw(40) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Оклад по дням 26 Нерезиденты" Then
+        iw(40) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Премия не учитываемая" Then
-        iw(41) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Премия не учитываемая" Then
+        iw(41) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Северная надбавка" Then
-        iw(42) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Северная надбавка" Then
+        iw(42) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Районный коэффициент" Then
-        iw(43) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Районный коэффициент" Then
+        iw(43) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Премия с учетом районного коэффициента(квартальная)" Then
-        iw(44) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Премия с учетом районного коэффициента(квартальная)" Then
+        iw(44) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Ежегодный дополнительный оплачиваемый отпуск" Then
-        iw(45) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Ежегодный дополнительный оплачиваемый отпуск" Then
+        iw(45) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Премия по итогам года с учетом РК" Then
-        iw(46) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Премия по итогам года с учетом РК" Then
+        iw(46) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Вознаграждение за изобретение" Then
-        iw(47) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Вознаграждение за изобретение" Then
+        iw(47) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Договор (работы, услуги)" Then
-        iw(48) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Договор (работы, услуги)" Then
+        iw(48) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Компенсация за фитнес" Then
-        iw(49) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Компенсация за фитнес" Then
+        iw(49) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Премия с учетом районного коэффициента (месячная)" Then
-        iw(50) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Премия с учетом районного коэффициента (месячная)" Then
+        iw(50) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Прогул" Then
-        iw(51) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Прогул" Then
+        iw(51) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Доплата за совмещение должностей, исполнение обязанностей" Then
-        iw(52) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Доплата за совмещение должностей, исполнение обязанностей" Then
+        iw(52) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Месячная премия" Then
-        iw(53) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Месячная премия" Then
+        iw(53) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Военные сборы" Then
-        iw(54) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Военные сборы" Then
+        iw(54) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Дополнительный учебный отпуск (оплачиваемый)" Then
-        iw(55) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Дополнительный учебный отпуск (оплачиваемый)" Then
+        iw(55) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Оплата работы в праздничные и выходные дни" Then
-        iw(56) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Оплата работы в праздничные и выходные дни" Then
+        iw(56) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "вознаграждение членам Совета Директоров" Then
-        iw(57) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "вознаграждение членам Совета Директоров" Then
+        iw(57) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Премия Германия У.Е" Then
-        iw(58) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Премия Германия У.Е" Then
+        iw(58) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Отсутствие по невыясненной причине" Then
-        iw(59) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Отсутствие по невыясненной причине" Then
+        iw(59) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Отпуск без оплаты согласно ТК РФ" Then
-        iw(60) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Отпуск без оплаты согласно ТК РФ" Then
+        iw(60) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Оплата дней ухода за детьми-инвалидами" Then
-        iw(61) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Оплата дней ухода за детьми-инвалидами" Then
+        iw(61) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Пособие по уходу за ребёнком до 3 лет без оплаты" Then
-        iw(62) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Пособие по уходу за ребёнком до 3 лет без оплаты" Then
+        iw(62) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Оклад по часам (пропорциально отработанному времени)" Then
-        iw(63) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Оклад по часам (пропорциально отработанному времени)" Then
+        iw(63) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Надбавка за сложность и напряженность (по часам пропорционально отработаннму времени)" Then
-        iw(64) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Надбавка за сложность и напряженность (по часам пропорционально отработаннму времени)" Then
+        iw(64) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Надбавка за профессионализм и качество выполняемых работ (по часам пропорц отраб времени)" Then
-        iw(65) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Надбавка за профессионализм и качество выполняемых работ (по часам пропорц отраб времени)" Then
+        iw(65) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Отсутствие по болезни" Then
-        iw(66) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Отсутствие по болезни" Then
+        iw(66) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Доплата за работу в ночное время" Then
-        iw(67) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Доплата за работу в ночное время" Then
+        iw(67) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "По итогам работы за год" Then
-        iw(68) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "По итогам работы за год" Then
+        iw(68) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Премия директорам (Чефранова, Басов, Набережный, Таранов)" Then
-        iw(69) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Премия директорам (Чефранова, Басов, Набережный, Таранов)" Then
+        iw(69) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Надбавка за соблюдение конфиденциальности в отношении с" Then
-        iw(70) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Надбавка за соблюдение конфиденциальности в отношении с" Then
+        iw(70) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Отпуск по беременности и родам" Then
-        iw(71) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Отпуск по беременности и родам" Then
+        iw(71) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Доплата за работу в праздничные дни (дневное время)" Then
-        iw(72) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Доплата за работу в праздничные дни (дневное время)" Then
+        iw(72) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Доплата за работу в праздничные дни (ночное время)" Then
-        iw(73) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Доплата за работу в праздничные дни (ночное время)" Then
+        iw(73) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Доплата за переработки при суммированном учете рабочего времени" Then
-        iw(74) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Доплата за переработки при суммированном учете рабочего времени" Then
+        iw(74) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Неоплачиваемые дни отпуска по беременности и родам" Then
-        iw(75) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Неоплачиваемые дни отпуска по беременности и родам" Then
+        iw(75) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Доплата за ненормированный рабочий день" Then
-        iw(76) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Доплата за ненормированный рабочий день" Then
+        iw(76) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Материальная помощь" Then
-        iw(77) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Материальная помощь" Then
+        iw(77) = i
     End If
 ' ----------------------------------------------------------------------------------------------------
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Сумма по Доход в натуральной форме" Then
-        iw(78) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Сумма по Доход в натуральной форме" Then
+        iw(78) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Питание за счет средств предприятия" Then
-        iw(79) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Питание за счет средств предприятия" Then
+        iw(79) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Доход в натуральной форме (обл. НДФЛ)" Then
-        iw(80) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Доход в натуральной форме (обл. НДФЛ)" Then
+        iw(80) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Проездные" Then
-        iw(81) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Проездные" Then
+        iw(81) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "НДФЛ к зачету в счет будущих платежей" Then
-        iw(82) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "НДФЛ к зачету в счет будущих платежей" Then
+        iw(82) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Питание договорников" Then
-        iw(83) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Питание договорников" Then
+        iw(83) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Подарок" Then
-        iw(84) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Подарок" Then
+        iw(84) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Проездные Германия" Then
-        iw(85) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Проездные Германия" Then
+        iw(85) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Зачтено излишне удержанного НДФЛ" Then
-        iw(86) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Зачтено излишне удержанного НДФЛ" Then
+        iw(86) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "сотовая связь" Then
-        iw(87) = I
-    End If
-' ----------------------------------------------------------------------------------------------------
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Удержано" Then
-        iw(88) = I
-    End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "НДФЛ" Then
-        iw(89) = I
-    End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "НДФЛ с превышения" Then
-        iw(90) = I
-    End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Удержано из зарплаты за оплату медстраховки" Then
-        iw(91) = I
-    End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Удержание из з/п командировочных расходов" Then
-        iw(92) = I
-    End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Удержание по исп. листу процентом" Then
-        iw(93) = I
-    End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Удержание по заявлению" Then
-        iw(94) = I
-    End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Выплата родственникам умершего сотрудника" Then
-        iw(95) = I
-    End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Удержано из зарплаты за оплату физкультурно-оздоровительных услуг" Then
-        iw(96) = I
-    End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Удержание за обучение из зарплаты" Then
-        iw(97) = I
-    End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Удержание из зарплаты 73,03" Then
-        iw(98) = I
-    End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Удержание по исп. листу фикс. суммой" Then
-        iw(99) = I
-    End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Удержание по исполнительному документу" Then
-        iw(100) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "сотовая связь" Then
+        iw(87) = i
     End If
 ' ----------------------------------------------------------------------------------------------------
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "ВЗНОСЫ" Then
-        iw(101) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Удержано" Then
+        iw(88) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "ПФР до превышения" Then
-        iw(102) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "НДФЛ" Then
+        iw(89) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "ПФР с превышения" Then
-        iw(103) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "НДФЛ с превышения" Then
+        iw(90) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "ФФОМС" Then
-        iw(104) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Удержано из зарплаты за оплату медстраховки" Then
+        iw(91) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "ФСС" Then
-        iw(105) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Удержание из з/п командировочных расходов" Then
+        iw(92) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "ФСС НС" Then
-        iw(106) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Удержание по исп. листу процентом" Then
+        iw(93) = i
     End If
-' ----------------------------------------------------------------------------------------------------
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "% Страховых взносов" Then
-        iw(107) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Удержание по заявлению" Then
+        iw(94) = i
     End If
-    If importWB.Sheets(1).Cells(ImportSecondDataRow, I) = "База взносов" Then '-
-        iw(108) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Выплата родственникам умершего сотрудника" Then
+        iw(95) = i
     End If
-' ----------------------------------------------------------------------------------------------------
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Надбавка за стаж работы по защите государственной тайны" Then '-
-        iw(109) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Удержано из зарплаты за оплату физкультурно-оздоровительных услуг" Then
+        iw(96) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Оплата за дополнительный день (дни) отдыха донору" Then '-
-        iw(110) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Удержание за обучение из зарплаты" Then
+        iw(97) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Командировка" Then '-
-        iw(111) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Удержание из зарплаты 73,03" Then
+        iw(98) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Премия квартальная объем продаж (ПМ)" Then '-
-        iw(112) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Удержание по исп. листу фикс. суммой" Then
+        iw(99) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Премия Германия" Then '-
-        iw(113) = I
-    End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Оплата по окладу (по часам)" Then '-
-        iw(114) = I
-    End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Оклад по часам" Then '-
-        iw(115) = I
-    End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Надбавка за сложность и напряженность (по часам)" Then '-
-        iw(116) = I
-    End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Надбавка за сложность и напряженность (пропорционально отработанным дням)" Then '-
-        iw(117) = I
-    End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Медицинский осмотр" Then '-
-        iw(118) = I
-    End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Компенсация расходов по договорам подряда" Then '-
-        iw(119) = I
-    End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Премия месячная (с учетом РК)" Then '-
-        iw(120) = I
-    End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Премия квартальная" Then '-
-        iw(121) = I
-    End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Премия квартальная (с учетом РК)" Then '-
-        iw(122) = I
-    End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Премия по итогам года (с учетом РК)" Then '-
-        iw(123) = I
-    End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Надбавка за сложность и напряженность (по часам пропорц. отработанному времени)" Then '-
-        iw(124) = I
-    End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Премия разовая (с учетом РК)" Then '-
-        iw(125) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Удержание по исполнительному документу" Then
+        iw(100) = i
     End If
 ' ----------------------------------------------------------------------------------------------------
-    If importWB.Sheets(1).Cells(ImportSecondDataRow, I) = "Дата увольнения" Then '-
-        iw(126) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "ВЗНОСЫ" Then
+        iw(101) = i
+    End If
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "ПФР до превышения" Then
+        iw(102) = i
+    End If
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "ПФР с превышения" Then
+        iw(103) = i
+    End If
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "ФФОМС" Then
+        iw(104) = i
+    End If
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "ФСС" Then
+        iw(105) = i
+    End If
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "ФСС НС" Then
+        iw(106) = i
     End If
 ' ----------------------------------------------------------------------------------------------------
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Премия месячная" Then '-
-        iw(127) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "% Страховых взносов" Then
+        iw(107) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Доплата за работу в ночное время (праздничные и выходные дни)" Then '-
-        iw(134) = I
+    If importWB.Sheets(1).Cells(ImportSecondDataRow, i) = "База взносов" Then '-
+        iw(108) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Премия полугодовая (с учетом РК)" Then '-
-        iw(135) = I
+' ----------------------------------------------------------------------------------------------------
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Надбавка за стаж работы по защите государственной тайны" Then '-
+        iw(109) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, I) = "Премия полугодовая" Then '-
-        iw(136) = I
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Оплата за дополнительный день (дни) отдыха донору" Then '-
+        iw(110) = i
+    End If
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Командировка" Then '-
+        iw(111) = i
+    End If
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Премия квартальная объем продаж (ПМ)" Then '-
+        iw(112) = i
+    End If
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Премия Германия" Then '-
+        iw(113) = i
+    End If
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Оплата по окладу (по часам)" Then '-
+        iw(114) = i
+    End If
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Оклад по часам" Then '-
+        iw(115) = i
+    End If
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Надбавка за сложность и напряженность (по часам)" Then '-
+        iw(116) = i
+    End If
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Надбавка за сложность и напряженность (пропорционально отработанным дням)" Then '-
+        iw(117) = i
+    End If
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Медицинский осмотр" Then '-
+        iw(118) = i
+    End If
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Компенсация расходов по договорам подряда" Then '-
+        iw(119) = i
+    End If
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Премия месячная (с учетом РК)" Then '-
+        iw(120) = i
+    End If
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Премия квартальная" Then '-
+        iw(121) = i
+    End If
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Премия квартальная (с учетом РК)" Then '-
+        iw(122) = i
+    End If
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Премия по итогам года (с учетом РК)" Then '-
+        iw(123) = i
+    End If
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Надбавка за сложность и напряженность (по часам пропорц. отработанному времени)" Then '-
+        iw(124) = i
+    End If
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Премия разовая (с учетом РК)" Then '-
+        iw(125) = i
+    End If
+' ----------------------------------------------------------------------------------------------------
+    If importWB.Sheets(1).Cells(ImportSecondDataRow, i) = "Дата увольнения" Then '-
+        iw(126) = i
+    End If
+' ----------------------------------------------------------------------------------------------------
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Премия месячная" Then '-
+        iw(127) = i
+    End If
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Доплата за работу в ночное время (праздничные и выходные дни)" Then '-
+        iw(134) = i
+    End If
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Премия полугодовая (с учетом РК)" Then '-
+        iw(135) = i
+    End If
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Премия полугодовая" Then '-
+        iw(136) = i
     End If
     
 
-Next I
+Next i
 
 'удаление предыдущих данных
  ThisWorkbook.Sheets(SheetName).Activate
@@ -911,17 +912,17 @@ Application.StatusBar = "Вставка данных"
  importWB.Sheets(1).Activate
  iwLastRow = Cells(Rows.Count, "A").End(xlUp).row
 
-For I = 1 To Limit
+For i = 1 To Limit
 'статус бар
-Application.StatusBar = "Промежуточный цикл. Выполнено: " & Int(100 * I / Limit) & "%." & _
-" Общий прогресс: " & Int(87 * I / Limit) & "%" & _
+Application.StatusBar = "Промежуточный цикл. Выполнено: " & Int(100 * i / Limit) & "%." & _
+" Общий прогресс: " & Int(87 * i / Limit) & "%" & _
 " Расчётное время до конца выполнения программы: " & _
-Int((100 - Int(87 * I / Limit)) * (((Now() - Start) * 24 * 60 * 60) / (Int(87 * I / Limit)))) & " секунд"
+Int((100 - Int(87 * i / Limit)) * (((Now() - Start) * 24 * 60 * 60) / (Int(87 * i / Limit)))) & " секунд"
  importWB.Activate
- Range(Cells(begin - 1, iw(I)), Cells(iwLastRow, iw(I))).Copy
+ Range(Cells(begin - 1, iw(i)), Cells(iwLastRow, iw(i))).Copy
 
  ThisWorkbook.Sheets(SheetName).Activate
- Range(Cells(begin, aw(I)), Cells(iwLastRow, aw(I))).Select
+ Range(Cells(begin, aw(i)), Cells(iwLastRow, aw(i))).Select
     With Selection
            .PasteSpecial Paste:=xlPasteAll
            .UnMerge
@@ -949,7 +950,7 @@ Int((100 - Int(87 * I / Limit)) * (((Now() - Start) * 24 * 60 * 60) / (Int(87 * 
 '    & vbCr & "Выполнено " & Int(87 * I / Limit) & "%", 0, "Скоро...", 5
 '    End If
 
-Next I
+Next i
 
 'статус бар
 Application.StatusBar = "Форматирование ячеек. Выполнено: 87 %"
@@ -1165,6 +1166,7 @@ ExitHandler:
     ActiveSheet.DisplayPageBreaks = True
     Application.DisplayStatusBar = True
     Application.DisplayAlerts = True
+    Application.Calculation = xlAutomatic
  ThisWorkbook.Sheets("Preferences").Activate
  Exit Sub
   

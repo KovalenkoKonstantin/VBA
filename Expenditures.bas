@@ -24,6 +24,7 @@ Application.EnableEvents = False
 ActiveSheet.DisplayPageBreaks = False
 'Application.DisplayStatusBar = False
 Application.DisplayAlerts = False
+Application.Calculation = xlManual
 
 FilesToOpen = Application.GetOpenFilename _
  (FileFilter:="Microsoft Excel Files (*.xlsx), *.xlsx", _
@@ -1182,6 +1183,7 @@ ExitHandler:
     ActiveSheet.DisplayPageBreaks = True
     Application.DisplayStatusBar = True
     Application.DisplayAlerts = True
+    Application.Calculation = xlAutomatic
  ThisWorkbook.Sheets("Preferences").Activate
  Exit Sub
   

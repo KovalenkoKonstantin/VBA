@@ -25,6 +25,7 @@ Application.EnableEvents = False
 ActiveSheet.DisplayPageBreaks = False
 'Application.DisplayStatusBar = False
 Application.DisplayAlerts = False
+Application.Calculation = xlManual
 
 'статус бар
 Application.StatusBar = "ќпределение колонок рабочей книги"
@@ -1215,6 +1216,7 @@ ExitHandler:
     ActiveSheet.DisplayPageBreaks = True
     Application.DisplayStatusBar = True
     Application.DisplayAlerts = True
+    Application.Calculation = xlAutomatic
  ThisWorkbook.Sheets("Preferences").Activate
  Exit Sub
  
