@@ -4,7 +4,7 @@ MsgBox "отключено"
 End Sub
 Sub CleanIt()
 
-Dim row, column, X As Integer
+Dim row, column, x As Integer
 On Error GoTo ErrHandler
  Application.ScreenUpdating = False
  Application.EnableEvents = False
@@ -13,9 +13,9 @@ On Error GoTo ErrHandler
  Application.DisplayAlerts = False
 
 ' ищем номер строки по "Количество этапов"
-For I = 1 To 50
-    If Worksheets("Соисполнитель").Cells(I, 1) = "Количество этапов" Then
-        row = I
+For i = 1 To 50
+    If Worksheets("Соисполнитель").Cells(i, 1) = "Количество этапов" Then
+        row = i
     End If
 Next
 
@@ -27,17 +27,17 @@ column = 1
 '    GoTo ErrHandler
 'End If
 
-X = Application.Worksheets("Соисполнитель").Cells(row, column + 1).Value 'значение ячейки
+x = Application.Worksheets("Соисполнитель").Cells(row, column + 1).Value 'значение ячейки
 
 'удаляем лишние строки
-For I = row + X - 1 To row + 1 Step -1
-    Rows(I).EntireRow.delete
+For i = row + x - 1 To row + 1 Step -1
+    Rows(i).EntireRow.delete
 '    Range(i, column).EntireRow.Delete
 Next
 
 'очищаем значения ячеек
-For I = 2 To 3
-    Application.Worksheets("Соисполнитель").Cells(row, I).Clear
+For i = 2 To 3
+    Application.Worksheets("Соисполнитель").Cells(row, i).Clear
 Next
 
 ErrHandler:
@@ -98,7 +98,7 @@ Sub Social_contribution()
 ' Dim с, d As Range
  Dim temp, temp1, temp2 As String
 ' Dim x As Integer
- X = "7,8"
+ x = "7,8"
  Y = "РВ2"
  
  Set ThisWorkbook = ActiveWorkbook
@@ -116,73 +116,73 @@ Application.DisplayAlerts = False
  K = Cells(2, Columns.Count).End(xlToLeft).column 'последняя колонка данных
  
  ' ищем номера колонок
-For I = 1 To K
+For i = 1 To K
     'определяем колонку заработной платы
-    If Worksheets(Y).Cells(2, I) = "Оклады" Then
-        zp = I
+    If Worksheets(Y).Cells(2, i) = "Оклады" Then
+        zp = i
     End If
     'определяем колонку социальных выплат
-    If Worksheets(Y).Cells(2, I) = "% Страховых взносов" Then
-        sp = I
+    If Worksheets(Y).Cells(2, i) = "% Страховых взносов" Then
+        sp = i
     End If
     'определяем колонку года
-    If Worksheets(Y).Cells(2, I) = "План" Then
-        yr = I
+    If Worksheets(Y).Cells(2, i) = "План" Then
+        yr = i
     End If
     'определяем колонку проверки
-    If Worksheets(Y).Cells(2, I) = "Проверка" Then
-        check = I
+    If Worksheets(Y).Cells(2, i) = "Проверка" Then
+        check = i
     End If
-Next I
+Next i
 
 'удаляем предыдущие значения
-    ThisWorkbook.Sheets(X).Activate
+    ThisWorkbook.Sheets(x).Activate
     Range(check & "4:" & check & K).Clear
 'main
-For I = 3 To s
+For i = 3 To s
 'skip constant rows
-    If Worksheets(Y).Cells(I, 2).Value2 = "Итого" Then
+    If Worksheets(Y).Cells(i, 2).Value2 = "Итого" Then
         GoTo ExitHandler
     End If
-    If Worksheets(Y).Cells(I, 2).Value2 = Worksheets(Y).Cells(I, 3).Value2 Then
-        I = I + 1
+    If Worksheets(Y).Cells(i, 2).Value2 = Worksheets(Y).Cells(i, 3).Value2 Then
+        i = i + 1
     End If
 'переносим значение зарплаты в лист расчётов
-    Worksheets(Y).Cells(I, zp).Copy
-    ThisWorkbook.Sheets(X).Activate
+    Worksheets(Y).Cells(i, zp).Copy
+    ThisWorkbook.Sheets(x).Activate
     Range("B4").Select
     With Selection
         .PasteSpecial Paste:=xlPasteValues
     End With
     
 'меняем значения ячеек в листе с вычислениями социальных выплат
-    temp = Worksheets(Y).Cells(I, yr).Value2
-    ThisWorkbook.Sheets(X).Activate
+    temp = Worksheets(Y).Cells(i, yr).Value2
+    ThisWorkbook.Sheets(x).Activate
     Range("J4:J15").Clear
-        For c = 4 To 15
-            temp1 = Cells(c, 1).Value2
-            Cells(c, 10) = temp1 & " " & temp
-        Next c
+        For C = 4 To 15
+            temp1 = Cells(C, 1).Value2
+            Cells(C, 10) = temp1 & " " & temp
+        Next C
  'ищем совпадение месяцев
     For j = 4 To 15
 '        a = ThisWorkbook.Sheets(x).Cells(j, 10).Value2
 '        b = Worksheets(y).Cells(i, 3).Value2
-        If ThisWorkbook.Sheets(X).Cells(j, 10).Value2 = Worksheets(Y).Cells(I, 3).Value2 Then
+        If ThisWorkbook.Sheets(x).Cells(j, 10).Value2 = Worksheets(Y).Cells(i, 3).Value2 Then
             destinct = j 'нужный ряд для переноса значения в расчётную ведомость
         End If
     Next j
 'удаляем внесённые ключи из 7,8
-    ThisWorkbook.Sheets(X).Activate
+    ThisWorkbook.Sheets(x).Activate
     Range("J4:J15").Clear
  'переносим % соц выплат в расчётную ведомость
- ThisWorkbook.Sheets(X).Activate
+ ThisWorkbook.Sheets(x).Activate
  Cells(destinct, 9).Copy
  ThisWorkbook.Sheets(Y).Activate
- Cells(I, check).Select
+ Cells(i, check).Select
     With Selection
         .PasteSpecial Paste:=xlPasteValues
     End With
-Next I
+Next i
 
 
 ExitHandler:
@@ -234,7 +234,7 @@ Sub Budget()
 ' Dim MyRange, MyCell As range
  Dim key As String
  Ye_ar = 2022 'начальный год бюджета
- X = 4 'количество листов для вставки
+ x = 4 'количество листов для вставки
  DataTab = "Бюджет" 'лист данных
  WorkTab = "НЧ" 'рабочий лист
  
@@ -265,44 +265,44 @@ Application.DisplayAlerts = False
  LastColumnData = Cells(FirstRowData, Columns.Count).End(xlToLeft).column 'последняя колонка данных
   
  'ищем номера колонок в листе данных
-For I = 1 To LastColumnData
+For i = 1 To LastColumnData
     'определяем колонку ключа1
-    If Worksheets(DataTab).Cells(FirstRowData, I) = "Ключ1" Then
-        Key1ColData = I
+    If Worksheets(DataTab).Cells(FirstRowData, i) = "Ключ1" Then
+        Key1ColData = i
     End If
     'определяем колонку имени сотрудника
-    If Worksheets(DataTab).Cells(FirstRowData, I) = "Сотрудник" Then
-        EmployeeColData = I
+    If Worksheets(DataTab).Cells(FirstRowData, i) = "Сотрудник" Then
+        EmployeeColData = i
     End If
     'определяем колонку должности
-    If Worksheets(DataTab).Cells(FirstRowData, I) = "Должность" Then
-        PositionColData = I
+    If Worksheets(DataTab).Cells(FirstRowData, i) = "Должность" Then
+        PositionColData = i
     End If
     'определяем колонку года
-    If Worksheets(DataTab).Cells(FirstRowData, I) = "Год" Then
-        YearColData = I
+    If Worksheets(DataTab).Cells(FirstRowData, i) = "Год" Then
+        YearColData = i
     End If
     'определяем колонку Премии
-    If Worksheets(DataTab).Cells(FirstRowData, I) = "Премии" Then
-        PrizeColData = I
+    If Worksheets(DataTab).Cells(FirstRowData, i) = "Премии" Then
+        PrizeColData = i
     End If
     'определяем колонку ключа2
-    If Worksheets(DataTab).Cells(FirstRowData, I) = "Ключ2" Then
-        Key2ColData = I
+    If Worksheets(DataTab).Cells(FirstRowData, i) = "Ключ2" Then
+        Key2ColData = i
     End If
     'определяем колонку Второй должности
-    If Worksheets(DataTab).Cells(FirstRowData, I) = "Должность2" Then
-        Position2ColData = I
+    If Worksheets(DataTab).Cells(FirstRowData, i) = "Должность2" Then
+        Position2ColData = i
     End If
     'определяем колонку месяца в числовом выражении
-    If Worksheets(DataTab).Cells(FirstRowData, I) = "Мес" Then
-        MonthNumberColData = I
+    If Worksheets(DataTab).Cells(FirstRowData, i) = "Мес" Then
+        MonthNumberColData = i
     End If
     'определяем колонку декабря
-    If Worksheets(DataTab).Cells(FirstRowData, I) = "Декабрь" Then
-        DecemberColData = I
+    If Worksheets(DataTab).Cells(FirstRowData, i) = "Декабрь" Then
+        DecemberColData = i
     End If
-Next I
+Next i
  
  'удаление предыдущих данных
  Range(Cells(FirstRowData + 1, Key1ColData), Cells(LastRowData, LastColumnData)).Select
@@ -312,13 +312,13 @@ Next I
 
 'вставка листов
 Set importWB = Workbooks.Open(Filename:=FilesToOpen(1))
-For I = 1 To X
+For i = 1 To x
     On Error Resume Next
-     importWB.Sheets(I).Activate
+     importWB.Sheets(i).Activate
      lLastRow = Cells(Rows.Count, 1).End(xlUp).row
      j = lLastRow
      
-     importWB.Sheets(I).Activate
+     importWB.Sheets(i).Activate
      Range("A3:N" & j).Select
      Range("A3:N" & j).Copy
      ThisWorkbook.Sheets(DataTab).Activate
@@ -338,9 +338,9 @@ For I = 1 To X
      'добавление идентификатора года в колонку премии
      lLastRow = Cells(Rows.Count, 2).End(xlUp).row
      jNew = lLastRow
-     Range(Cells(jRenow + 1, PrizeColData), Cells(jNew, PrizeColData)).Value2 = I
+     Range(Cells(jRenow + 1, PrizeColData), Cells(jNew, PrizeColData)).Value2 = i
 
-Next I
+Next i
 'закрытие книги данных
 importWB.Close
 
@@ -424,6 +424,7 @@ Application.EnableEvents = False
 ActiveSheet.DisplayPageBreaks = False
 Application.DisplayStatusBar = False
 Application.DisplayAlerts = False
+Application.Calculation = xlManual
 
 For Each ws In ThisWorkbook
 pt.Refresh
@@ -435,6 +436,7 @@ ExitHandler:
     ActiveSheet.DisplayPageBreaks = True
     Application.DisplayStatusBar = True
     Application.DisplayAlerts = True
+    Application.Calculation = xlAutomatic
 ' ThisWorkbook.Sheets("Preferences").Activate
  Exit Sub
 End Sub
@@ -517,7 +519,6 @@ errorhandler:
 ActiveWorkbook.Sheets("Preferences").Activate
 
 End Sub
-
 
 Sub button1()
     [J61] = 0
