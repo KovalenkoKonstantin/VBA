@@ -208,9 +208,8 @@ ThisWorkbook.Sheets(sh).Activate
 RowData = Columns(i).Find(j, LookIn:=xlValues).row 'ряд значения
 
     i = "AK"
-    K = "S"
     ThisWorkbook.Sheets(sh).Range(i & RowData + 6) = 0
-    Range(i & RowData + 5).GoalSeek Goal:=0, ChangingCell:=Range(K & RowData)
+    Range(i & RowData + 5).GoalSeek Goal:=0, ChangingCell:=Range("S" & RowData)
     
 Application.StatusBar = False
     Application.ScreenUpdating = True
