@@ -30,6 +30,8 @@ Sub Python()
         RunPython ("import HW_100_C_unlim; HW_100_C_unlim.FileSaving()")
     ElseIf ActiveWorkbook.Name = "РКМ_HW100_C+_wifi+_unlim_v.1.0.xlsm" Then
         RunPython ("import HW_100_C_wifi_unlim; HW_100_C_wifi_unlim.FileSaving()")
+    ElseIf ActiveWorkbook.Name = "РКМ_HW100_C+_3G+_unlim_v.1.0.xlsm" Then
+        RunPython ("import HW_100_C_3G_unlim; HW_100_C_3G_unlim.FileSaving()")
     End If
 '    Application.StatusBar = "Создание PDF"
 '    SaveToPDF

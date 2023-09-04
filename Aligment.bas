@@ -14,98 +14,98 @@ Application.DisplayAlerts = False
 
 On Error Resume Next
 
-I = 1
-J = "variable2"
+i = 1
+j = "variable2"
 sh = "12"
 ThisWorkbook.Sheets(sh).Activate
-RowData = Columns(I).Find(J, LookIn:=xlValues).row 'ряд значения2
+RowData = Columns(i).Find(j, LookIn:=xlValues).row 'ряд значения2
 
 'ThisWorkbook.Sheets(sh).Activate
 
 'очистка коэффициентов
 ThisWorkbook.Sheets(sh).Range("D" & RowData & ":" & "Q" & RowData).ClearContents
 
-    I = "K"
-    ThisWorkbook.Sheets(sh).Range(I & RowData) = 0
-    If Range(I & RowData + 1) <> 0 Then
-        Range(I & RowData + 1).GoalSeek Goal:=0, ChangingCell:=Range(I & RowData)
+    i = "K"
+    ThisWorkbook.Sheets(sh).Range(i & RowData) = 0
+    If Range(i & RowData + 1) <> 0 Then
+        Range(i & RowData + 1).GoalSeek Goal:=0, ChangingCell:=Range(i & RowData)
     End If
-    I = "N"
-    ThisWorkbook.Sheets(sh).Range(I & RowData) = 0
-    If Range(I & RowData + 1) <> 0 Then
-        Range(I & RowData + 1).GoalSeek Goal:=0, ChangingCell:=Range(I & RowData)
+    i = "N"
+    ThisWorkbook.Sheets(sh).Range(i & RowData) = 0
+    If Range(i & RowData + 1) <> 0 Then
+        Range(i & RowData + 1).GoalSeek Goal:=0, ChangingCell:=Range(i & RowData)
     End If
-    I = "G"
-    ThisWorkbook.Sheets(sh).Range(I & RowData) = 0
-    If Range(I & RowData + 1) <> 0 Then
-        Range(I & RowData + 1).GoalSeek Goal:=0, ChangingCell:=Range(I & RowData)
+    i = "G"
+    ThisWorkbook.Sheets(sh).Range(i & RowData) = 0
+    If Range(i & RowData + 1) <> 0 Then
+        Range(i & RowData + 1).GoalSeek Goal:=0, ChangingCell:=Range(i & RowData)
     End If
-    I = "Q"
-    ThisWorkbook.Sheets(sh).Range(I & RowData) = 0
-    If Range(I & RowData + 1) <> 0 Then
-        Range(I & RowData + 1).GoalSeek Goal:=0, ChangingCell:=Range(I & RowData)
+    i = "Q"
+    ThisWorkbook.Sheets(sh).Range(i & RowData) = 0
+    If Range(i & RowData + 1) <> 0 Then
+        Range(i & RowData + 1).GoalSeek Goal:=0, ChangingCell:=Range(i & RowData)
     End If
     
 Application.StatusBar = "Выполнено 30%"
     
 '_________________________________________________________________________________
 
-I = 1
-J = "variable"
+i = 1
+j = "variable"
 sh = "П8"
 ThisWorkbook.Sheets(sh).Activate
-RowData = Columns(I).Find(J, LookIn:=xlValues).row 'ряд значения
+RowData = Columns(i).Find(j, LookIn:=xlValues).row 'ряд значения
 
 'ThisWorkbook.Sheets(sh).Activate
 
 'очистка коэффициентов
 ThisWorkbook.Sheets(sh).Range("F" & RowData & ":" & "O" & RowData).ClearContents
 
-    I = "F"
-    ThisWorkbook.Sheets(sh).Range(I & RowData) = 0
-    If Range(I & RowData - 2) <> 0 Then
-        Range(I & RowData - 2).GoalSeek Goal:=0, ChangingCell:=Range(I & RowData)
+    i = "F"
+    ThisWorkbook.Sheets(sh).Range(i & RowData) = 0
+    If Range(i & RowData - 2) <> 0 Then
+        Range(i & RowData - 2).GoalSeek Goal:=0, ChangingCell:=Range(i & RowData)
     End If
-    I = "I"
-    ThisWorkbook.Sheets(sh).Range(I & RowData) = 0
-    If Range(I & RowData - 2) <> 0 Then
-        Range(I & RowData - 2).GoalSeek Goal:=0, ChangingCell:=Range(I & RowData)
+    i = "I"
+    ThisWorkbook.Sheets(sh).Range(i & RowData) = 0
+    If Range(i & RowData - 2) <> 0 Then
+        Range(i & RowData - 2).GoalSeek Goal:=0, ChangingCell:=Range(i & RowData)
     End If
-    I = "L"
-    ThisWorkbook.Sheets(sh).Range(I & RowData) = 0
-    If Range(I & RowData - 2) <> 0 Then
-        Range(I & RowData - 2).GoalSeek Goal:=0, ChangingCell:=Range(I & RowData)
+    i = "L"
+    ThisWorkbook.Sheets(sh).Range(i & RowData) = 0
+    If Range(i & RowData - 2) <> 0 Then
+        Range(i & RowData - 2).GoalSeek Goal:=0, ChangingCell:=Range(i & RowData)
     End If
-    I = "O"
-    ThisWorkbook.Sheets(sh).Range(I & RowData) = 0
-    If Range(I & RowData - 2) <> 0 Then
-        Range(I & RowData - 2).GoalSeek Goal:=0, ChangingCell:=Range(I & RowData)
+    i = "O"
+    ThisWorkbook.Sheets(sh).Range(i & RowData) = 0
+    If Range(i & RowData - 2) <> 0 Then
+        Range(i & RowData - 2).GoalSeek Goal:=0, ChangingCell:=Range(i & RowData)
     End If
     
 Application.StatusBar = "Выполнено 60%"
     
 '_________________________________________________________________________________
 
-I = 1
-J = "variable"
+i = 1
+j = "variable"
 sh = "12"
 ThisWorkbook.Sheets(sh).Activate
-RowData = Columns(I).Find(J, LookIn:=xlValues).row 'ряд значения
+RowData = Columns(i).Find(j, LookIn:=xlValues).row 'ряд значения
 
 'ThisWorkbook.Sheets(sh).Activate
 
 'очистка коэффициентов
 ThisWorkbook.Sheets(sh).Range("D" & RowData & ":" & "Q" & RowData).ClearContents
 
-    I = "L"
-    ThisWorkbook.Sheets(sh).Range(I & RowData) = 0
-    If Range(I & RowData + 2) <> 0 Then
-        Range(I & RowData + 2).GoalSeek Goal:=0, ChangingCell:=Range(I & RowData)
+    i = "L"
+    ThisWorkbook.Sheets(sh).Range(i & RowData) = 0
+    If Range(i & RowData + 2) <> 0 Then
+        Range(i & RowData + 2).GoalSeek Goal:=0, ChangingCell:=Range(i & RowData)
     End If
-    I = "O"
-    ThisWorkbook.Sheets(sh).Range(I & RowData) = 0
-    If Range(I & RowData + 2) <> 0 Then
-        Range(I & RowData + 2).GoalSeek Goal:=0, ChangingCell:=Range(I & RowData)
+    i = "O"
+    ThisWorkbook.Sheets(sh).Range(i & RowData) = 0
+    If Range(i & RowData + 2) <> 0 Then
+        Range(i & RowData + 2).GoalSeek Goal:=0, ChangingCell:=Range(i & RowData)
     End If
     
 Application.StatusBar = "Выполнено 90%"
@@ -152,32 +152,65 @@ On Error Resume Next
     
 '_________________________________________________________________________________
 
-I = 1
-J = "variable"
+i = 1
+j = "variable"
 sh = "11. НР"
 ThisWorkbook.Sheets(sh).Activate
-RowData = Columns(I).Find(J, LookIn:=xlValues).row 'ряд значения
+RowData = Columns(i).Find(j, LookIn:=xlValues).row 'ряд значения
 
 'ThisWorkbook.Sheets(sh).Activate
 
 'очистка коэффициентов
 'ThisWorkbook.Sheets(sh).Range("D" & RowData & ":" & "D" & RowData).ClearContents
 
-    I = "C"
-    ThisWorkbook.Sheets(sh).Range(I & RowData) = 0
-    Range(I & RowData - 1).GoalSeek Goal:=0, ChangingCell:=Range(I & RowData)
+    i = "C"
+    ThisWorkbook.Sheets(sh).Range(i & RowData) = 0
+    Range(i & RowData - 1).GoalSeek Goal:=0, ChangingCell:=Range(i & RowData)
     
-    I = "F"
-    ThisWorkbook.Sheets(sh).Range(I & RowData) = 0
-    Range(I & RowData - 1).GoalSeek Goal:=0, ChangingCell:=Range(I & RowData)
+    i = "F"
+    ThisWorkbook.Sheets(sh).Range(i & RowData) = 0
+    Range(i & RowData - 1).GoalSeek Goal:=0, ChangingCell:=Range(i & RowData)
     
-    I = "I"
-    ThisWorkbook.Sheets(sh).Range(I & RowData) = 0
-    Range(I & RowData - 1).GoalSeek Goal:=0, ChangingCell:=Range(I & RowData)
-    
-    
+    i = "I"
+    ThisWorkbook.Sheets(sh).Range(i & RowData) = 0
+    Range(i & RowData - 1).GoalSeek Goal:=0, ChangingCell:=Range(i & RowData)
     
     
+    
+    
+    
+Application.StatusBar = False
+    Application.ScreenUpdating = True
+    Application.EnableEvents = True
+    ActiveSheet.DisplayPageBreaks = True
+    Application.DisplayStatusBar = True
+    Application.DisplayAlerts = True
+    
+End Sub
+
+Sub Aligment4d()
+Start = Now()
+Dim ThisWorkbook As Workbook
+Set ThisWorkbook = ActiveWorkbook
+
+Application.ScreenUpdating = False
+Application.EnableEvents = False
+ActiveSheet.DisplayPageBreaks = False
+Application.DisplayStatusBar = False
+Application.DisplayAlerts = False
+
+On Error Resume Next
+
+i = 34
+j = "variable"
+sh = "4д"
+ThisWorkbook.Sheets(sh).Activate
+RowData = Columns(i).Find(j, LookIn:=xlValues).row 'ряд значения
+
+    i = "AK"
+    K = "S"
+    ThisWorkbook.Sheets(sh).Range(i & RowData + 6) = 0
+    Range(i & RowData + 5).GoalSeek Goal:=0, ChangingCell:=Range(K & RowData)
     
 Application.StatusBar = False
     Application.ScreenUpdating = True
