@@ -187,7 +187,6 @@ Application.StatusBar = False
     Application.DisplayAlerts = True
     
 End Sub
-
 Sub Aligment4d()
 Start = Now()
 Dim ThisWorkbook As Workbook
@@ -210,6 +209,13 @@ RowData = Columns(i).Find(j, LookIn:=xlValues).row 'ряд значения
     i = "AK"
     ThisWorkbook.Sheets(sh).Range(i & RowData + 6) = 0
     Range(i & RowData + 5).GoalSeek Goal:=0, ChangingCell:=Range("S" & RowData)
+    
+ThisWorkbook.Sheets(sh).Range("AK15").Copy
+ThisWorkbook.Sheets(sh).Range("S15").Select
+    Selection.PasteSpecial Paste:=xlPasteValues
+ThisWorkbook.Sheets(sh).Range("AK20").Copy
+ThisWorkbook.Sheets(sh).Range("AK21").Select
+    Selection.PasteSpecial Paste:=xlPasteValues
     
 Application.StatusBar = False
     Application.ScreenUpdating = True
