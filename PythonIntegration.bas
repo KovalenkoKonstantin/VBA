@@ -22,8 +22,12 @@ Sub Python()
         RunPython ("import HW_2000_HW_100; HW_2000_HW_100.FileSaving()")
     ElseIf ActiveWorkbook.Name = "ÒÔÖ Óëåé-23_v1.0.xlsm" Then
         RunPython ("import ÒÔÖ_Óëåé23; ÒÔÖ_Óëåé23.FileSaving()")
-    ElseIf ActiveWorkbook.Name = "ĞÊÌ_ÎÁÄ-ÑÍÃ-24_v.1.0.xlsm" Then
+    ElseIf ActiveWorkbook.Name = "ĞÊÌ_ÎÁÄ-ÑÍÃ-24_v.1.1.xlsm" Then
         RunPython ("import ÎÁÄ_ÑÍÃ_24; ÎÁÄ_ÑÍÃ_24.FileSaving()")
+    ElseIf ActiveWorkbook.Name = "ĞÊÌ_HW50_v.1.0.xlsm" Then
+        RunPython ("import HW50; HW50.FileSaving()")
+    ElseIf ActiveWorkbook.Name = "ĞÊÌ_HW100_C+_unlim_v.1.0.xlsm" Then
+        RunPython ("import HW_100_C_unlim; HW_100_C_unlim.FileSaving()")
     End If
 '    Application.StatusBar = "Ñîçäàíèå PDF"
 '    SaveToPDF

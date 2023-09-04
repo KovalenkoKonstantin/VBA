@@ -63,6 +63,27 @@ ThisWorkbook.Sheets(Array("1", _
         "20", "21ф", "22ф", "23ф", _
         "П5", "П6", "П7", "П8", "НЧ", _
         "Табель")).Select
+ElseIf ThisWorkbook.Sheets("Preferences").Range("C13").Value2 = _
+"Ц-Сопровождение-ОБД-СНГ-2024" Then
+ThisWorkbook.Sheets(Array("1", _
+        "2", "9", _
+        "10", "12", _
+        "20", "21ф", "22ф", "23ф", _
+        "П8")).Select
+ElseIf ThisWorkbook.Sheets("Preferences").Range("C13").Value2 = _
+"Программно-аппаратный комплекс ViPNet Coordinator HW50 A 4.x (+3G)(+unlim)" Then
+ThisWorkbook.Sheets(Array("1", _
+        "2", "4д", "6", "9", _
+        "10", "12", _
+        "20", "21ф", "22ф", "23Ф", _
+        "Труд", "Прайс")).Select
+ElseIf ThisWorkbook.Sheets("Preferences").Range("C13").Value2 = _
+"Программно-аппаратный комплекс ViPNet Coordinator HW100 C 4.x (+unlim)" Then
+ThisWorkbook.Sheets(Array("1", _
+        "2", "4д", "6", "9", _
+        "10", "12", _
+        "20", "21ф", "22ф", "23Ф", _
+        "Труд", "Прайс")).Select
 Else
 ThisWorkbook.Sheets(Array("1", _
         "2", _
