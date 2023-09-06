@@ -1,7 +1,7 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} UserForm1 
    Caption         =   "Меню выбора действия"
-   ClientHeight    =   6360
+   ClientHeight    =   10035
    ClientLeft      =   120
    ClientTop       =   465
    ClientWidth     =   4545
@@ -13,6 +13,7 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
+
 Private Sub CommandButton1_Click()
 
  UserForm1.Hide
@@ -118,6 +119,21 @@ End Sub
 Private Sub CommandButton12_Click()
     UserForm1.Hide
     UserForm6.Show
+End Sub
+
+Private Sub CommandButton13_Click()
+    UserForm1.Hide
+    Request
+End Sub
+
+Private Sub CommandButton14_Click()
+    UserForm1.Hide
+    DenisRequest
+End Sub
+
+Private Sub CommandButton15_Click()
+    UserForm1.Hide
+    Обновить
 End Sub
 
 Private Sub CommandButton3_Click()
@@ -369,13 +385,14 @@ Private Sub CommandButton7_Click()
 End Sub
 
 Private Sub CommandButton8_Click()
-UserForm1.Hide
-Project_Payroll_Insertion
+    UserForm1.Hide
+    Project_Payroll_Insertion
 End Sub
 
 Private Sub CommandButton9_Click()
     UserForm1.Hide
 End Sub
+
 
 'Private Sub Image1_BeforeDragOver(ByVal Cancel As MSForms.ReturnBoolean, ByVal Data As MSForms.DataObject, ByVal X As Single, ByVal Y As Single, ByVal DragState As MSForms.fmDragState, ByVal Effect As MSForms.ReturnEffect, ByVal Shift As Integer)
 '    UserForm1.Hide
@@ -386,27 +403,75 @@ Private Sub Image1_Click()
  UserForm1.Hide
  SaveToPDF
 
-MsgBox ("Файл сохранён в формате PDF в корневой папке")
+End Sub
 
+Private Sub Image10_Click()
+    UserForm1.Hide
+    Python
+End Sub
+
+
+
+Private Sub Image11_Click()
+    UserForm1.Hide
+    Обновить
 End Sub
 
 Private Sub Image3_click()
  
  UserForm1.Hide
  LayoutOff
+ SaveToPDF
  
 End Sub
+
 
 Private Sub Image4_Click()
  
  UserForm1.Hide
  LayoutOn
+ SaveToPDF
  
 End Sub
 
 Private Sub Label1_Click()
     UserForm1.Hide
- SaveToPDF
+    SaveToPDF
 
 MsgBox ("Файл сохранён в формате PDF в корневой папке")
+End Sub
+
+Private Sub Image5_Click()
+    UserForm1.Hide
+    LayoutInfotecs
+End Sub
+
+
+Private Sub Image6_Click()
+    UserForm1.Hide
+    Clone9
+End Sub
+
+Private Sub Image7_Click()
+    UserForm1.Hide
+    Clone2
+End Sub
+
+Private Sub Image8_Click()
+    UserForm1.Hide
+    Clone20
+End Sub
+
+
+Private Sub Image9_Click()
+    UserForm1.Hide
+    Обновить
+    aligment.aligment
+    Aligment4d
+    Обновить
+    SaveToEXL
+    CommandButton6_Click
+    SaveToPDF
+    Python
+    
 End Sub
