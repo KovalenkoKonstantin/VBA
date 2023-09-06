@@ -42,7 +42,7 @@ If ThisWorkbook.Sheets("Preferences").Range("C13").Value2 = "Поиск-ПМ" Then
 '        "П5", "п6", "П7", "П8", "НЧ", "Приказ", "КУЗ_1", "КУЗ_2")).Select
 'End If
 ElseIf ThisWorkbook.Sheets("Preferences").Range("C13").Value2 = _
-"Программно-аппаратный комплекс ViPNet Coordinator HW2000" Then
+"Программно-аппаратный комплекс*" Then
 ThisWorkbook.Sheets(Array("1", _
         "2", "4д", "6", "9", _
         "10", "12", _
@@ -70,44 +70,40 @@ ThisWorkbook.Sheets(Array("1", _
         "10", "12", _
         "20", "21ф", "22ф", "23ф", _
         "П8")).Select
-ElseIf ThisWorkbook.Sheets("Preferences").Range("C13").Value2 = _
-"Программно-аппаратный комплекс ViPNet Coordinator HW50 A 4.x (+3G)(+unlim)" Then
-ThisWorkbook.Sheets(Array("1", _
-        "2", "4д", "6", "9", _
-        "10", "12", _
-        "20", "21ф", "22ф", "23Ф", _
-        "Труд", "Прайс")).Select
-ElseIf ThisWorkbook.Sheets("Preferences").Range("C13").Value2 = _
-"Программно-аппаратный комплекс ViPNet Coordinator HW100 C 4.x (+unlim)" Then
-ThisWorkbook.Sheets(Array("1", _
-        "2", "4д", "6", "9", _
-        "10", "12", _
-        "20", "21ф", "22ф", "23Ф", _
-        "Труд", "Прайс")).Select
-ElseIf ThisWorkbook.Sheets("Preferences").Range("C13").Value2 = _
-"Программно-аппаратный комплекс ViPNet Coordinator HW100 C 4.x (+WiFi)(+unlim)" Then
-ThisWorkbook.Sheets(Array("1", _
-        "2", "4д", "6", "9", _
-        "10", "12", _
-        "20", "21ф", "22ф", "23Ф", _
-        "Труд", "Прайс")).Select
-ElseIf ThisWorkbook.Sheets("Preferences").Range("C13").Value2 = _
-"Программно-аппаратный комплекс ViPNet Coordinator HW100 C 4.x (+3G)(+unlim)" Then
-ThisWorkbook.Sheets(Array("1", _
-        "2", "4д", "6", "9", _
-        "10", "12", _
-        "20", "21ф", "22ф", "23Ф", _
-        "Труд", "Прайс")).Select
+'ElseIf ThisWorkbook.Sheets("Preferences").Range("C13").Value2 = _
+'"Программно-аппаратный комплекс ViPNet Coordinator HW50 A 4.x (+3G)(+unlim)" Then
+'ThisWorkbook.Sheets(Array("1", _
+'        "2", "4д", "6", "9", _
+'        "10", "12", _
+'        "20", "21ф", "22ф", "23Ф", _
+'        "Труд", "Прайс")).Select
+'ElseIf ThisWorkbook.Sheets("Preferences").Range("C13").Value2 = _
+'"Программно-аппаратный комплекс ViPNet Coordinator HW100 C 4.x (+unlim)" Then
+'ThisWorkbook.Sheets(Array("1", _
+'        "2", "4д", "6", "9", _
+'        "10", "12", _
+'        "20", "21ф", "22ф", "23Ф", _
+'        "Труд", "Прайс")).Select
+'ElseIf ThisWorkbook.Sheets("Preferences").Range("C13").Value2 = _
+'"Программно-аппаратный комплекс ViPNet Coordinator HW100 C 4.x (+WiFi)(+unlim)" Then
+'ThisWorkbook.Sheets(Array("1", _
+'        "2", "4д", "6", "9", _
+'        "10", "12", _
+'        "20", "21ф", "22ф", "23Ф", _
+'        "Труд", "Прайс")).Select
+'ElseIf ThisWorkbook.Sheets("Preferences").Range("C13").Value2 = _
+'"Программно-аппаратный комплекс ViPNet Coordinator HW100 C 4.x (+3G)(+unlim)" Then
+'ThisWorkbook.Sheets(Array("1", _
+'        "2", "4д", "6", "9", _
+'        "10", "12", _
+'        "20", "21ф", "22ф", "23Ф", _
+'        "Труд", "Прайс")).Select
 Else
 ThisWorkbook.Sheets(Array("1", _
-        "2", _
-        "4д", _
-        "9", _
+        "2", "4д", "6", "9", _
         "10", "12", _
-        "20", _
-        "21ф", "22ф", "23Ф", _
-        "П5", "П6", "П7", "П8", _
-        "НЧ", "КУЗ_1", "Табель")).Select
+        "20", "21ф", "22ф", "23Ф", _
+        "Труд", "Прайс")).Select
 End If
         
         
