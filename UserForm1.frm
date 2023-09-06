@@ -14,6 +14,7 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 
+
 Private Sub CommandButton1_Click()
 
  UserForm1.Hide
@@ -362,7 +363,7 @@ Next ws
 importWB.Close
 ThisWorkbook.Sheets(SheetName).Activate
 
-MsgBoxEx "Табель рабочего времени добавлен", 0, "Выполнено", 15
+MsgBoxEx "Табель рабочего времени добавлен", 0, "Выполнено", 2
 
 ExitHandler:
     Application.ScreenUpdating = True
