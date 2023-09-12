@@ -14,7 +14,6 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 
-
 Private Sub CommandButton1_Click()
 
  UserForm1.Hide
@@ -124,7 +123,9 @@ End Sub
 
 Private Sub CommandButton13_Click()
     UserForm1.Hide
-    Request
+'    Request
+    MsgBoxEx "С 08.09.2023 г. более не требуется", 0, "Выполнено", 3
+
 End Sub
 
 Private Sub CommandButton14_Click()
@@ -363,7 +364,7 @@ Next ws
 importWB.Close
 ThisWorkbook.Sheets(SheetName).Activate
 
-MsgBoxEx "Табель рабочего времени добавлен", 0, "Выполнено", 2
+MsgBoxEx "Табель рабочего времени добавлен", 0, "Выполнено", 15
 
 ExitHandler:
     Application.ScreenUpdating = True
