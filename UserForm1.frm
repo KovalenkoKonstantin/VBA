@@ -14,6 +14,7 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 
+
 Private Sub CommandButton1_Click()
 
  UserForm1.Hide
@@ -466,11 +467,13 @@ End Sub
 
 
 Private Sub Image9_Click()
+    On Error Resume Next
     UserForm1.Hide
     Обновить
     aligment.aligment
     Aligment4d
     Обновить
+    ThisWorkbook.Sheets("Задействование").Activate
     SaveToEXL
     CommandButton6_Click
     SaveToPDF
