@@ -223,5 +223,6 @@ Application.StatusBar = False
     ActiveSheet.DisplayPageBreaks = True
     Application.DisplayStatusBar = True
     Application.DisplayAlerts = True
+    ThisWorkbook.Sheets("Preferences").Activate
     
 End Sub
