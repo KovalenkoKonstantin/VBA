@@ -1,7 +1,7 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} UserForm1 
    Caption         =   "Меню выбора действия"
-   ClientHeight    =   10035
+   ClientHeight    =   10065
    ClientLeft      =   120
    ClientTop       =   465
    ClientWidth     =   4545
@@ -124,7 +124,8 @@ End Sub
 Private Sub CommandButton13_Click()
     UserForm1.Hide
 '    Request
-    MsgBoxEx "С 08.09.2023 г. более не требуется", 0, "Выполнено", 3
+'    MsgBoxEx "С 08.09.2023 г. более не требуется", 0, "Выполнено", 3
+    Aligment4d
 
 End Sub
 
@@ -364,7 +365,7 @@ Next ws
 importWB.Close
 ThisWorkbook.Sheets(SheetName).Activate
 
-MsgBoxEx "Табель рабочего времени добавлен", 0, "Выполнено", 15
+MsgBoxEx "Табель рабочего времени добавлен", 0, "Выполнено", 3
 
 ExitHandler:
     Application.ScreenUpdating = True
@@ -413,10 +414,9 @@ Private Sub Image10_Click()
 End Sub
 
 
-
 Private Sub Image11_Click()
     UserForm1.Hide
-    Обновить
+    aligment.aligment
 End Sub
 
 Private Sub Image3_click()
