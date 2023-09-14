@@ -1,7 +1,7 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} UserForm1 
    Caption         =   "Меню выбора действия"
-   ClientHeight    =   10065
+   ClientHeight    =   10665
    ClientLeft      =   120
    ClientTop       =   465
    ClientWidth     =   4545
@@ -13,7 +13,6 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
-
 
 Private Sub CommandButton1_Click()
 
@@ -138,6 +137,11 @@ End Sub
 Private Sub CommandButton15_Click()
     UserForm1.Hide
     Обновить
+End Sub
+
+Private Sub CommandButton16_Click()
+    UserForm1.Hide
+    LabourIntensity_SP_Query
 End Sub
 
 Private Sub CommandButton3_Click()
@@ -467,16 +471,16 @@ End Sub
 
 
 Private Sub Image9_Click()
-    On Error Resume Next
+On Error Resume Next
     UserForm1.Hide
     Обновить
     aligment.aligment
     Aligment4d
     Обновить
-    ThisWorkbook.Sheets("Задействование").Activate
     SaveToEXL
     CommandButton6_Click
     SaveToPDF
     Python
+    Обновить
     
 End Sub
