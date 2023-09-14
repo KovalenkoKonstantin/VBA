@@ -1,6 +1,6 @@
 Attribute VB_Name = "LabourIntensity"
-Sub Макрос2()
-Attribute Макрос2.VB_ProcData.VB_Invoke_Func = " \n14"
+Sub Query1_Add()
+Attribute Query1_Add.VB_ProcData.VB_Invoke_Func = " \n14"
 
   Dim i As Long
   Dim list As Worksheet
