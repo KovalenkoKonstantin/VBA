@@ -24,14 +24,18 @@ Sub Python()
         RunPython ("import “‘÷_”ÎÂÈ23; “‘÷_”ÎÂÈ23.FileSaving()")
     ElseIf ActiveWorkbook.Name = "– Ã_Œ¡ƒ-—Õ√-24_v.1.1.xlsm" Then
         RunPython ("import Œ¡ƒ_—Õ√_24; Œ¡ƒ_—Õ√_24.FileSaving()")
-    ElseIf ActiveWorkbook.Name = "– Ã_HW50_A_3G+_unlim_v.1.0.xlsm" Then
-        RunPython ("import HW50_A_3G_unlim; HW50_A_3G_unlim.FileSaving()")
+    ElseIf ActiveWorkbook.Name = "– Ã_HW50_v.1.0.xlsm" Then
+        RunPython ("import HW50; HW50.FileSaving()")
     ElseIf ActiveWorkbook.Name = "– Ã_HW100_C+_unlim_v.1.0.xlsm" Then
         RunPython ("import HW_100_C_unlim; HW_100_C_unlim.FileSaving()")
     ElseIf ActiveWorkbook.Name = "– Ã_HW100_C+_wifi+_unlim_v.1.0.xlsm" Then
         RunPython ("import HW_100_C_wifi_unlim; HW_100_C_wifi_unlim.FileSaving()")
-    ElseIf ActiveWorkbook.Name = "– Ã_HW100_C+_3G+_unlim_v.1.0.xlsm" Then
-        RunPython ("import HW_100_C_3G_unlim; HW_100_C_3G_unlim.FileSaving()")
+    ElseIf ActiveWorkbook.Name = "– Ã_HW1000_v.1.0.xlsm" Then
+        RunPython ("import HW_1000; HW_1000.FileSaving()")
+    ElseIf ActiveWorkbook.Name = "– Ã_HW1000_C_v.1.0.xlsm" Then
+        RunPython ("import HW_1000_C; HW_1000_C.FileSaving()")
+    ElseIf ActiveWorkbook.Name = "– Ã_HW1000_D_v.1.0.xlsm" Then
+        RunPython ("import HW_1000_D; HW_1000_D.FileSaving()")
     End If
 '    Application.StatusBar = "—ÓÁ‰‡ÌËÂ PDF"
 '    SaveToPDF
