@@ -175,3 +175,30 @@ Application.DisplayStatusBar = True
 Application.DisplayAlerts = True
 
 End Sub
+
+Sub LabourIntensity_SP_Query()
+Dim ThisWorkbook As Workbook
+Dim var As String
+Set ThisWorkbook = ActiveWorkbook
+var = ThisWorkbook.Sheets("Труд").Range("I2").Value2
+
+Application.ScreenUpdating = False
+Application.EnableEvents = False
+ActiveSheet.DisplayPageBreaks = False
+Application.DisplayStatusBar = False
+Application.DisplayAlerts = False
+
+ActiveWorkbook.Queries("Query2").Formula = "let Источник = " & _
+"Sql.Database(""msk-sql-02"", ""RKM"", [Query=""exec " & _
+"LabourRefresh '" & var & "'""])" & Chr(13) & "" & Chr(10) & "in" & Chr(13) & "" & Chr(10) & "    Источник"
+        
+ActiveWorkbook.RefreshAll
+
+Application.StatusBar = False
+Application.ScreenUpdating = True
+Application.EnableEvents = True
+ActiveSheet.DisplayPageBreaks = True
+Application.DisplayStatusBar = True
+Application.DisplayAlerts = True
+
+End Sub
