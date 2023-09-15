@@ -14,6 +14,7 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 
+
 Private Sub CommandButton1_Click()
 
  UserForm1.Hide
@@ -424,6 +425,11 @@ Private Sub Image11_Click()
     aligment.aligment
 End Sub
 
+Private Sub Image12_Click()
+    UserForm1.Hide
+    Negotiation
+End Sub
+
 Private Sub Image3_click()
  
  UserForm1.Hide
@@ -469,6 +475,10 @@ Private Sub Image8_Click()
     Clone20
 End Sub
 
+
+Private Sub Image9_BeforeDragOver(ByVal Cancel As MSForms.ReturnBoolean, ByVal Data As MSForms.DataObject, ByVal X As Single, ByVal Y As Single, ByVal DragState As MSForms.fmDragState, ByVal Effect As MSForms.ReturnEffect, ByVal Shift As Integer)
+
+End Sub
 
 Private Sub Image9_Click()
 On Error Resume Next
