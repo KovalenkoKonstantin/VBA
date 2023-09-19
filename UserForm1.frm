@@ -1,7 +1,7 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} UserForm1 
    Caption         =   "Меню выбора действия"
-   ClientHeight    =   10665
+   ClientHeight    =   11280
    ClientLeft      =   120
    ClientTop       =   465
    ClientWidth     =   4545
@@ -143,6 +143,11 @@ End Sub
 Private Sub CommandButton16_Click()
     UserForm1.Hide
     LabourIntensity_SP_Query
+End Sub
+
+Private Sub CommandButton17_Click()
+    UserForm1.Hide
+    Components_SP_Query_
 End Sub
 
 Private Sub CommandButton3_Click()
@@ -476,16 +481,14 @@ Private Sub Image8_Click()
 End Sub
 
 
-Private Sub Image9_BeforeDragOver(ByVal Cancel As MSForms.ReturnBoolean, ByVal Data As MSForms.DataObject, ByVal X As Single, ByVal Y As Single, ByVal DragState As MSForms.fmDragState, ByVal Effect As MSForms.ReturnEffect, ByVal Shift As Integer)
-
-End Sub
-
 Private Sub Image9_Click()
 On Error Resume Next
     UserForm1.Hide
     Обновить
     aligment.aligment
     Aligment4d
+    LabourIntensity_SP_Query
+    Components_SP_Query_
     Обновить
     SaveToEXL
     CommandButton6_Click
