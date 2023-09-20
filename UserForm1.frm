@@ -435,6 +435,11 @@ Private Sub Image12_Click()
     Negotiation
 End Sub
 
+Private Sub Image13_Click()
+    UserForm1.Hide
+    Python
+End Sub
+
 Private Sub Image3_click()
  
  UserForm1.Hide
@@ -481,14 +486,18 @@ Private Sub Image8_Click()
 End Sub
 
 
+Private Sub Image9_BeforeDragOver(ByVal Cancel As MSForms.ReturnBoolean, ByVal Data As MSForms.DataObject, ByVal X As Single, ByVal Y As Single, ByVal DragState As MSForms.fmDragState, ByVal Effect As MSForms.ReturnEffect, ByVal Shift As Integer)
+
+End Sub
+
 Private Sub Image9_Click()
 On Error Resume Next
     UserForm1.Hide
+    LabourIntensity_SP_Query
+    Components_SP_Query_
     Обновить
     aligment.aligment
     Aligment4d
-    LabourIntensity_SP_Query
-    Components_SP_Query_
     Обновить
     SaveToEXL
     CommandButton6_Click
