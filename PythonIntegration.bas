@@ -36,6 +36,10 @@ Sub Python()
         RunPython ("import HW_1000_C; HW_1000_C.FileSaving()")
     ElseIf ActiveWorkbook.Name = "– Ã_HW1000_D_v.1.0.xlsm" Then
         RunPython ("import HW_1000_D; HW_1000_D.FileSaving()")
+    ElseIf ActiveWorkbook.Name = "– Ã_HW 2000_add_software_v.1.0.xlsm" Then
+        RunPython ("import HW_2000_add_software; HW_2000_add_software.FileSaving()")
+    ElseIf ActiveWorkbook.Name = "– Ã_HW 2000_v.1.1.xlsm" Then
+        RunPython ("import HW_2000_; HW_2000_.FileSaving()")
     End If
 '    Application.StatusBar = "—ÓÁ‰‡ÌËÂ PDF"
 '    SaveToPDF
