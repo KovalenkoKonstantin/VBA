@@ -259,19 +259,17 @@ Application.DisplayAlerts = True
 
 End Sub
 
-Sub Макрос1()
-'
-' Макрос1 Макрос
-'
+Sub Query3_Add()
 
-'
-    ActiveWorkbook.Queries.Add Name:="Запрос1", Formula:= _
-        "let" & Chr(13) & "" & Chr(10) & "    Источник = Sql.Database(""msk-sql-02"", ""RKM"", [Query=""exec GetProjectRefresh;""])" & Chr(13) & "" & Chr(10) & "in" & Chr(13) & "" & Chr(10) & "    Источник"
+    ActiveWorkbook.Queries.Add Name:="Query3", Formula:= _
+        "let" & Chr(13) & "" & Chr(10) & "    Источник = " & _
+        "Sql.Database(""msk-sql-02"", ""RKM"", [Query=""exec " & _
+        "GetProjectRefresh;""])" & Chr(13) & "" & Chr(10) & "in" & Chr(13) & "" & Chr(10) & "    Источник"
     With ActiveSheet.ListObjects.Add(SourceType:=0, Source:= _
         "OLEDB;Provider=Microsoft.Mashup.OleDb.1;Data Source=$Workbook$;Location=Запрос1;Extended Properties=""""" _
         , Destination:=Range("$U$2")).QueryTable
         .CommandType = xlCmdSql
-        .CommandText = Array("SELECT * FROM [Запрос1]")
+        .CommandText = Array("SELECT * FROM [Query3]")
         .RowNumbers = False
         .FillAdjacentFormulas = False
         .PreserveFormatting = True
@@ -289,3 +287,29 @@ Sub Макрос1()
     Range("V11").Select
     Selection.ListObject.QueryTable.Refresh BackgroundQuery:=False
 End Sub
+Sub GetProjectRefresh_SP_Query()
+Dim ThisWorkbook As Workbook
+Dim var As String
+Set ThisWorkbook = ActiveWorkbook
+
+Application.ScreenUpdating = False
+Application.EnableEvents = False
+ActiveSheet.DisplayPageBreaks = False
+Application.DisplayStatusBar = False
+Application.DisplayAlerts = False
+
+ActiveWorkbook.Queries("Query3").Formula = "let Источник = " & _
+"Sql.Database(""msk-sql-02"", ""RKM"", [Query=""exec " & _
+"GetProjectRefresh;""])" & Chr(13) & "" & Chr(10) & "in" & Chr(13) & "" & Chr(10) & "    Источник"
+
+ActiveWorkbook.RefreshAll
+
+Application.StatusBar = False
+Application.ScreenUpdating = True
+Application.EnableEvents = True
+ActiveSheet.DisplayPageBreaks = True
+Application.DisplayStatusBar = True
+Application.DisplayAlerts = True
+
+End Sub
+
