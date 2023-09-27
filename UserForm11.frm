@@ -14,57 +14,57 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Private Sub CommandButton1_Click()
- UserForm1.Hide
+ UserForm11.Hide
  UserForm4.Show
 End Sub
 
 Private Sub CommandButton10_Click()
- UserForm1.Hide
+ UserForm11.Hide
  BudgetInsertion
 End Sub
 
 Private Sub CommandButton11_Click()
-    UserForm1.Hide
+    UserForm11.Hide
     EmployeesInsertion
 End Sub
 
 Private Sub CommandButton12_Click()
-    UserForm1.Hide
+    UserForm11.Hide
     UserForm6.Show
 End Sub
 
 Private Sub CommandButton14_Click()
-    UserForm1.Hide
+    UserForm11.Hide
     DenisRequest
 End Sub
 
 Private Sub CommandButton15_Click()
-    UserForm1.Hide
+    UserForm11.Hide
     Обновить
 End Sub
 
 Private Sub CommandButton18_Click()
-    UserForm1.Hide
+    UserForm11.Hide
     UserForm7.Show
 End Sub
 
 Private Sub CommandButton19_Click()
-    UserForm1.Hide
+    UserForm11.Hide
     UserForm8.Show
 End Sub
 
 Private Sub CommandButton20_Click()
-    UserForm1.Hide
+    UserForm11.Hide
     UserForm9.Show
 End Sub
 
 Private Sub CommandButton21_Click()
-    UserForm1.Hide
+    UserForm11.Hide
     UserForm10.Show
 End Sub
 
 Private Sub CommandButton3_Click()
- UserForm1.Hide
+ UserForm11.Hide
   Dim FilesToOpen
  Dim ThisWorkbook, importWB As Workbook
  Dim SheetName As String
@@ -208,17 +208,17 @@ ErrHandler:
 End Sub
 
 Private Sub CommandButton4_Click()
-    UserForm1.Hide
+    UserForm11.Hide
     UserForm5.Show
 End Sub
 
 Private Sub CommandButton5_Click()
-    UserForm1.Hide
+    UserForm11.Hide
     UserForm3.Show
 End Sub
 
 Private Sub CommandButton6_Click()
-    UserForm1.Hide
+    UserForm11.Hide
 beging:
  Start = Now()
  Dim FilesToOpen
@@ -311,7 +311,7 @@ Private Sub Image1_BeforeDragOver(ByVal Cancel As MSForms.ReturnBoolean, ByVal D
 
 End Sub
 Private Sub Image1_Click()
- UserForm1.Hide
+ UserForm11.Hide
  SaveToPDF
 End Sub
 
@@ -319,7 +319,7 @@ Private Sub Image12_BeforeDragOver(ByVal Cancel As MSForms.ReturnBoolean, ByVal 
 
 End Sub
 Private Sub Image12_Click()
-    UserForm1.Hide
+    UserForm11.Hide
     Negotiation
 End Sub
 
@@ -328,7 +328,7 @@ Private Sub Image13_BeforeDragOver(ByVal Cancel As MSForms.ReturnBoolean, ByVal 
 End Sub
 
 Private Sub Image13_Click()
-    UserForm1.Hide
+    UserForm11.Hide
     Python
 End Sub
 
@@ -337,7 +337,7 @@ Private Sub Image9_BeforeDragOver(ByVal Cancel As MSForms.ReturnBoolean, ByVal D
 End Sub
 Private Sub Image9_Click()
 On Error Resume Next
-    UserForm1.Hide
+    UserForm11.Hide
     LabourIntensity_SP_Query
     Components_SP_Query_
     Обновить
