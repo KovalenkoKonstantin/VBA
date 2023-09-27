@@ -1,7 +1,7 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} UserForm1 
    Caption         =   "Меню выбора действия"
-   ClientHeight    =   11280
+   ClientHeight    =   9525
    ClientLeft      =   120
    ClientTop       =   465
    ClientWidth     =   4545
@@ -114,8 +114,8 @@ Private Sub CommandButton10_Click()
 End Sub
 
 Private Sub CommandButton11_Click()
-UserForm1.Hide
-EmployeesInsertion
+    UserForm1.Hide
+    EmployeesInsertion
 End Sub
 
 Private Sub CommandButton12_Click()
@@ -141,14 +141,34 @@ Private Sub CommandButton15_Click()
     Обновить
 End Sub
 
-Private Sub CommandButton16_Click()
+'Private Sub CommandButton16_Click()
+'    UserForm1.Hide
+'    LabourIntensity_SP_Query
+'End Sub
+'
+'Private Sub CommandButton17_Click()
+'    UserForm1.Hide
+'    Components_SP_Query_
+'End Sub
+
+Private Sub CommandButton18_Click()
     UserForm1.Hide
-    LabourIntensity_SP_Query
+    UserForm7.Show
 End Sub
 
-Private Sub CommandButton17_Click()
+Private Sub CommandButton19_Click()
     UserForm1.Hide
-    Components_SP_Query_
+    UserForm8.Show
+End Sub
+
+Private Sub CommandButton20_Click()
+    UserForm1.Hide
+    UserForm9.Show
+End Sub
+
+Private Sub CommandButton21_Click()
+    UserForm1.Hide
+    UserForm10.Show
 End Sub
 
 Private Sub CommandButton3_Click()
@@ -409,6 +429,10 @@ Private Sub CommandButton9_Click()
 End Sub
 
 
+Private Sub Image1_BeforeDragOver(ByVal Cancel As MSForms.ReturnBoolean, ByVal Data As MSForms.DataObject, ByVal X As Single, ByVal Y As Single, ByVal DragState As MSForms.fmDragState, ByVal Effect As MSForms.ReturnEffect, ByVal Shift As Integer)
+
+End Sub
+
 'Private Sub Image1_BeforeDragOver(ByVal Cancel As MSForms.ReturnBoolean, ByVal Data As MSForms.DataObject, ByVal X As Single, ByVal Y As Single, ByVal DragState As MSForms.fmDragState, ByVal Effect As MSForms.ReturnEffect, ByVal Shift As Integer)
 '    UserForm1.Hide
 '    SaveToPDF
@@ -417,13 +441,17 @@ End Sub
 Private Sub Image1_Click()
  UserForm1.Hide
  SaveToPDF
+End Sub
+
+
+Private Sub Image11_BeforeDragOver(ByVal Cancel As MSForms.ReturnBoolean, ByVal Data As MSForms.DataObject, ByVal X As Single, ByVal Y As Single, ByVal DragState As MSForms.fmDragState, ByVal Effect As MSForms.ReturnEffect, ByVal Shift As Integer)
 
 End Sub
 
-Private Sub Image10_Click()
-    UserForm1.Hide
-    Python
-End Sub
+'Private Sub Image10_Click()
+'    UserForm1.Hide
+'    Python
+'End Sub
 
 
 Private Sub Image11_Click()
@@ -431,9 +459,17 @@ Private Sub Image11_Click()
     aligment.aligment
 End Sub
 
+Private Sub Image12_BeforeDragOver(ByVal Cancel As MSForms.ReturnBoolean, ByVal Data As MSForms.DataObject, ByVal X As Single, ByVal Y As Single, ByVal DragState As MSForms.fmDragState, ByVal Effect As MSForms.ReturnEffect, ByVal Shift As Integer)
+
+End Sub
+
 Private Sub Image12_Click()
     UserForm1.Hide
     Negotiation
+End Sub
+
+Private Sub Image13_BeforeDragOver(ByVal Cancel As MSForms.ReturnBoolean, ByVal Data As MSForms.DataObject, ByVal X As Single, ByVal Y As Single, ByVal DragState As MSForms.fmDragState, ByVal Effect As MSForms.ReturnEffect, ByVal Shift As Integer)
+
 End Sub
 
 Private Sub Image13_Click()
@@ -441,22 +477,6 @@ Private Sub Image13_Click()
     Python
 End Sub
 
-Private Sub Image3_click()
- 
- UserForm1.Hide
- LayoutOff
-' SaveToPDF
- 
-End Sub
-
-
-Private Sub Image4_Click()
- 
- UserForm1.Hide
- LayoutOn
- SaveToPDF
- 
-End Sub
 
 Private Sub Label1_Click()
     UserForm1.Hide
@@ -465,20 +485,28 @@ Private Sub Label1_Click()
 MsgBox ("Файл сохранён в формате PDF в корневой папке")
 End Sub
 
-Private Sub Image5_Click()
-    UserForm1.Hide
-    LayoutInfotecs
-End Sub
 
+
+Private Sub Image6_BeforeDragOver(ByVal Cancel As MSForms.ReturnBoolean, ByVal Data As MSForms.DataObject, ByVal X As Single, ByVal Y As Single, ByVal DragState As MSForms.fmDragState, ByVal Effect As MSForms.ReturnEffect, ByVal Shift As Integer)
+
+End Sub
 
 Private Sub Image6_Click()
     UserForm1.Hide
     Clone9
 End Sub
 
+Private Sub Image7_BeforeDragOver(ByVal Cancel As MSForms.ReturnBoolean, ByVal Data As MSForms.DataObject, ByVal X As Single, ByVal Y As Single, ByVal DragState As MSForms.fmDragState, ByVal Effect As MSForms.ReturnEffect, ByVal Shift As Integer)
+
+End Sub
+
 Private Sub Image7_Click()
     UserForm1.Hide
     Clone2
+End Sub
+
+Private Sub Image8_BeforeDragOver(ByVal Cancel As MSForms.ReturnBoolean, ByVal Data As MSForms.DataObject, ByVal X As Single, ByVal Y As Single, ByVal DragState As MSForms.fmDragState, ByVal Effect As MSForms.ReturnEffect, ByVal Shift As Integer)
+
 End Sub
 
 Private Sub Image8_Click()
@@ -505,5 +533,4 @@ On Error Resume Next
     SaveToPDF
     Python
     Обновить
-    
 End Sub

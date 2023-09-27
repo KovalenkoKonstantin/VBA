@@ -174,6 +174,95 @@ ErrHandler:
  Resume ExitHandler
 
 End Sub
+Sub Data_insertion_90()
+ 
+ Dim FilesToOpen
+ Dim ThisWorkbook, importWB As Workbook
+ Dim SheetName As String
+ 
+ Set ThisWorkbook = ActiveWorkbook
+ On Error GoTo ExitHandler
+ SheetName = "Ан.сч90"
+ awLastCol = 9
+ Start = Now()
+ 
+Application.ScreenUpdating = False
+Application.EnableEvents = False
+ActiveSheet.DisplayPageBreaks = False
+Application.DisplayStatusBar = False
+Application.DisplayAlerts = False
+
+ThisWorkbook.Sheets(SheetName).Activate
+
+ FilesToOpen = Application.GetOpenFilename _
+ (FileFilter:="Microsoft Excel Files (*.xls), *.xls", _
+ MultiSelect:=True, Title:="Выберите файл с анализом 90 счёта")
+
+ If TypeName(FilesToOpen) = "Boolean" Then
+ GoTo ExitHandler
+ End If
+ 
+ThisWorkbook.Sheets(SheetName).Activate
+On Error Resume Next
+ActiveSheet.ShowAllData
+
+'вставка листов
+Set importWB = Workbooks.Open(Filename:=FilesToOpen(1))
+
+On Error Resume Next
+
+ importWB.Sheets(1).Activate
+
+'удаление предыдущих данных
+ ThisWorkbook.Sheets(SheetName).Activate
+awLastRow = Cells(Rows.Count, "D").End(xlUp).row
+'awLastCol = Cells(begin, Columns.Count).End(xlUp).Column
+
+Range(Cells(1, 1), Cells(awLastRow, awLastCol)).Select
+ With Selection
+        .Clear
+ End With
+
+ 'вставка данных
+ importWB.Sheets(1).Activate
+ iwLastRow = Cells(Rows.Count, "D").End(xlUp).row
+ importWB.Activate
+ Range(Cells(1, 1), Cells(iwLastRow, awLastCol)).Copy
+ 
+ ThisWorkbook.Sheets(SheetName).Activate
+ Range(Cells(1, 1), Cells(iwLastRow, awLastCol)).Select
+    With Selection
+           .PasteSpecial Paste:=xlPasteAll
+           .UnMerge
+           .Font.Name = "Times New Roman"
+           .WrapText = False
+           .MergeCells = False
+           .Font.Size = 8
+    End With
+    
+'завершение
+importWB.Close
+'ThisWorkbook.Sheets(SheetName).Activate
+ThisWorkbook.Sheets("Preferences").Activate
+MsgBox ("Данные успешно вставлены")
+
+ExitHandler:
+    Application.ScreenUpdating = True
+    Application.EnableEvents = True
+    ActiveSheet.DisplayPageBreaks = True
+    Application.DisplayStatusBar = True
+    Application.DisplayAlerts = True
+' ThisWorkbook.Sheets(SheetName).Activate
+' Finish = (Now() - Start) * 24 * 60 * 60
+'MsgBox (Finish)
+ThisWorkbook.Sheets("Preferences").Activate
+ Exit Sub
+ 
+ErrHandler:
+ MsgBox Err.Description
+ Resume ExitHandler
+
+End Sub
 
 Sub Data_insertion_OFR()
  

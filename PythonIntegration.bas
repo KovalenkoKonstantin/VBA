@@ -42,6 +42,8 @@ Sub Python()
         RunPython ("import HW_2000_; HW_2000_.FileSaving()")
     ElseIf ActiveWorkbook.Name = "РКМ_ТСИСЗ_v.1.0.xlsm" Then
         RunPython ("import ТСИСЗ; ТСИСЗ.FileSaving()")
+    ElseIf ActiveWorkbook.Name Like "Шаблон_v.1.*" Then
+        RunPython ("import Sample; Sample.FileSaving()")
     End If
 '    Application.StatusBar = "Создание PDF"
 '    SaveToPDF
