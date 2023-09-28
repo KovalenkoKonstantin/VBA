@@ -110,6 +110,7 @@ ThisWorkbook.Sheets(sh).Range("D" & RowData & ":" & "Q" & RowData).ClearContents
     
 Application.StatusBar = "Выполнено 90%"
     
+ThisWorkbook.Sheets("Preferences").Activate
     
 Application.StatusBar = False
     Application.ScreenUpdating = True
