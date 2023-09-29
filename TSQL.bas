@@ -416,3 +416,54 @@ Application.DisplayAlerts = True
 
 End Sub
 
+Sub Query6_Add()
+
+    ActiveWorkbook.Queries.Add Name:="Query6", Formula:= _
+        "let" & Chr(13) & "" & Chr(10) & "    Источник = Sql.Database(""msk-sql-02"", ""RKM"", [Query=""exec GetGozAttributeRefresh""])" & Chr(13) & "" & Chr(10) & "in" & Chr(13) & "" & Chr(10) & "    Источник"
+    With ActiveSheet.ListObjects.Add(SourceType:=0, Source:= _
+        "OLEDB;Provider=Microsoft.Mashup.OleDb.1;Data Source=$Workbook$;Location=Query6;Extended Properties=""""" _
+        , Destination:=Range("$AB$2")).QueryTable
+        .CommandType = xlCmdSql
+        .CommandText = Array("SELECT * FROM [Query6]")
+        .RowNumbers = False
+        .FillAdjacentFormulas = False
+        .PreserveFormatting = True
+        .RefreshOnFileOpen = False
+        .BackgroundQuery = True
+        .RefreshStyle = xlInsertDeleteCells
+        .SavePassword = False
+        .SaveData = True
+        .AdjustColumnWidth = True
+        .RefreshPeriod = 0
+        .PreserveColumnInfo = True
+        .ListObject.DisplayName = "Query6"
+        .Refresh BackgroundQuery:=False
+    End With
+End Sub
+
+Sub GetGozAttributeRefresh_SP_Query()
+Dim ThisWorkbook As Workbook
+Dim var As String
+Set ThisWorkbook = ActiveWorkbook
+
+Application.ScreenUpdating = False
+Application.EnableEvents = False
+ActiveSheet.DisplayPageBreaks = False
+Application.DisplayStatusBar = False
+Application.DisplayAlerts = False
+
+ActiveWorkbook.Queries("Query6").Formula = "let Источник = " & _
+"Sql.Database(""msk-sql-02"", ""RKM"", [Query=""exec " & _
+"GetGozAttributeRefresh""])" & Chr(13) & "" & Chr(10) & "in" & Chr(13) & "" & Chr(10) & "    Источник"
+
+ActiveWorkbook.RefreshAll
+
+Application.StatusBar = False
+Application.ScreenUpdating = True
+Application.EnableEvents = True
+ActiveSheet.DisplayPageBreaks = True
+Application.DisplayStatusBar = True
+Application.DisplayAlerts = True
+
+End Sub
+
