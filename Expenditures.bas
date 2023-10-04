@@ -30,6 +30,10 @@ FilesToOpen = Application.GetOpenFilename _
  (FileFilter:="Microsoft Excel Files (*.xlsx), *.xlsx", _
  MultiSelect:=True, Title:="Выберите расчётную ведомость по компании " & CompanyName)
  
+ MsgBoxEx "Расчётная ведомость должна быть с начала года!" _
+ & vbCr & "В противном случае, не все проверки буду отработанны корректно." _
+    & vbCr & "...", vbCritical, "Pay attention", 20
+ 
  'статус бар
 Application.StatusBar = "Анализ данных..."
 
