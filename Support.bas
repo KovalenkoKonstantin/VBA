@@ -4,7 +4,7 @@ MsgBox "отключено"
 End Sub
 Sub CleanIt()
 
-Dim row, column, x As Integer
+Dim row, column, X As Integer
 On Error GoTo ErrHandler
  Application.ScreenUpdating = False
  Application.EnableEvents = False
@@ -27,10 +27,10 @@ column = 1
 '    GoTo ErrHandler
 'End If
 
-x = Application.Worksheets("—оисполнитель").Cells(row, column + 1).Value 'значение €чейки
+X = Application.Worksheets("—оисполнитель").Cells(row, column + 1).Value 'значение €чейки
 
 'удал€ем лишние строки
-For i = row + x - 1 To row + 1 Step -1
+For i = row + X - 1 To row + 1 Step -1
     Rows(i).EntireRow.delete
 '    Range(i, column).EntireRow.Delete
 Next
@@ -98,7 +98,7 @@ Sub Social_contribution()
 ' Dim с, d As Range
  Dim temp, temp1, temp2 As String
 ' Dim x As Integer
- x = "7,8"
+ X = "7,8"
  Y = "–¬2"
  
  Set ThisWorkbook = ActiveWorkbook
@@ -136,7 +136,7 @@ For i = 1 To K
 Next i
 
 'удал€ем предыдущие значени€
-    ThisWorkbook.Sheets(x).Activate
+    ThisWorkbook.Sheets(X).Activate
     Range(check & "4:" & check & K).Clear
 'main
 For i = 3 To s
@@ -149,7 +149,7 @@ For i = 3 To s
     End If
 'переносим значение зарплаты в лист расчЄтов
     Worksheets(Y).Cells(i, zp).Copy
-    ThisWorkbook.Sheets(x).Activate
+    ThisWorkbook.Sheets(X).Activate
     Range("B4").Select
     With Selection
         .PasteSpecial Paste:=xlPasteValues
@@ -157,7 +157,7 @@ For i = 3 To s
     
 'мен€ем значени€ €чеек в листе с вычислени€ми социальных выплат
     temp = Worksheets(Y).Cells(i, yr).Value2
-    ThisWorkbook.Sheets(x).Activate
+    ThisWorkbook.Sheets(X).Activate
     Range("J4:J15").Clear
         For C = 4 To 15
             temp1 = Cells(C, 1).Value2
@@ -167,15 +167,15 @@ For i = 3 To s
     For j = 4 To 15
 '        a = ThisWorkbook.Sheets(x).Cells(j, 10).Value2
 '        b = Worksheets(y).Cells(i, 3).Value2
-        If ThisWorkbook.Sheets(x).Cells(j, 10).Value2 = Worksheets(Y).Cells(i, 3).Value2 Then
+        If ThisWorkbook.Sheets(X).Cells(j, 10).Value2 = Worksheets(Y).Cells(i, 3).Value2 Then
             destinct = j 'нужный р€д дл€ переноса значени€ в расчЄтную ведомость
         End If
     Next j
 'удал€ем внесЄнные ключи из 7,8
-    ThisWorkbook.Sheets(x).Activate
+    ThisWorkbook.Sheets(X).Activate
     Range("J4:J15").Clear
  'переносим % соц выплат в расчЄтную ведомость
- ThisWorkbook.Sheets(x).Activate
+ ThisWorkbook.Sheets(X).Activate
  Cells(destinct, 9).Copy
  ThisWorkbook.Sheets(Y).Activate
  Cells(i, check).Select
@@ -234,7 +234,7 @@ Sub Budget()
 ' Dim MyRange, MyCell As range
  Dim key As String
  Ye_ar = 2022 'начальный год бюджета
- x = 4 'количество листов дл€ вставки
+ X = 4 'количество листов дл€ вставки
  DataTab = "Ѕюджет" 'лист данных
  WorkTab = "Ќ„" 'рабочий лист
  
@@ -312,7 +312,7 @@ Next i
 
 'вставка листов
 Set importWB = Workbooks.Open(Filename:=FilesToOpen(1))
-For i = 1 To x
+For i = 1 To X
     On Error Resume Next
      importWB.Sheets(i).Activate
      lLastRow = Cells(Rows.Count, 1).End(xlUp).row
@@ -450,6 +450,7 @@ Sub ShowTabs()
 End Sub
 
 Sub HideSys()
+Application.Calculation = xlManual
  Dim ws As Worksheet
     For Each ws In ThisWorkbook.Worksheets
         If ws.Range("A1").Value2 = "sys" _
@@ -462,6 +463,7 @@ Sub HideSys()
             ws.Visible = False
         End If
     Next ws
+Application.Calculation = xlAutomatic
  ActiveWorkbook.Sheets("Preferences").Activate
 End Sub
 
