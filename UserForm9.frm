@@ -13,6 +13,21 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
+Private Sub Image6_Click()
+    UserForm9.Hide
+    Clone9
+End Sub
+
+Private Sub Image7_Click()
+    UserForm9.Hide
+    Clone2
+End Sub
+
+Private Sub Image8_Click()
+    UserForm9.Hide
+    Clone20
+End Sub
+
 Private Sub Image6_BeforeDragOver(ByVal Cancel As MSForms.ReturnBoolean, ByVal Data As MSForms.DataObject, ByVal X As Single, ByVal Y As Single, ByVal DragState As MSForms.fmDragState, ByVal Effect As MSForms.ReturnEffect, ByVal Shift As Integer)
 
 End Sub
@@ -23,19 +38,4 @@ End Sub
 
 Private Sub Image8_BeforeDragOver(ByVal Cancel As MSForms.ReturnBoolean, ByVal Data As MSForms.DataObject, ByVal X As Single, ByVal Y As Single, ByVal DragState As MSForms.fmDragState, ByVal Effect As MSForms.ReturnEffect, ByVal Shift As Integer)
 
-End Sub
-
-Private Sub CommandButton6_Click()
-    UserForm9.Hide
-    Clone9
-End Sub
-
-Private Sub CommandButton7_Click()
-    UserForm9.Hide
-    Clone2
-End Sub
-
-Private Sub CommandButton8_Click()
-    UserForm9.Hide
-    Clone20
 End Sub
