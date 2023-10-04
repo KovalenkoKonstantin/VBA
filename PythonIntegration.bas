@@ -20,7 +20,7 @@ Sub Python()
         RunPython ("import HW_2000; HW_2000.FileSaving()")
     ElseIf ActiveWorkbook.Name = "пйл_HW 2000 & HW 100_v.1.0.xlsm" Then
         RunPython ("import HW_2000_HW_100; HW_2000_HW_100.FileSaving()")
-    ElseIf ActiveWorkbook.Name = "ртж сКЕИ-23_v1.0.xlsm" Then
+    ElseIf ActiveWorkbook.Name Like "ртж сКЕИ-23_v1.*" Then
         RunPython ("import ртж_сКЕИ23; ртж_сКЕИ23.FileSaving()")
     ElseIf ActiveWorkbook.Name = "пйл_над-ямц-24_v.1.1.xlsm" Then
         RunPython ("import над_ямц_24; над_ямц_24.FileSaving()")
