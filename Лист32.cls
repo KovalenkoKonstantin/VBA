@@ -21,11 +21,12 @@ Sub CheckBox_Click()
  Application.EnableEvents = False
  ActiveSheet.DisplayPageBreaks = False
  Application.DisplayAlerts = False
+ Application.Calculation = xlManual
  
 ' ищем номер колонки по "Содержание"
-For I = 1 To 50
-    If Worksheets("Preferences").Cells(1, I) = "Содержание" Then
-        column = I
+For i = 1 To 50
+    If Worksheets("Preferences").Cells(1, i) = "Содержание" Then
+        column = i
     End If
 Next
 
@@ -43,15 +44,15 @@ d = 13434828 'салатовый
 Y = a
 
 'цикл проверки
-    For J = 2 To K 'проверка начинается со второго чекбокса
+    For j = 2 To K 'проверка начинается со второго чекбокса
 '        If TypeOf j Is MSForms.CheckBox And Not TypeOf j Is MSForms.OptionButton Then
 'статус бар
-Application.StatusBar = "Выполнено: " & Int((J / K) * 100) & " %"
+Application.StatusBar = "Выполнено: " & Int((j / K) * 100) & " %"
 
-        CheckBoxName = "CheckBox" & CStr(J) 'кастую к стринге номер чекбокса
+        CheckBoxName = "CheckBox" & CStr(j) 'кастую к стринге номер чекбокса
         Set CheckBoxObject = Me.Evaluate(CheckBoxName) 'Me работает только на листе
         
-        st = Cells(J, column).Text
+        st = Cells(j, column).Text
         
             If CheckBoxObject.Object.Value = True Then
     
@@ -78,7 +79,7 @@ Application.StatusBar = "Выполнено: " & Int((J / K) * 100) & " %"
                 Sheets("Preferences").Select
             End If
 '        End If
-    Next J
+    Next j
     
 '    'сообщение
 'MsgBoxEx "Всё исправлено", 0, "еее", 2
@@ -90,6 +91,7 @@ ExitHandler:
        ActiveSheet.DisplayPageBreaks = True
        Application.DisplayStatusBar = True
        Application.DisplayAlerts = True
+       Application.Calculation = xlAutomatic
     Exit Sub
     
 End Sub
@@ -102,11 +104,19 @@ Private Sub CheckBox1_Click()
  CheckBoxName = "CheckBox1"
         Set CheckBoxObject = Me.Evaluate(CheckBoxName)
         If CheckBoxObject.Object.Value = True Then
-            ThisWorkbook.Sheets("Preferences").Range("W2:W100") = True
+            ThisWorkbook.Sheets("Preferences").Range("X2:X100") = True
         ElseIf CheckBoxObject.Object.Value = False Then
-            ThisWorkbook.Sheets("Preferences").Range("W2:W100") = False
+            ThisWorkbook.Sheets("Preferences").Range("X2:X100") = False
         End If
  
+End Sub
+
+Private Sub CheckBox100_Click()
+
+End Sub
+
+Private Sub CheckBox107_Click()
+
 End Sub
 
 Private Sub CheckBox34_Click()
@@ -117,8 +127,28 @@ Private Sub CheckBox66_Click()
 
 End Sub
 
+Private Sub CheckBox75_Click()
+
+End Sub
+
+Private Sub CheckBox96_Click()
+
+End Sub
+
+Private Sub CheckBox97_Click()
+
+End Sub
+
+Private Sub CheckBox98_Click()
+
+End Sub
+
+Private Sub CheckBox99_Click()
+
+End Sub
+
 Private Sub CommandButton1_Click()
-    UserForm1.Show
+    UserForm11.Show
 End Sub
 
 Private Sub Worksheet_Change(ByVal Target As Range)
@@ -132,9 +162,9 @@ On Error GoTo ErrHandler
  Application.DisplayAlerts = False
 
 ' ищем номер строки по "Количество этапов"
-For I = 1 To 50
-    If Worksheets("Preferences").Cells(I, 1) = "Количество этапов" Then
-        row = I
+For i = 1 To 50
+    If Worksheets("Preferences").Cells(i, 1) = "Количество этапов" Then
+        row = i
     End If
 Next
 
@@ -150,8 +180,8 @@ If (Target.column = column) And (Target.row = row) And Worksheets("Preferences")
         Rows(Target.row + 1).Resize(X - 1).Insert 'вставляем столько колонок, сколько указано в ячейке минус 1
         
         'объединение ячеек
-        For I = 1 To column
-            ActiveSheet.Range(Cells(Target.row, I), Cells(Target.row + X - 1, I)).Select '(x-1) - количество вставленных строк
+        For i = 1 To column
+            ActiveSheet.Range(Cells(Target.row, i), Cells(Target.row + X - 1, i)).Select '(x-1) - количество вставленных строк
                 With Selection
                     .Merge
                     .Font.Name = "Times New Roman"
@@ -162,9 +192,9 @@ If (Target.column = column) And (Target.row = row) And Worksheets("Preferences")
         Next
         
         'заполнение значениями добавленные строки
-        For I = 1 To X
-            ActiveSheet.Range(Cells(Target.row + I - 1, 3), Cells(Target.row + I - 1, 3)).Value = "Этап № " & I
-            ActiveSheet.Range(Cells(Target.row + I - 1, 3), Cells(Target.row + I - 1, 3)).Select
+        For i = 1 To X
+            ActiveSheet.Range(Cells(Target.row + i - 1, 3), Cells(Target.row + i - 1, 3)).Value = "Этап № " & i
+            ActiveSheet.Range(Cells(Target.row + i - 1, 3), Cells(Target.row + i - 1, 3)).Select
             With Selection
                 .Borders.LineStyle = True
             End With
