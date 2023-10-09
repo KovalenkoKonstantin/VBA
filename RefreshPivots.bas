@@ -67,7 +67,7 @@ Sub Обновить()
  Dim ws As Worksheet
  Dim pt As PivotTable
  
- Application.Calculation = xlManual
+' Application.Calculation = xlManual
 ' СнятьЗащитуВсехЛистов
     On Error Resume Next
     For Each ws In ThisWorkbook.Worksheets
@@ -88,7 +88,7 @@ Application.StatusBar = "Выполнено 80%"
     Next pt
     Next ws
 Application.StatusBar = False
-Application.Calculation = xlAutomatic
+'Application.Calculation = xlAutomatic
 ' ЗаблокироватьВсеЛисты
 ' ThisWorkbook.Sheets("Merge").Activate
 
