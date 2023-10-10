@@ -31,7 +31,7 @@ End If
 
 'main
 temp = 0
-For I = 1 To month
+For i = 1 To month
     temp = temp + Salary
     result = Salary * FFOMC + Salary * Tr
     If temp <= Limit Then
@@ -42,7 +42,7 @@ For I = 1 To month
         result = result + Salary * Extra
     End If
     result = result / Salary
-Next I
+Next i
 
 РЕГРЕСС = result
 
@@ -135,8 +135,8 @@ rrr:
 End Function
  
 'вспомогательная функция для выделения из числа разрядов
-Private Function Class(M, I)
-  Class = Int(Int(M - (10 ^ I) * Int(M / (10 ^ I))) / 10 ^ (I - 1))
+Private Function Class(M, i)
+  Class = Int(Int(M - (10 ^ i) * Int(M / (10 ^ i))) / 10 ^ (i - 1))
 End Function
 
 Public Function CountByColor(DataRange As Range, ColorSample As Range) As Long
