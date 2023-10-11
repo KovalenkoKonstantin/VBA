@@ -26,14 +26,14 @@ ActiveSheet.DisplayPageBreaks = False
 Application.DisplayAlerts = False
 Application.Calculation = xlManual
 
+MsgBoxEx "Расчётная ведомость должна быть с начала года!" _
+ & vbCr & "В противном случае, не все проверки буду отработанны корректно." _
+    & vbCr & "...", vbCritical, "Pay attention", 20
+
 FilesToOpen = Application.GetOpenFilename _
  (FileFilter:="Microsoft Excel Files (*.xlsx), *.xlsx", _
  MultiSelect:=True, Title:="Выберите расчётную ведомость по компании " & CompanyName)
- 
- MsgBoxEx "Расчётная ведомость должна быть с начала года!" _
- & vbCr & "В противном случае, не все проверки буду отработанны корректно." _
-    & vbCr & "...", vbCritical, "Pay attention", 20
- 
+  
  'статус бар
 Application.StatusBar = "Анализ данных..."
 
@@ -476,6 +476,9 @@ For i = 1 To Limit
     If Worksheets(SheetName).Cells(DataRow, i) = "Год" Then
         aw(128) = i
     End If
+    If Worksheets(SheetName).Cells(DataRow, i) = "ФОТ ИТОГО" Then
+        aw(129) = i
+    End If
     If Worksheets(SheetName).Cells(DataRow, i) = "Доплата за работу в ночное время (праздничные и выходные дни)" Then
         aw(134) = i
     End If
@@ -898,6 +901,9 @@ For i = 1 To Limit
     If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Премия месячная" Then '-
         iw(127) = i
     End If
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "ФОТ ИТОГО" Then '-
+        iw(129) = i
+    End If
     If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Доплата за работу в ночное время (праздничные и выходные дни)" Then '-
         iw(134) = i
     End If
@@ -1163,6 +1169,9 @@ Columns("EC:EC").Select
     Selection.NumberFormat = _
         "_-* #,##0.00 _?_-;-* #,##0.00 _?_-;_-* ""-""?? _?_-;_-@_-"
 Columns("EF:EF").Select
+    Selection.NumberFormat = _
+        "_-* #,##0.00 _?_-;-* #,##0.00 _?_-;_-* ""-""?? _?_-;_-@_-"
+Columns("I:I").Select
     Selection.NumberFormat = _
         "_-* #,##0.00 _?_-;-* #,##0.00 _?_-;_-* ""-""?? _?_-;_-@_-"
 
