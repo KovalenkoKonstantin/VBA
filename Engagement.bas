@@ -11,6 +11,13 @@ Sub SaveToEXL()
  On Error GoTo ExitHandler
  
  ThisWorkbook.Sheets("Задействование").Activate
+ If ThisWorkbook.Sheets("Задействование").Range("I3").Value2 = False Then
+    MsgBoxEx "Данные не полны." _
+    & vbCr & "Отсутствуют значения в столбцах.", 0, "Файл не будет создан", 10
+    GoTo ExitHandler
+ End If
+    
+ 
  SaveName = ActiveSheet.Range("I1").Text
  ThisWorkbook.Activate
  Path = ThisWorkbook.Path
