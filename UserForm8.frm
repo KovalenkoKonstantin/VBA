@@ -18,10 +18,6 @@ Private Sub CommandButton13_Click()
     Aligment4d
 End Sub
 
-Private Sub Image11_BeforeDragOver(ByVal Cancel As MSForms.ReturnBoolean, ByVal Data As MSForms.DataObject, ByVal X As Single, ByVal Y As Single, ByVal DragState As MSForms.fmDragState, ByVal Effect As MSForms.ReturnEffect, ByVal Shift As Integer)
-
-End Sub
-
 Private Sub Image11_Click()
     UserForm8.Hide
     aligment.aligment
