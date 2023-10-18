@@ -248,7 +248,7 @@ ActiveWorkbook.Queries("Query2").Formula = "let Источник = " & _
 "Sql.Database(""msk-sql-02"", ""RKM"", [Query=""exec " & _
 "LabourRefresh '" & var & "'""])" & Chr(13) & "" & Chr(10) & "in" & Chr(13) & "" & Chr(10) & "    Источник"
         
-ActiveWorkbook.RefreshAll
+'ActiveWorkbook.RefreshAll
 
 Application.StatusBar = False
 Application.ScreenUpdating = True
@@ -455,6 +455,80 @@ Application.DisplayAlerts = False
 ActiveWorkbook.Queries("Query6").Formula = "let Источник = " & _
 "Sql.Database(""msk-sql-02"", ""RKM"", [Query=""exec " & _
 "GetGozAttributeRefresh""])" & Chr(13) & "" & Chr(10) & "in" & Chr(13) & "" & Chr(10) & "    Источник"
+
+ActiveWorkbook.RefreshAll
+
+Application.StatusBar = False
+Application.ScreenUpdating = True
+Application.EnableEvents = True
+ActiveSheet.DisplayPageBreaks = True
+Application.DisplayStatusBar = True
+Application.DisplayAlerts = True
+
+End Sub
+
+Sub Query7_Add()
+
+    ActiveWorkbook.Queries.Add Name:="Query7", Formula:= _
+        "let" & Chr(13) & "" & Chr(10) & "    Источник = Sql.Database(""msk-sql-02"", ""RKM"", [Query=""exec GetEnterpriseRefresh""])" & Chr(13) & "" & Chr(10) & "in" & Chr(13) & "" & Chr(10) & "    Источник"
+    With ActiveSheet.ListObjects.Add(SourceType:=0, Source:= _
+        "OLEDB;Provider=Microsoft.Mashup.OleDb.1;Data Source=$Workbook$;Location=Query7;Extended Properties=""""" _
+        , Destination:=Range("$AH$2")).QueryTable
+        .CommandType = xlCmdSql
+        .CommandText = Array("SELECT * FROM [Query7]")
+        .RowNumbers = False
+        .FillAdjacentFormulas = False
+        .PreserveFormatting = True
+        .RefreshOnFileOpen = False
+        .BackgroundQuery = True
+        .RefreshStyle = xlInsertDeleteCells
+        .SavePassword = False
+        .SaveData = True
+        .AdjustColumnWidth = True
+        .RefreshPeriod = 0
+        .PreserveColumnInfo = True
+        .ListObject.DisplayName = "Query7"
+        .Refresh BackgroundQuery:=False
+    End With
+    
+'    ActiveWorkbook.Queries.Add Name:="Query7", Formula:= _
+'        "let" & Chr(13) & "" & Chr(10) & "    Источник = Sql.Database(""msk-sql-02"", ""RKM"", [Query=""exec GetEnterpriseRefresh;""])" & Chr(13) & "" & Chr(10) & "in" & Chr(13) & "" & Chr(10) & "    Источник"
+'    With ActiveSheet.ListObjects.Add(SourceType:=0, Source:= _
+'        "OLEDB;Provider=Microsoft.Mashup.OleDb.1;Data Source=$Workbook$;Location=Query7;Extended Properties=""""" _
+'        , Destination:=Range("$AF$2")).QueryTable
+'        .CommandType = xlCmdSql
+'        .CommandText = Array("SELECT * FROM [Query7]")
+'        .RowNumbers = False
+'        .FillAdjacentFormulas = False
+'        .PreserveFormatting = True
+'        .RefreshOnFileOpen = False
+'        .BackgroundQuery = True
+'        .RefreshStyle = xlInsertDeleteCells
+'        .SavePassword = False
+'        .SaveData = True
+'        .AdjustColumnWidth = True
+'        .RefreshPeriod = 0
+'        .PreserveColumnInfo = True
+'        .ListObject.DisplayName = "Query7"
+'        .Refresh BackgroundQuery:=False
+'    End With
+    
+End Sub
+
+Sub GetEnterpriseRefresh_SP_Query()
+Dim ThisWorkbook As Workbook
+Dim var As String
+Set ThisWorkbook = ActiveWorkbook
+
+Application.ScreenUpdating = False
+Application.EnableEvents = False
+ActiveSheet.DisplayPageBreaks = False
+Application.DisplayStatusBar = False
+Application.DisplayAlerts = False
+
+ActiveWorkbook.Queries("Query7").Formula = "let Источник = " & _
+"Sql.Database(""msk-sql-02"", ""RKM"", [Query=""exec " & _
+"GetEnterpriseRefresh""])" & Chr(13) & "" & Chr(10) & "in" & Chr(13) & "" & Chr(10) & "    Источник"
 
 ActiveWorkbook.RefreshAll
 
