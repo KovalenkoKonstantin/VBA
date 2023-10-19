@@ -267,7 +267,7 @@ Sub Query3_Add()
         "GetProjectRefresh;""])" & Chr(13) & "" & Chr(10) & "in" & Chr(13) & "" & Chr(10) & "    Источник"
     With ActiveSheet.ListObjects.Add(SourceType:=0, Source:= _
         "OLEDB;Provider=Microsoft.Mashup.OleDb.1;Data Source=$Workbook$;Location=Query3;Extended Properties=""""" _
-        , Destination:=Range("$X$2")).QueryTable
+        , Destination:=Range("$Y$2")).QueryTable
         .CommandType = xlCmdSql
         .CommandText = Array("SELECT * FROM [Query3]")
         .RowNumbers = False
@@ -297,12 +297,13 @@ Application.EnableEvents = False
 ActiveSheet.DisplayPageBreaks = False
 Application.DisplayStatusBar = False
 Application.DisplayAlerts = False
+Application.Calculation = xlManual
 
 ActiveWorkbook.Queries("Query3").Formula = "let Источник = " & _
 "Sql.Database(""msk-sql-02"", ""RKM"", [Query=""exec " & _
 "GetProjectRefresh;""])" & Chr(13) & "" & Chr(10) & "in" & Chr(13) & "" & Chr(10) & "    Источник"
 
-ActiveWorkbook.RefreshAll
+'ActiveWorkbook.RefreshAll
 
 Application.StatusBar = False
 Application.ScreenUpdating = True
@@ -310,6 +311,7 @@ Application.EnableEvents = True
 ActiveSheet.DisplayPageBreaks = True
 Application.DisplayStatusBar = True
 Application.DisplayAlerts = True
+Application.Calculation = xlAutomatic
 
 End Sub
 
