@@ -7,7 +7,7 @@ Sub Query3_Add()
         "GetProjectRefresh;""])" & Chr(13) & "" & Chr(10) & "in" & Chr(13) & "" & Chr(10) & "    Источник"
     With ActiveSheet.ListObjects.Add(SourceType:=0, Source:= _
         "OLEDB;Provider=Microsoft.Mashup.OleDb.1;Data Source=$Workbook$;Location=Query3;Extended Properties=""""" _
-        , Destination:=Range("$Y$2")).QueryTable
+        , Destination:=Range("$AD$2")).QueryTable
         .CommandType = xlCmdSql
         .CommandText = Array("SELECT * FROM [Query3]")
         .RowNumbers = False
@@ -53,5 +53,6 @@ ActiveSheet.DisplayPageBreaks = True
 Application.DisplayStatusBar = True
 Application.DisplayAlerts = True
 Application.Calculation = xlAutomatic
+ThisWorkbook.Sheets("Preferences").Activate
 
 End Sub
