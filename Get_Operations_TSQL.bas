@@ -8,7 +8,7 @@ Sub Query1_Add()
   Dim Sht As Worksheet
   Dim X As Range
   Set ThisWorkbook = ActiveWorkbook
-  var = ThisWorkbook.Sheets("Труд").Range("I2").Value2
+  var = ThisWorkbook.Sheets("Труд").Range("I3").Value2
 
 Application.ScreenUpdating = False
 Application.EnableEvents = False
@@ -20,7 +20,7 @@ Application.Calculation = xlManual
     ActiveWorkbook.Queries.Add Name:="Operations", Formula:= _
         "let" & Chr(13) & "" & Chr(10) & "    " & _
         "Источник = Sql.Database(""msk-sql-02"", ""RKM"", " & _
-        "[Query=""select operation_name, labour_intensity_month_value#(lf)" & _
+        "[Query=""select operation_name, labour_intensity_hour_value#(lf)" & _
         "from LabourIntensity l#(lf)inner join Operations O on " & _
         "l.operation_id = O.operation_id#(lf)inner join Project P on " & _
         "l.project_id = P.project_id#(lf)where project_cipher " & _
@@ -98,7 +98,7 @@ Sub LabourIntensity_SP_Query()
 Dim ThisWorkbook As Workbook
 Dim var As String
 Set ThisWorkbook = ActiveWorkbook
-var = ThisWorkbook.Sheets("Труд").Range("I2").Value2
+var = ThisWorkbook.Sheets("Труд").Range("I3").Value2
 
 Application.ScreenUpdating = False
 Application.EnableEvents = False

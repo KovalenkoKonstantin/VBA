@@ -52,7 +52,7 @@ Sub Components_SP_Query_()
 Dim ThisWorkbook As Workbook
 Dim var As String
 Set ThisWorkbook = ActiveWorkbook
-var = ThisWorkbook.Sheets("Труд").Range("I2").Value2
+var = ThisWorkbook.Sheets("Труд").Range("I3").Value2
 
 Application.ScreenUpdating = False
 Application.EnableEvents = False
