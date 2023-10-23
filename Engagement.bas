@@ -10,6 +10,8 @@ Sub SaveToEXL()
  
  On Error GoTo ExitHandler
  
+ ActiveWorkbook.Sheets("Задействование").Visible = True
+ 
  ThisWorkbook.Sheets("Задействование").Activate
  If ThisWorkbook.Sheets("Задействование").Range("I3").Value2 = False Then
     MsgBoxEx "Данные не полны." _
@@ -50,9 +52,15 @@ If Dir(myPathName) <> "" Then Kill myPathName
 
 ActiveSheet.Copy
 ActiveWorkbook.SaveAs Path & "\" & "Задействование" & "\" & SaveName & ".xlsx"
+ActiveWorkbook.Sheets("Задействование").Range("A1:F100").Copy
+ActiveWorkbook.Sheets("Задействование").Range("a1").Select
+    Selection.PasteSpecial Paste:=xlPasteValues, Operation:=xlNone, SkipBlanks _
+        :=False, Transpose:=False
+ActiveWorkbook.Save
 ActiveWorkbook.Close
 
-MsgBoxEx "Данные сохранены в папке Задействование", 0, "Выполнено", 1
+'MsgBoxEx "Данные сохранены в папке Задействование", 0, "Выполнено", 1
+ActiveWorkbook.Sheets("Задействование").Visible = False
 
 ExitHandler:
     Application.ScreenUpdating = True
@@ -60,7 +68,7 @@ ExitHandler:
     ActiveSheet.DisplayPageBreaks = True
     Application.DisplayStatusBar = True
     Application.DisplayAlerts = True
-'    ThisWorkbook.Sheets("Preferences").Activate
+    ThisWorkbook.Sheets("Preferences").Activate
 Exit Sub
 
 End Sub

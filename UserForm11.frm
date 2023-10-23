@@ -98,6 +98,11 @@ Private Sub CommandButton39_Click()
     Aligment4d
 End Sub
 
+Private Sub CommandButton40_Click()
+    UserForm11.Hide
+    SaveToEXL
+End Sub
+
 Private Sub CommandButton6_Click()
     UserForm11.Hide
 beging:
