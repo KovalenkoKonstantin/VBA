@@ -214,6 +214,10 @@ Private Sub Image14_Click()
     HideSys
 End Sub
 
+Private Sub Image15_Click()
+    UserForm11.Hide
+    ActiveWorkbook.Sheets("Задействование").Visible = True
+End Sub
 
 '
 'Private Sub Image15_Click()
