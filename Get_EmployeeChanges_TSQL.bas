@@ -1,5 +1,5 @@
-Attribute VB_Name = "Get_TaxBase_Refresh_TSQL"
-Sub GetTaxBaseRefresh_SP_Query()
+Attribute VB_Name = "Get_EmployeeChanges_TSQL"
+Sub GetEmployeeChangesRefresh_SP_Query()
 Dim ThisWorkbook As Workbook
 Dim var As String
 Set ThisWorkbook = ActiveWorkbook
@@ -11,12 +11,12 @@ Application.DisplayStatusBar = False
 Application.DisplayAlerts = False
 Application.Calculation = xlManual
 
-ActiveWorkbook.Queries("TaxBase").Formula = "let Источник = " & _
+ActiveWorkbook.Queries("EmployeeChanges").Formula = "let Источник = " & _
 "Sql.Database(""msk-sql-02"", ""RKM"", [Query=""exec " & _
-"GetTaxBaseRefresh;""])" & Chr(13) & "" & Chr(10) & "in" & Chr(13) & "" & Chr(10) & "    Источник"
+"GetEmployeeChangesRefresh;""])" & Chr(13) & "" & Chr(10) & "in" & Chr(13) & "" & Chr(10) & "    Источник"
 
 'ActiveWorkbook.RefreshAll
-ActiveWorkbook.Queries("TaxBase").Refresh
+ActiveWorkbook.Queries("EmployeeChanges").Refresh
 
 Application.StatusBar = False
 Application.ScreenUpdating = True
@@ -28,5 +28,7 @@ Application.Calculation = xlAutomatic
 'ThisWorkbook.Sheets("Preferences").Activate
 
 End Sub
+
+
 
 
