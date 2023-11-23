@@ -14,6 +14,7 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 
+
 Private Sub CommandButton1_Click()
  UserForm11.Hide
  UserForm4.Show
@@ -48,7 +49,7 @@ End Sub
 
 Private Sub CommandButton18_Click()
     UserForm11.Hide
-    UserForm7.Show
+    GetExpendituresRefresh_SP_Query
 End Sub
 
 Private Sub CommandButton19_Click()
@@ -88,9 +89,19 @@ Private Sub CommandButton5_Click()
     UserForm3.Show
 End Sub
 
+Private Sub CommandButton26_Click()
+    UserForm11.Hide
+    GetGozAttributeRefresh_SP_Query
+End Sub
+
 Private Sub CommandButton27_Click()
     UserForm11.Hide
     GetProjectRefresh_SP_Query
+End Sub
+
+Private Sub CommandButton28_Click()
+    UserForm11.Hide
+    GetOrganizationRefresh_SP_Query
 End Sub
 
 Private Sub CommandButton39_Click()
@@ -98,9 +109,45 @@ Private Sub CommandButton39_Click()
     Aligment4d
 End Sub
 
-Private Sub CommandButton40_Click()
+
+Private Sub CommandButton41_Click()
     UserForm11.Hide
-    SaveToEXL
+    GetEmployeeChangesRefresh_SP_Query
+End Sub
+
+Private Sub CommandButton42_Click()
+    UserForm11.Hide
+    GetEnterpriseRefresh_SP_Query
+End Sub
+
+Private Sub CommandButton43_Click()
+    UserForm11.Hide
+    GetEmployeeRefresh_SP_Query
+End Sub
+
+Private Sub CommandButton44_Click()
+    UserForm11.Hide
+    GetWorktimeRefresh_SP_Query
+End Sub
+
+Private Sub CommandButton45_Click()
+    UserForm11.Hide
+    GetSalaryBudgetRefresh_SP_Query
+End Sub
+
+Private Sub CommandButton46_Click()
+    UserForm11.Hide
+    GetContractorsRefresh_SP_Query
+End Sub
+
+Private Sub CommandButton47_Click()
+    UserForm11.Hide
+    GetTaxRefresh_SP_Query
+End Sub
+
+Private Sub CommandButton48_Click()
+    UserForm11.Hide
+    GetTaxBaseRefresh_SP_Query
 End Sub
 
 Private Sub CommandButton6_Click()
@@ -140,35 +187,11 @@ Private Sub Image15_Click()
     ActiveWorkbook.Sheets("Задействование").Visible = True
 End Sub
 
-
-'
-'Private Sub Image15_Click()
-'    UserForm11.Hide
-'    Me.CheckBox_Click
-'End Sub
-
 Private Sub Image17_Click()
     UserForm11.Hide
-    UnhideSys
+    ShowTabs
 End Sub
 
-Private Sub Image19_BeforeDragOver(ByVal Cancel As MSForms.ReturnBoolean, ByVal Data As MSForms.DataObject, ByVal X As Single, ByVal Y As Single, ByVal DragState As MSForms.fmDragState, ByVal Effect As MSForms.ReturnEffect, ByVal Shift As Integer)
-
-End Sub
-
-Private Sub Image19_Click()
-On Error Resume Next
-    UserForm11.Hide
-'    LabourIntensity_SP_Query
-'    Components_SP_Query_
-    Обновить
-    aligment.aligment
-    Обновить
-    Aligment4d
-    SaveToEXL
-'    SaveToPDF
-'    Python
-End Sub
 
 Private Sub Image6_Click()
     UserForm11.Hide
@@ -185,22 +208,4 @@ Private Sub Image8_Click()
     Clone20
 End Sub
 
-Private Sub Image9_BeforeDragOver(ByVal Cancel As MSForms.ReturnBoolean, ByVal Data As MSForms.DataObject, ByVal X As Single, ByVal Y As Single, ByVal DragState As MSForms.fmDragState, ByVal Effect As MSForms.ReturnEffect, ByVal Shift As Integer)
 
-End Sub
-
-Private Sub Image9_Click()
-On Error Resume Next
-    UserForm11.Hide
-    LabourIntensity_SP_Query
-    Components_SP_Query_
-    Обновить
-    aligment.aligment
-    Обновить
-    Aligment4d
-    Обновить
-    SaveToEXL
-'    SaveToPDF
-'    Python
-'    Обновить
-End Sub
