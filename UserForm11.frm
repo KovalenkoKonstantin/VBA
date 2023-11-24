@@ -150,6 +150,30 @@ Private Sub CommandButton48_Click()
     GetTaxBaseRefresh_SP_Query
 End Sub
 
+Private Sub CommandButton49_Click()
+    UserForm11.Hide
+    Dim ThisWorkbook As Workbook
+    Set ThisWorkbook = ActiveWorkbook
+    
+    Application.ScreenUpdating = False
+    Application.EnableEvents = False
+    ActiveSheet.DisplayPageBreaks = False
+    Application.DisplayStatusBar = False
+    Application.DisplayAlerts = False
+    Application.Calculation = xlManual
+
+    ActiveWorkbook.RefreshAll
+    
+    Application.StatusBar = False
+    Application.ScreenUpdating = True
+    Application.EnableEvents = True
+    ActiveSheet.DisplayPageBreaks = True
+    Application.DisplayStatusBar = True
+    Application.DisplayAlerts = True
+    Application.Calculation = xlAutomatic
+    'ThisWorkbook.Sheets("Preferences").Activate
+End Sub
+
 Private Sub CommandButton6_Click()
     UserForm11.Hide
     TimeSheet.TimeSheet
@@ -192,6 +216,15 @@ Private Sub Image17_Click()
     ShowTabs
 End Sub
 
+Private Sub Image20_Click()
+    UserForm11.Hide
+    Clone6
+End Sub
+
+Private Sub Image21_Click()
+    UserForm11.Hide
+    Clone7
+End Sub
 
 Private Sub Image6_Click()
     UserForm11.Hide
