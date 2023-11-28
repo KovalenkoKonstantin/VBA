@@ -91,13 +91,13 @@ ThisWorkbook.Sheets(Array("1", _
 '        "10", "12", _
 '        "20", "21ф", "22ф", "23Ф", _
 '        "Труд", "Прайс")).Select
-'ElseIf ThisWorkbook.Sheets("Preferences").Range("C13").Value2 = _
-'"Программно-аппаратный комплекс ViPNet Coordinator HW100 C 4.x (+3G)(+unlim)" Then
-'ThisWorkbook.Sheets(Array("1", _
-'        "2", "4д", "6", "9", _
-'        "10", "12", _
-'        "20", "21ф", "22ф", "23Ф", _
-'        "Труд", "Прайс")).Select
+ElseIf ThisWorkbook.Sheets("Preferences").Range("C13").Value2 = _
+"Знание-Аккредитация" Then
+ThisWorkbook.Sheets(Array("1", _
+        "2", "6", "7", "9", _
+        "10", "12", _
+        "20", "21ф", "22ф", "23Ф", _
+        "П8")).Select
 Else
 ThisWorkbook.Sheets(Array("1", _
         "2", "4д", "6", "9", _

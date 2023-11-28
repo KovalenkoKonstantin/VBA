@@ -533,7 +533,7 @@ Application.Calculation = xlManual
   
   Set ThisWorkbook = ActiveWorkbook
   SheetName = "9"
-  kolvo = 14
+  kolvo = 15
   
   'удаление предыдущих данных
 
@@ -546,7 +546,7 @@ Application.Calculation = xlManual
     "Выполнено: " & Int(100 * i / kolvo) & "%."
   Next i
   
-  For i = 1 To 4
+  For i = 1 To 5
     Sheets("9_2" & i).delete
     'статус бар
     Application.StatusBar = "Удаление листов. Второй диапазон. " & _
@@ -560,14 +560,14 @@ Application.Calculation = xlManual
     "Выполнено: " & Int(100 * i / 2) & "%."
   Next i
   
-  For i = 1 To 4
+  For i = 1 To 5
     Sheets("9_1_2" & i).delete
     'статус бар
     Application.StatusBar = "Удаление листов. Четвёртый диапазон. " & _
     "Выполнено: " & Int(100 * i / 4) & "%."
   Next i
   
-  For i = 1 To 4
+  For i = 1 To 5
     Sheets("9_2_2" & i).delete
     'статус бар
     Application.StatusBar = "Удаление листов. Пятый диапазон. " & _
@@ -582,7 +582,7 @@ Application.Calculation = xlManual
 'If kolvo = "" Then Exit Sub
 'If IsNumeric(kolvo) Then
 '    kolvo = Fix(kolvo)
-    For i = 1 To kolvo
+    For i = 1 To kolvo - 1
         list.Copy after:=ActiveSheet
         ActiveSheet.Name = list.Name & i
         'статус бар
@@ -598,27 +598,27 @@ On Error Resume Next
 For Each Sht In Worksheets
     'статус бар
     Application.StatusBar = "Переименование листов."
-    If Sht.Name = "91" Then Sht.Name = "9_21"
-    If Sht.Name = "92" Then Sht.Name = "9_22"
-    If Sht.Name = "93" Then Sht.Name = "9_23"
-    If Sht.Name = "94" Then Sht.Name = "9_24"
+    If Sht.Name = "91" Then Sht.Name = "9_22"
+    If Sht.Name = "92" Then Sht.Name = "9_23"
+    If Sht.Name = "93" Then Sht.Name = "9_24"
+    If Sht.Name = "94" Then Sht.Name = "9_25"
     If Sht.Name = "95" Then Sht.Name = "9_1"
-    If Sht.Name = "96" Then Sht.Name = "9_1_21"
-    If Sht.Name = "97" Then Sht.Name = "9_1_22"
-    If Sht.Name = "98" Then Sht.Name = "9_1_23"
-    If Sht.Name = "99" Then Sht.Name = "9_1_24"
+    If Sht.Name = "96" Then Sht.Name = "9_1_22"
+    If Sht.Name = "97" Then Sht.Name = "9_1_23"
+    If Sht.Name = "98" Then Sht.Name = "9_1_24"
+    If Sht.Name = "99" Then Sht.Name = "9_1_25"
     If Sht.Name = "910" Then Sht.Name = "9_2"
-    If Sht.Name = "911" Then Sht.Name = "9_2_21"
-    If Sht.Name = "912" Then Sht.Name = "9_2_22"
-    If Sht.Name = "913" Then Sht.Name = "9_2_23"
-    If Sht.Name = "914" Then Sht.Name = "9_2_24"
+    If Sht.Name = "911" Then Sht.Name = "9_2_22"
+    If Sht.Name = "912" Then Sht.Name = "9_2_23"
+    If Sht.Name = "913" Then Sht.Name = "9_2_24"
+    If Sht.Name = "914" Then Sht.Name = "9_2_25"
 Next
 
 'выставление настроек
   On Error Resume Next
   
   'года
-  For i = 1 To 4
+  For i = 2 To 5
     Sheets("9_2" & i).Activate
         [O2] = "202" & i
         Range("Z:AI").Clear
@@ -646,7 +646,7 @@ Next
   Next i
   
   'Этап 1
-  For i = 1 To 4
+  For i = 2 To 5
     Sheets("9_1_2" & i).Activate
         [O1] = "Этап 1"
         [O2] = "202" & i
@@ -657,7 +657,7 @@ Next
   Next i
   
   'Этап 2
-  For i = 1 To 4
+  For i = 2 To 5
     Sheets("9_2_2" & i).Activate
         [O1] = "Этап 2"
         [O2] = "202" & i
