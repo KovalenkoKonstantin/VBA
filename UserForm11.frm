@@ -226,6 +226,18 @@ Private Sub Image21_Click()
     Clone7
 End Sub
 
+Private Sub Image22_Click()
+    UserForm11.Hide
+    Protect
+End Sub
+
+
+Private Sub Image23_Click()
+    UserForm11.Hide
+    UnProtect
+End Sub
+
+
 Private Sub Image6_Click()
     UserForm11.Hide
     Clone9
