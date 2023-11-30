@@ -48,46 +48,6 @@ ErrHandler:
  Application.DisplayAlerts = True
 End Sub
 
-Sub CleanIt2()
-'
-'Dim row_b, row_e As Integer
-'On Error GoTo ErrHandler
-' Application.ScreenUpdating = False
-' Application.EnableEvents = False
-' ActiveSheet.DisplayPageBreaks = False
-' Application.DisplayStatusBar = False
-' Application.DisplayAlerts = False
-'
-'' ищем номер ряда по "Итого повременно"
-'For i = 1 To 50
-'    If Worksheets("9").Cells(i, 2) = "Итого повременно" Then
-'        row_b = i
-'    End If
-'Next
-'
-'' ищем номер ряда по "Начисления стимулирующего характера"
-'For i = 1 To 50
-'    If Worksheets("9").Cells(i, 2) = "Начисления стимулирующего характера" Then
-'        row_e = i
-'    End If
-'Next
-'
-''определяем необходимость удаления
-'If row_e - row_b = 1 Then
-'    GoTo ErrHandler
-'Else
-'
-''удаляем лишние строки
-'    Range("A" & row_b + 1 & ":A" & row_e - 1).EntireRow.Delete
-'End If
-'
-'ErrHandler:
-' Application.ScreenUpdating = True
-' Application.EnableEvents = True
-' ActiveSheet.DisplayPageBreaks = True
-' Application.DisplayStatusBar = True
-' Application.DisplayAlerts = True
-End Sub
 
 Sub Social_contribution()
  
@@ -443,6 +403,7 @@ End Sub
 
 Sub ShowTabs()
  Dim tb
+ On Error Resume Next
  For Each tb In Worksheets
  tb.Visible = True
  Next
@@ -452,11 +413,13 @@ End Sub
 Sub HideSys()
 Application.Calculation = xlManual
  Dim ws As Worksheet
+ On Error Resume Next
     For Each ws In ThisWorkbook.Worksheets
         If ws.Range("A1").Value2 = "sys" _
         Or ws.Range("A1").Value2 = "Трудоёмкость" _
         Or ws.Range("A1").Value2 = "Статья затрат" Or ws.Range("A1").Value2 = "Имя" _
         Or ws.Range("A1").Value2 = "company_name" _
+        Or ws.Range("A1").Value2 = "organization_id" _
         Or ws.Range("A1").Value2 = "Наименование статей в 1С" _
         Or ws.Range("H2").Value2 = "Отчет о финансовых результатах" _
         Or ws.Range("J1").Value2 = "Сумма" Then
@@ -469,6 +432,7 @@ End Sub
 
 Sub UnhideSys()
  Dim ws As Worksheet
+ On Error Resume Next
     For Each ws In ThisWorkbook.Worksheets
         If ws.Range("A1").Value2 = "sys" _
         Or ws.Range("A1").Value2 = "Трудоёмкость" _
@@ -485,6 +449,7 @@ End Sub
 
 Sub HideEmpty()
  Dim ws As Worksheet
+ On Error Resume Next
     For Each ws In ThisWorkbook.Worksheets
         If ws.Range("A1").Value2 = "1" Then
             ws.Visible = True
@@ -517,7 +482,7 @@ Sub UnProtect()
     ThisWorkbook.UnProtect Password:="123"
 
 errorhandler:
- MsgBox ("Все листы разблокированы")
+' MsgBox ("Все листы разблокированы")
 ActiveWorkbook.Sheets("Preferences").Activate
 
 End Sub

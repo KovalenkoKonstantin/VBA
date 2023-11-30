@@ -15,7 +15,7 @@ Sub CheckBox_Click()
  Dim CheckBoxObject As Variant
  Set ThisWorkbook = ActiveWorkbook
  ThisWorkbook.Sheets("Preferences").Activate
- On Error GoTo ExitHandler
+ On Error Resume Next
  
  Application.ScreenUpdating = False
  Application.EnableEvents = False
@@ -24,7 +24,7 @@ Sub CheckBox_Click()
  Application.Calculation = xlManual
  
 ' ищем номер колонки по "Содержание"
-For i = 1 To 50
+For i = 1 To 150
     If Worksheets("Preferences").Cells(1, i) = "Содержание" Then
         column = i
     End If
@@ -111,39 +111,21 @@ Private Sub CheckBox1_Click()
  
 End Sub
 
-Private Sub CheckBox100_Click()
+
+
+Private Sub CheckBox24_Click()
 
 End Sub
 
-Private Sub CheckBox107_Click()
+Private Sub CheckBox25_Click()
 
 End Sub
 
-Private Sub CheckBox34_Click()
+Private Sub CheckBox62_Click()
 
 End Sub
 
-Private Sub CheckBox66_Click()
-
-End Sub
-
-Private Sub CheckBox75_Click()
-
-End Sub
-
-Private Sub CheckBox96_Click()
-
-End Sub
-
-Private Sub CheckBox97_Click()
-
-End Sub
-
-Private Sub CheckBox98_Click()
-
-End Sub
-
-Private Sub CheckBox99_Click()
+Private Sub CheckBox77_Click()
 
 End Sub
 
@@ -151,144 +133,3 @@ Private Sub CommandButton1_Click()
     UserForm11.Show
 End Sub
 
-Private Sub Worksheet_Change(ByVal Target As Range)
-
-Dim row, column, X As Integer
-On Error GoTo ErrHandler
- Application.ScreenUpdating = False
- Application.EnableEvents = False
- ActiveSheet.DisplayPageBreaks = False
- Application.DisplayStatusBar = False
- Application.DisplayAlerts = False
-
-' ищем номер строки по "Количество этапов"
-For i = 1 To 50
-    If Worksheets("Preferences").Cells(i, 1) = "Количество этапов" Then
-        row = i
-    End If
-Next
-
-'колонка в котоую будет добавляться значение
-column = 2
-
-'If (Target.column = column) And (Target.row = row) And ActiveSheet.Range(Cells(Target.row, column)).Value Is Not Empty Then
-'    GoTo ErrHandler
-'End If
-
-If (Target.column = column) And (Target.row = row) And Worksheets("Preferences").Cells(Target.row, column) <> "" Then
-        X = Application.Worksheets("Preferences").Cells(Target.row, column).Value 'значение ячейки соответствующее количеству этапов
-        Rows(Target.row + 1).Resize(X - 1).Insert 'вставляем столько колонок, сколько указано в ячейке минус 1
-        
-        'объединение ячеек
-        For i = 1 To column
-            ActiveSheet.Range(Cells(Target.row, i), Cells(Target.row + X - 1, i)).Select '(x-1) - количество вставленных строк
-                With Selection
-                    .Merge
-                    .Font.Name = "Times New Roman"
-'                    .WrapText = False
-                    .MergeCells = True
-                    .Borders.LineStyle = True
-                End With
-        Next
-        
-        'заполнение значениями добавленные строки
-        For i = 1 To X
-            ActiveSheet.Range(Cells(Target.row + i - 1, 3), Cells(Target.row + i - 1, 3)).Value = "Этап № " & i
-            ActiveSheet.Range(Cells(Target.row + i - 1, 3), Cells(Target.row + i - 1, 3)).Select
-            With Selection
-                .Borders.LineStyle = True
-            End With
-        Next
-End If
-ErrHandler:
-'Application.Worksheets("Preferences").Cells(row, column).Activate
- Application.ScreenUpdating = True
- Application.EnableEvents = True
- ActiveSheet.DisplayPageBreaks = True
- Application.DisplayStatusBar = True
- Application.DisplayAlerts = True
-End Sub
-
-'Sub SaveToPDF()
-'
-' Dim array_distinct() 'задекларируем динамический массив
-' Dim ThisWorkbook As Workbook
-' Dim st, CheckBoxName, SaveName, Folder, Path As String
-' Dim CheckBoxObject As Variant
-' Dim sName As String
-' Set ThisWorkbook = ActiveWorkbook
-'
-' On Error GoTo ExitHandler
-'
-' ThisWorkbook.Sheets("Preferences").Activate
-' SaveName = ActiveSheet.Range("R29").Text
-' ThisWorkbook.Activate
-' Path = ActiveWorkbook.Path
-'
-' Application.ScreenUpdating = False
-' Application.EnableEvents = False
-' ActiveSheet.DisplayPageBreaks = False
-' Application.DisplayStatusBar = False
-' Application.DisplayAlerts = False
-'
-'' ищем номер колонки по "Содержание"
-''For i = 1 To 50
-''    If Worksheets("Preferences").Cells(1, i) = "Содержание" Then
-''        column = i
-''    End If
-''Next
-'
-'' ищем номер последнего заполненного ряда по колонке "Содержание"
-'' ThisWorkbook.Sheets("Preferences").Activate
-'' lLastRow = Cells(Rows.Count, column).End(xlUp).row
-'
-''добавление выделенных листов в массив
-''On Error Resume Next
-''k = -1
-''sName = ""
-''    For i = 1 To lLastRow - 1 'количество checkbox меньше числа записей на 1
-''
-''        CheckBoxName = "CheckBox" & CStr(i)
-''        Set CheckBoxObject = Me.Evaluate(CheckBoxName)
-''        If CheckBoxObject.Object.Value = True Then
-''
-''            k = k + 1 'динамически устанавливаем вертикальный размер массива
-''            ReDim array_distinct(k, 0) 'переопределяем размер массива
-''            array_distinct(k, 0) = Cells(i + 1, column).Value2 'добавляем значение в массив
-''            sName = Chr(34) & array_distinct(k, 0) & Chr(34) & ", " & sName
-''        End If
-''    Next i
-'
-''сохраняю под заданным именем
-''sName = Right(sName, Len(sName) - 1)
-''sName = Left(sName, Len(sName) - 2)
-'
-''ThisWorkbook.Sheets(Array(sName)).Select
-'Sheets(Array("2_1", "6", "7_1", "9_1э" _
-'        , "22ф", "Приказ", "П5", "КУЗ")).Select
-''Sheets("1").Activate
-'ActiveSheet.ExportAsFixedFormat Type:=xlTypePDF, _
-'Filename:=Path & "\" & _
-'SaveName & ".pdf", Quality:=xlQualityStandard _
-', IncludeDocProperties:=True, IgnorePrintAreas:=False, OpenAfterPublish:= _
-'False
-'
-''Sheets(Array("Сопр", "Опись", "ПЗ", "1", "2", "2_23", "2_1_23", "2_2_23", "9", "10", "12" _
-''        , "20", "20_1", "20_2", "21ф", "22ф", "23ф", "Приказ", "П6", "П8")).Select
-''    Sheets("Сопр").Activate
-''    ChDir "D:\РКМ\ОРЦ\Улей-23"
-''    ActiveSheet.ExportAsFixedFormat Type:=xlTypePDF, Filename:= _
-''        "D:\РКМ\ОРЦ\Улей-23\ОРЦ Улей-23 работа_v1.1.pdf", Quality:=xlQualityStandard _
-''        , IncludeDocProperties:=True, IgnorePrintAreas:=False, OpenAfterPublish:= _
-''        True
-'
-'ExitHandler:
-'    Application.ScreenUpdating = True
-'    Application.EnableEvents = True
-'    ActiveSheet.DisplayPageBreaks = True
-'    Application.DisplayStatusBar = True
-'    Application.DisplayAlerts = True
-'    ThisWorkbook.Sheets("Preferences").Activate
-'Exit Sub
-'
-'End Sub
