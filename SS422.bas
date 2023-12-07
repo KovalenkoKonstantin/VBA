@@ -21,6 +21,7 @@ ActiveSheet.DisplayPageBreaks = False
 'Application.DisplayStatusBar = False
 Application.DisplayAlerts = False
 
+ThisWorkbook.UnProtect Password:="123"
 ThisWorkbook.Sheets(SheetName).Visible = True
 ThisWorkbook.Sheets(SheetName).Activate
 
@@ -138,8 +139,9 @@ ThisWorkbook.Sheets(SheetName).Range("A2") = importWB.Sheets(1).Range("C4").Valu
 
 'завершение
 importWB.Close
-ThisWorkbook.Sheets(SheetName).Visible = False
+
 ThisWorkbook.Sheets(SheetName).Protect Password:="123"
+ThisWorkbook.Sheets(SheetName).Visible = False
 
 MsgBoxEx "Данные c численностью по компании" _
 & vbCr & ThisWorkbook.Sheets(SheetName).Range("A2").Value2 _
@@ -152,7 +154,11 @@ ExitHandler:
     ActiveSheet.DisplayPageBreaks = True
     Application.DisplayStatusBar = True
     Application.DisplayAlerts = True
- ThisWorkbook.Sheets("Preferences").Activate
+    ThisWorkbook.Sheets("Preferences").Activate
+    ThisWorkbook.Sheets("Preferences").UnProtect Password:="123"
+    Rows("81:91").EntireRow.AutoFit
+    ThisWorkbook.Sheets("Preferences").Protect Password:="123"
+    ThisWorkbook.Protect Password:="123"
 
  Exit Sub
  
