@@ -71,16 +71,23 @@ Dim ThisWorkbook As Workbook
 Dim var As String
 Set ThisWorkbook = ActiveWorkbook
 
+var = ThisWorkbook.Sheets("ForDataBase").Range("BK1").Value2
+
 Application.ScreenUpdating = False
 Application.EnableEvents = False
 ActiveSheet.DisplayPageBreaks = False
 Application.DisplayStatusBar = False
 Application.DisplayAlerts = False
-Application.Calculation = xlManual
+'Application.Calculation = xlManual
 
 ActiveWorkbook.Queries("Employee").Formula = "let Источник = " & _
 "Sql.Database(""msk-sql-02"", ""RKM"", [Query=""exec " & _
-"GetEmployeeRefresh;""])" & Chr(13) & "" & Chr(10) & "in" & Chr(13) & "" & Chr(10) & "    Источник"
+"GetEmployeeRefresh '" & var & "';""])" & Chr(13) & "" & _
+"" & Chr(10) & "in" & Chr(13) & "" & Chr(10) & "    Источник"
+
+'ActiveWorkbook.Queries("Employee").Formula = "let Источник = " & _
+'"Sql.Database(""msk-sql-02"", ""RKM"", [Query=""exec " & _
+'"GetEmployeeRefresh;""])" & Chr(13) & "" & Chr(10) & "in" & Chr(13) & "" & Chr(10) & "    Источник"
 
 'ActiveWorkbook.RefreshAll
 ActiveWorkbook.Queries("Employee").Refresh
@@ -100,16 +107,23 @@ Dim ThisWorkbook As Workbook
 Dim var As String
 Set ThisWorkbook = ActiveWorkbook
 
+var = ThisWorkbook.Sheets("ForDataBase").Range("AY1").Value2
+
 Application.ScreenUpdating = False
 Application.EnableEvents = False
 ActiveSheet.DisplayPageBreaks = False
 Application.DisplayStatusBar = False
 Application.DisplayAlerts = False
-Application.Calculation = xlManual
+'Application.Calculation = xlManual
 
 ActiveWorkbook.Queries("EmployeeChanges").Formula = "let Источник = " & _
 "Sql.Database(""msk-sql-02"", ""RKM"", [Query=""exec " & _
-"GetEmployeeChangesRefresh;""])" & Chr(13) & "" & Chr(10) & "in" & Chr(13) & "" & Chr(10) & "    Источник"
+"GetEmployeeChangesRefresh '" & var & "';""])" & Chr(13) & "" & _
+"" & Chr(10) & "in" & Chr(13) & "" & Chr(10) & "    Источник"
+
+'ActiveWorkbook.Queries("EmployeeChanges").Formula = "let Источник = " & _
+'"Sql.Database(""msk-sql-02"", ""RKM"", [Query=""exec " & _
+'"GetEmployeeChangesRefresh;""])" & Chr(13) & "" & Chr(10) & "in" & Chr(13) & "" & Chr(10) & "    Источник"
 
 'ActiveWorkbook.RefreshAll
 ActiveWorkbook.Queries("EmployeeChanges").Refresh
@@ -129,6 +143,8 @@ Dim ThisWorkbook As Workbook
 Dim var As String
 Set ThisWorkbook = ActiveWorkbook
 
+var = ThisWorkbook.Sheets("ForDataBase").Range("AO1").Value2
+
 Application.ScreenUpdating = False
 Application.EnableEvents = False
 ActiveSheet.DisplayPageBreaks = False
@@ -138,7 +154,12 @@ Application.Calculation = xlManual
 
 ActiveWorkbook.Queries("Enterprise").Formula = "let Источник = " & _
 "Sql.Database(""msk-sql-02"", ""RKM"", [Query=""exec " & _
-"GetEnterpriseRefresh;""])" & Chr(13) & "" & Chr(10) & "in" & Chr(13) & "" & Chr(10) & "    Источник"
+"GetEnterpriseRefresh '" & var & "';""])" & Chr(13) & "" & _
+"" & Chr(10) & "in" & Chr(13) & "" & Chr(10) & "    Источник"
+
+'ActiveWorkbook.Queries("Enterprise").Formula = "let Источник = " & _
+'"Sql.Database(""msk-sql-02"", ""RKM"", [Query=""exec " & _
+'"GetEnterpriseRefresh;""])" & Chr(13) & "" & Chr(10) & "in" & Chr(13) & "" & Chr(10) & "    Источник"
 
 'ActiveWorkbook.RefreshAll
 ActiveWorkbook.Queries("Enterprise").Refresh
@@ -277,13 +298,18 @@ Sub GetProjectRefresh_SP_Query()
 Dim ThisWorkbook As Workbook
 Dim var As String
 Set ThisWorkbook = ActiveWorkbook
+var = ThisWorkbook.Sheets("ForDataBase").Range("AG1").Value2
 
 Application.ScreenUpdating = False
 Application.EnableEvents = False
 ActiveSheet.DisplayPageBreaks = False
 Application.DisplayStatusBar = False
 Application.DisplayAlerts = False
-Application.Calculation = xlManual
+'Application.Calculation = xlManual
+'
+'ActiveWorkbook.Queries("Project").Formula = "let Источник = " & _
+'"Sql.Database(""msk-sql-02"", ""RKM"", [Query=""exec " & _
+'"GetProjectRefresh_SP '" & var & "';""])" & Chr(13) & "" & Chr(10) & "in" & Chr(13) & "" & Chr(10) & "    Источник"
 
 ActiveWorkbook.Queries("Project").Formula = "let Источник = " & _
 "Sql.Database(""msk-sql-02"", ""RKM"", [Query=""exec " & _
@@ -298,7 +324,7 @@ Application.EnableEvents = True
 ActiveSheet.DisplayPageBreaks = True
 Application.DisplayStatusBar = True
 Application.DisplayAlerts = True
-Application.Calculation = xlAutomatic
+'Application.Calculation = xlAutomatic
 'ThisWorkbook.Sheets("Preferences").Activate
 
 End Sub
@@ -307,16 +333,23 @@ Dim ThisWorkbook As Workbook
 Dim var As String
 Set ThisWorkbook = ActiveWorkbook
 
+var = ThisWorkbook.Sheets("ForDataBase").Range("BN1").Value2
+
 Application.ScreenUpdating = False
 Application.EnableEvents = False
 ActiveSheet.DisplayPageBreaks = False
 Application.DisplayStatusBar = False
 Application.DisplayAlerts = False
-Application.Calculation = xlManual
+'Application.Calculation = xlManual
 
 ActiveWorkbook.Queries("Tax").Formula = "let Источник = " & _
 "Sql.Database(""msk-sql-02"", ""RKM"", [Query=""exec " & _
-"GetTaxRefresh;""])" & Chr(13) & "" & Chr(10) & "in" & Chr(13) & "" & Chr(10) & "    Источник"
+"GetTaxRefresh '" & var & "';""])" & Chr(13) & "" & _
+"" & Chr(10) & "in" & Chr(13) & "" & Chr(10) & "    Источник"
+
+'ActiveWorkbook.Queries("Tax").Formula = "let Источник = " & _
+'"Sql.Database(""msk-sql-02"", ""RKM"", [Query=""exec " & _
+'"GetTaxRefresh;""])" & Chr(13) & "" & Chr(10) & "in" & Chr(13) & "" & Chr(10) & "    Источник"
 
 'ActiveWorkbook.RefreshAll
 ActiveWorkbook.Queries("Tax").Refresh
@@ -327,7 +360,7 @@ Application.EnableEvents = True
 ActiveSheet.DisplayPageBreaks = True
 Application.DisplayStatusBar = True
 Application.DisplayAlerts = True
-Application.Calculation = xlAutomatic
+'Application.Calculation = xlAutomatic
 'ThisWorkbook.Sheets("Preferences").Activate
 
 End Sub
@@ -336,16 +369,23 @@ Dim ThisWorkbook As Workbook
 Dim var As String
 Set ThisWorkbook = ActiveWorkbook
 
+var = ThisWorkbook.Sheets("ForDataBase").Range("BS1").Value2
+
 Application.ScreenUpdating = False
 Application.EnableEvents = False
 ActiveSheet.DisplayPageBreaks = False
 Application.DisplayStatusBar = False
 Application.DisplayAlerts = False
-Application.Calculation = xlManual
+'Application.Calculation = xlManual
 
 ActiveWorkbook.Queries("TaxBase").Formula = "let Источник = " & _
 "Sql.Database(""msk-sql-02"", ""RKM"", [Query=""exec " & _
-"GetTaxBaseRefresh;""])" & Chr(13) & "" & Chr(10) & "in" & Chr(13) & "" & Chr(10) & "    Источник"
+"GetTaxBaseRefresh '" & var & "';""])" & Chr(13) & "" & _
+"" & Chr(10) & "in" & Chr(13) & "" & Chr(10) & "    Источник"
+
+'ActiveWorkbook.Queries("TaxBase").Formula = "let Источник = " & _
+'"Sql.Database(""msk-sql-02"", ""RKM"", [Query=""exec " & _
+'"GetTaxBaseRefresh;""])" & Chr(13) & "" & Chr(10) & "in" & Chr(13) & "" & Chr(10) & "    Источник"
 
 'ActiveWorkbook.RefreshAll
 ActiveWorkbook.Queries("TaxBase").Refresh
@@ -356,7 +396,122 @@ Application.EnableEvents = True
 ActiveSheet.DisplayPageBreaks = True
 Application.DisplayStatusBar = True
 Application.DisplayAlerts = True
+'Application.Calculation = xlAutomatic
+'ThisWorkbook.Sheets("Preferences").Activate
+
+End Sub
+
+Sub GetWorktimeRefresh_SP_Query()
+Dim ThisWorkbook As Workbook
+Dim var As String
+Set ThisWorkbook = ActiveWorkbook
+
+var = ThisWorkbook.Sheets("ForDataBase").Range("BE1").Value2
+
+Application.ScreenUpdating = False
+Application.EnableEvents = False
+ActiveSheet.DisplayPageBreaks = False
+Application.DisplayStatusBar = False
+Application.DisplayAlerts = False
+'Application.Calculation = xlManual
+
+ActiveWorkbook.Queries("Worktime").Formula = "let Источник = " & _
+"Sql.Database(""msk-sql-02"", ""RKM"", [Query=""exec " & _
+"GetWorktimeRefresh '" & var & "';""])" & Chr(13) & "" & _
+"" & Chr(10) & "in" & Chr(13) & "" & Chr(10) & "    Источник"
+
+'ActiveWorkbook.Queries("Worktime").Formula = "let Источник = " & _
+'"Sql.Database(""msk-sql-02"", ""RKM"", [Query=""exec " & _
+'"GetWorktimeRefresh;""])" & Chr(13) & "" & Chr(10) & "in" & Chr(13) & "" & Chr(10) & "    Источник"
+
+'ActiveWorkbook.RefreshAll
+ActiveWorkbook.Queries("Worktime").Refresh
+
+Application.StatusBar = False
+Application.ScreenUpdating = True
+Application.EnableEvents = True
+ActiveSheet.DisplayPageBreaks = True
+Application.DisplayStatusBar = True
+Application.DisplayAlerts = True
 Application.Calculation = xlAutomatic
+'ThisWorkbook.Sheets("Preferences").Activate
+
+End Sub
+
+Sub GetSalaryBudgetRefresh_SP_Query()
+Dim ThisWorkbook As Workbook
+Dim var As Integer
+Dim var1 As Integer
+Set ThisWorkbook = ActiveWorkbook
+
+var = ThisWorkbook.Sheets("ForDataBase").Range("AS1").Value2
+var1 = ThisWorkbook.Sheets("ForDataBase").Range("AT1").Value2
+
+Application.ScreenUpdating = False
+Application.EnableEvents = False
+ActiveSheet.DisplayPageBreaks = False
+Application.DisplayStatusBar = False
+Application.DisplayAlerts = False
+'Application.Calculation = xlManual
+
+ActiveWorkbook.Queries("SalaryBudget").Formula = "let Источник = " & _
+"Sql.Database(""msk-sql-02"", ""RKM"", [Query=""exec " & _
+"GetSalaryBudgetRefresh " & var & "," & var1 & ";""])" & Chr(13) & "" & _
+"" & Chr(10) & "in" & Chr(13) & "" & Chr(10) & "    Источник"
+
+'ActiveWorkbook.Queries("SalaryBudget").Formula = "let Источник = " & _
+'"Sql.Database(""msk-sql-02"", ""RKM"", [Query=""exec " & _
+'"GetSalaryBudgetRefresh;""])" & Chr(13) & "" & Chr(10) & "in" & Chr(13) & "" & Chr(10) & "    Источник"
+
+'ActiveWorkbook.RefreshAll
+ActiveWorkbook.Queries("SalaryBudget").Refresh
+
+Application.StatusBar = False
+Application.ScreenUpdating = True
+Application.EnableEvents = True
+ActiveSheet.DisplayPageBreaks = True
+Application.DisplayStatusBar = True
+Application.DisplayAlerts = True
+'Application.Calculation = xlAutomatic
+'ThisWorkbook.Sheets("Preferences").Activate
+
+End Sub
+
+Sub GetSalaryRefresh_SP_Query()
+Dim ThisWorkbook As Workbook
+Dim var As Integer
+Dim var1 As Integer
+Set ThisWorkbook = ActiveWorkbook
+
+var = ThisWorkbook.Sheets("ForDataBase").Range("BX1").Value2
+var1 = ThisWorkbook.Sheets("ForDataBase").Range("BY1").Value2
+
+Application.ScreenUpdating = False
+Application.EnableEvents = False
+ActiveSheet.DisplayPageBreaks = False
+Application.DisplayStatusBar = False
+Application.DisplayAlerts = False
+'Application.Calculation = xlManual
+
+ActiveWorkbook.Queries("Salary").Formula = "let Источник = " & _
+"Sql.Database(""msk-sql-02"", ""RKM"", [Query=""exec " & _
+"GetSalaryBudgetRefresh " & var & "," & var1 & ";""])" & Chr(13) & "" & _
+"" & Chr(10) & "in" & Chr(13) & "" & Chr(10) & "    Источник"
+
+'ActiveWorkbook.Queries("SalaryBudget").Formula = "let Источник = " & _
+'"Sql.Database(""msk-sql-02"", ""RKM"", [Query=""exec " & _
+'"GetSalaryBudgetRefresh;""])" & Chr(13) & "" & Chr(10) & "in" & Chr(13) & "" & Chr(10) & "    Источник"
+
+'ActiveWorkbook.RefreshAll
+ActiveWorkbook.Queries("Salary").Refresh
+
+Application.StatusBar = False
+Application.ScreenUpdating = True
+Application.EnableEvents = True
+ActiveSheet.DisplayPageBreaks = True
+Application.DisplayStatusBar = True
+Application.DisplayAlerts = True
+'Application.Calculation = xlAutomatic
 'ThisWorkbook.Sheets("Preferences").Activate
 
 End Sub
