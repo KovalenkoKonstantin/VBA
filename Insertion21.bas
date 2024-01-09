@@ -15,7 +15,7 @@ Sub Data_Insertion_21()
  DistinctYear = 2021
  Limit = 136 'последняя колонка базы
  begin = 12 'первый ряд вставки
- CompanyName = ThisWorkbook.Sheets("Preferences").Range("C7").Value2 'имя проекта
+ CompanyName = ThisWorkbook.Sheets("Preferences").Range("C7").Value2 'имя компании
  
  Dim aw(1 To 136) As Variant
  Dim iw(1 To 136) As Variant
@@ -29,7 +29,8 @@ Application.Calculation = xlManual
 
 FilesToOpen = Application.GetOpenFilename _
  (FileFilter:="Microsoft Excel Files (*.xlsx), *.xlsx", _
- MultiSelect:=True, Title:="Выберите расчётную ведомость по компании " & CompanyName)
+ MultiSelect:=True, Title:="Выберите расчётную ведомость по компании " _
+ & CompanyName & " за " & Year(Date) - 2 & " год")
  
  'статус бар
 Application.StatusBar = "Анализ данных..."
@@ -1000,8 +1001,10 @@ Application.StatusBar = "Добавление формул анализа нормы часов. Выполнено: 90 %"
 K = 4
 Cells(begin, aw(K)).Select
     ActiveCell.FormulaR1C1 = _
-        "=OR(RC[-1]="""",OR(RC[-1]=VALUE(RC[21]),VLOOKUP(RC[-3],RC1:RC114," _
-        & "MATCH(R8C4,R9C1:R9C114,0),0)>0))"
+        "=OR(RC[-1]="""",OR(RC[-1]=VALUE(RC[21])," _
+        & "VLOOKUP(RC[-3],RC1:RC115," _
+        & "MATCH(R8C4,R9C1:R9C115,0),0)>0)," _
+        & "SUM(RC[24]:RC[132])=0)"
     Range("A1").Copy
     Cells(begin, aw(K)).Select
     Selection.PasteSpecial Paste:=xlPasteFormats
@@ -1029,7 +1032,9 @@ K = 6
 Cells(begin, aw(K)).Select
     ActiveCell.FormulaR1C1 = _
         "=OR(RC[-3]="""",OR(RC[-1]=VALUE(RC[18])," _
-        & "VLOOKUP(RC[-5],RC1:RC114,MATCH(R8C4,R9C1:R9C114,0),0)>0))"
+        & "VLOOKUP(RC[-5],RC1:RC114," _
+        & "MATCH(R8C4,R9C1:R9C114,0),0)>0)," _
+        & "SUM(RC[22]:RC[130])=0)"
     Range("A1").Copy
     Cells(begin, aw(K)).Select
     Selection.PasteSpecial Paste:=xlPasteFormats

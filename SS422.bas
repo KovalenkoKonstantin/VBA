@@ -5,9 +5,10 @@ Sub Insertion_ССЧ22()
  Dim ThisWorkbook, importWB As Workbook
  Dim SheetName As String
  Dim ws As Worksheet
+ ps = "123$"
  
  Set ThisWorkbook = ActiveWorkbook
- On Error GoTo ExitHandler
+ On Error GoTo exithandler
  SheetName = "ССЧ22"
  Limit = 4 'последняя колонка базы
  begin = 15 'первый ряд вставки
@@ -15,22 +16,26 @@ Sub Insertion_ССЧ22()
  Dim aw(1 To 4) As Variant
  Dim iw(1 To 4) As Variant
  
+ CompanyName = ThisWorkbook.Sheets("Preferences").Range("C7").Value2 'имя компании
+ 
 Application.ScreenUpdating = False
 Application.EnableEvents = False
 ActiveSheet.DisplayPageBreaks = False
 'Application.DisplayStatusBar = False
 Application.DisplayAlerts = False
 
-ThisWorkbook.UnProtect Password:="123"
+ThisWorkbook.UnProtect Password:=ps
 ThisWorkbook.Sheets(SheetName).Visible = True
+ThisWorkbook.Sheets(SheetName).UnProtect Password:=ps
 ThisWorkbook.Sheets(SheetName).Activate
 
  FilesToOpen = Application.GetOpenFilename _
  (FileFilter:="Microsoft Excel Files (*.xlsx), *.xlsx", _
- MultiSelect:=True, Title:="Выберите файл с численностью и текучестью кадров за год предшествующий предыдущему")
-
+ MultiSelect:=True, Title:="Выберите файл с численностью и текучестью кадров по компании " _
+ & CompanyName & " за " & Year(Date) - 1 & " год")
+ 
  If TypeName(FilesToOpen) = "Boolean" Then
- GoTo ExitHandler
+ GoTo exithandler
  End If
 
 ThisWorkbook.Sheets(SheetName).Activate
@@ -140,14 +145,14 @@ ThisWorkbook.Sheets(SheetName).Range("A2") = importWB.Sheets(1).Range("C4").Valu
 'завершение
 importWB.Close
 
-ThisWorkbook.Sheets(SheetName).Protect Password:="123"
+ThisWorkbook.Sheets(SheetName).Protect Password:=ps
 ThisWorkbook.Sheets(SheetName).Visible = False
 
-MsgBoxEx "Данные c численностью по компании" _
-& vbCr & ThisWorkbook.Sheets(SheetName).Range("A2").Value2 _
-& vbCr & "добавлены успешно", 0, "Выполнено", 20
+'MsgBoxEx "Данные c численностью по компании" _
+'& vbCr & ThisWorkbook.Sheets(SheetName).Range("A2").Value2 _
+'& vbCr & "добавлены успешно", 0, "Выполнено", 20
 
-ExitHandler:
+exithandler:
     Application.StatusBar = False
     Application.ScreenUpdating = True
     Application.EnableEvents = True
@@ -155,16 +160,16 @@ ExitHandler:
     Application.DisplayStatusBar = True
     Application.DisplayAlerts = True
     ThisWorkbook.Sheets("Preferences").Activate
-    ThisWorkbook.Sheets("Preferences").UnProtect Password:="123"
+    ThisWorkbook.Sheets("Preferences").UnProtect Password:=ps
     Rows("81:91").EntireRow.AutoFit
-    ThisWorkbook.Sheets("Preferences").Protect Password:="123"
-    ThisWorkbook.Protect Password:="123"
+    ThisWorkbook.Sheets("Preferences").Protect Password:=ps
+    ThisWorkbook.Protect Password:=ps
 
  Exit Sub
  
-ErrHandler:
+errhandler:
  MsgBox Err.Description
- Resume ExitHandler
+ Resume exithandler
 End Sub
 
 

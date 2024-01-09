@@ -29,7 +29,8 @@ Application.Calculation = xlManual
 
 FilesToOpen = Application.GetOpenFilename _
  (FileFilter:="Microsoft Excel Files (*.xlsx), *.xlsx", _
- MultiSelect:=True, Title:="Выберите расчётную ведомость по компании " & CompanyName)
+ MultiSelect:=True, Title:="Выберите расчётную ведомость по компании " _
+ & CompanyName & " за " & Year(Date) & " год")
  
  'статус бар
 Application.StatusBar = "Анализ данных..."
