@@ -7,9 +7,10 @@ Sub Data_Insertion_22()
  Dim ws, this As Worksheet
  Dim MyRange, MyCell As Range
  Dim SheetName, CompanyName As String
+ ps = "123$"
   
  Set ThisWorkbook = ActiveWorkbook
- On Error GoTo ExitHandler
+ On Error GoTo exithandler
  SheetName = "Processing22"
  DistinctYear = 2022
  Limit = 136 'последняя колонка базы
@@ -34,7 +35,7 @@ FilesToOpen = Application.GetOpenFilename _
 Application.StatusBar = "Анализ данных..."
 
  If TypeName(FilesToOpen) = "Boolean" Then ',была нажата кнопка отмены выход из процедуры
- GoTo ExitHandler
+ GoTo exithandler
  End If
 
 'вставка листов
@@ -52,9 +53,9 @@ On Error Resume Next
     With Selection:
         .Clear
     End With
-    MsgBoxEx "Выбрана неправильная расчётная ведомость." _
+    MsgBoxEx "Выбрана неправильная расчётная ведомость. Наименование компании не совпадает." _
     & vbCr & "Процесс прерван.", vbCritical, "Bad Day", 20
-    GoTo ExitHandler
+    GoTo exithandler
  ElseIf Range("G2").Value2 = DistinctYear Then
  Range("G2").Select
     With Selection:
@@ -62,6 +63,9 @@ On Error Resume Next
     End With
  End If
 
+ThisWorkbook.UnProtect Password:=ps
+ThisWorkbook.Sheets(SheetName).Visible = True
+ThisWorkbook.Sheets(SheetName).UnProtect Password:=ps
 ThisWorkbook.Sheets(SheetName).Activate
 On Error Resume Next
 ActiveSheet.ShowAllData
@@ -246,7 +250,7 @@ For i = 1 To Limit
     If Worksheets(SheetName).Cells(DataRow, i) = "Оплата работы в праздничные и выходные дни" Then
         aw(56) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, i) = "вознаграждение членам Совета Директоров" Then
+    If Worksheets(SheetName).Cells(DataRow, i) = "Вознаграждение членам Совета Директоров" Then
         aw(57) = i
     End If
     If Worksheets(SheetName).Cells(DataRow, i) = "Премия Германия У.Е" Then
@@ -270,7 +274,7 @@ For i = 1 To Limit
     If Worksheets(SheetName).Cells(DataRow, i) = "Надбавка за сложность и напряженность (по часам пропорционально отработаннму времени)" Then
         aw(64) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, i) = "Надбавка за профессионализм и качество выполняемых работ (по часам пропорц отраб времени)" Then
+    If Worksheets(SheetName).Cells(DataRow, i) = "Надбавка за профессионализм и качество выполняемых работ (по часам пропорц. отраб. времени)" Then
         aw(65) = i
     End If
     If Worksheets(SheetName).Cells(DataRow, i) = "Отсутствие по болезни" Then
@@ -337,7 +341,7 @@ For i = 1 To Limit
     If Worksheets(SheetName).Cells(DataRow, i) = "Зачтено излишне удержанного НДФЛ" Then
         aw(86) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, i) = "сотовая связь" Then
+    If Worksheets(SheetName).Cells(DataRow, i) = "Сотовая связь" Then
         aw(87) = i
     End If
 ' ----------------------------------------------------------------------------------------------------
@@ -663,7 +667,7 @@ For i = 1 To Limit
     If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Оплата работы в праздничные и выходные дни" Then
         iw(56) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "вознаграждение членам Совета Директоров" Then
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Вознаграждение членам Совета Директоров" Then
         iw(57) = i
     End If
     If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Премия Германия У.Е" Then
@@ -687,7 +691,7 @@ For i = 1 To Limit
     If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Надбавка за сложность и напряженность (по часам пропорционально отработаннму времени)" Then
         iw(64) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Надбавка за профессионализм и качество выполняемых работ (по часам пропорц отраб времени)" Then
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Надбавка за профессионализм и качество выполняемых работ (по часам пропорц. отраб. времени)" Then
         iw(65) = i
     End If
     If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Отсутствие по болезни" Then
@@ -754,7 +758,7 @@ For i = 1 To Limit
     If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Зачтено излишне удержанного НДФЛ" Then
         iw(86) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "сотовая связь" Then
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Сотовая связь" Then
         iw(87) = i
     End If
 ' ----------------------------------------------------------------------------------------------------
@@ -1149,15 +1153,17 @@ Columns("ED:ED").Select
 Application.StatusBar = "Выполнено: 100 %"
 
 'завершение
-ThisWorkbook.Sheets(SheetName).Activate
-MsgBoxEx "Расчётная ведомость " _
-    & "по компании " & vbCr & ThisWorkbook.Sheets("Preferences").Range("C7").Value2 _
-    & vbCr & "за " & ThisWorkbook.Sheets(SheetName).Range("B2").Value2 & " год" _
-    & vbCr & "добавлена успешно", 0, "Выполнено", 25
+
+ThisWorkbook.Sheets(SheetName).Protect Password:=ps
+ThisWorkbook.Sheets(SheetName).Visible = False
+'MsgBoxEx "Расчётная ведомость " _
+'    & "по компании " & vbCr & ThisWorkbook.Sheets("Preferences").Range("C7").Value2 _
+'    & vbCr & "за " & ThisWorkbook.Sheets(SheetName).Range("B2").Value2 & " год" _
+'    & vbCr & "добавлена успешно", 0, "Выполнено", 25
 
 ThisWorkbook.Sheets("Calculation22").Activate
 
-ExitHandler:
+exithandler:
     On Error Resume Next
     importWB.Close
     Application.StatusBar = False
@@ -1167,12 +1173,16 @@ ExitHandler:
     Application.DisplayStatusBar = True
     Application.DisplayAlerts = True
     Application.Calculation = xlAutomatic
- ThisWorkbook.Sheets("Preferences").Activate
+    ThisWorkbook.Sheets("Preferences").Activate
+    ThisWorkbook.Sheets("Preferences").UnProtect Password:=ps
+    Rows("81:91").EntireRow.AutoFit
+    ThisWorkbook.Sheets("Preferences").Protect Password:=ps
+    ThisWorkbook.Protect Password:=ps
  Exit Sub
   
-ErrHandler:
+errhandler:
  MsgBox Err.Description
- Resume ExitHandler
+ Resume exithandler
 End Sub
 
 

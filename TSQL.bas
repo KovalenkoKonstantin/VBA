@@ -98,8 +98,8 @@ Dim ThisWorkbook As Workbook
 Dim var As String
 Set ThisWorkbook = ActiveWorkbook
 
-var = ThisWorkbook.Sheets("ForDataBase").Range("AY1").Value2
-var1 = ThisWorkbook.Sheets("ForDataBase").Range("AZ1").Value2
+var = ThisWorkbook.Sheets("ForDataBase").Range("CC1").Value2
+var1 = ThisWorkbook.Sheets("ForDataBase").Range("CD1").Value2
 
 Application.ScreenUpdating = False
 Application.EnableEvents = False
@@ -109,7 +109,7 @@ Application.DisplayAlerts = False
 
 ActiveWorkbook.Queries("EmployeeChanges").Formula = "let Источник = " & _
 "Sql.Database(""msk-sql-02"", ""RKM"", [Query=""exec " & _
-"GetEmployeeChangesRefresh " & var & "," & var1 & ";""])" & Chr(13) & "" & _
+"GetEmployeeChanges " & var & "," & var1 & ";""])" & Chr(13) & "" & _
 "" & Chr(10) & "in" & Chr(13) & "" & Chr(10) & "    Источник"
 
 ActiveWorkbook.Queries("EmployeeChanges").Refresh
@@ -298,6 +298,7 @@ Dim var As String
 Set ThisWorkbook = ActiveWorkbook
 
 var = ThisWorkbook.Sheets("ForDataBase").Range("BN1").Value2
+var1 = ThisWorkbook.Sheets("ForDataBase").Range("BO1").Value2
 
 Application.ScreenUpdating = False
 Application.EnableEvents = False
@@ -307,7 +308,7 @@ Application.DisplayAlerts = False
 
 ActiveWorkbook.Queries("Tax").Formula = "let Источник = " & _
 "Sql.Database(""msk-sql-02"", ""RKM"", [Query=""exec " & _
-"GetTaxRefresh '" & var & "';""])" & Chr(13) & "" & _
+"GetTaxRefresh " & var & ", " & var1 & ";""])" & Chr(13) & "" & _
 "" & Chr(10) & "in" & Chr(13) & "" & Chr(10) & "    Источник"
 
 ActiveWorkbook.Queries("Tax").Refresh
