@@ -6,7 +6,7 @@ Sub Data_insertion_26()
  Dim SheetName As String
  
  Set ThisWorkbook = ActiveWorkbook
- On Error GoTo ExitHandler
+ On Error GoTo exithandler
  SheetName = "Ан.сч26"
  awLastCol = 9
  Start = Now()
@@ -24,7 +24,7 @@ ThisWorkbook.Sheets(SheetName).Activate
  MultiSelect:=True, Title:="Выберите файл с анализом 26 счёта")
 
  If TypeName(FilesToOpen) = "Boolean" Then
- GoTo ExitHandler
+ GoTo exithandler
  End If
  
 ThisWorkbook.Sheets(SheetName).Activate
@@ -70,7 +70,7 @@ importWB.Close
 ThisWorkbook.Sheets(SheetName).Activate
 MsgBox ("Данные успешно вставлены")
 
-ExitHandler:
+exithandler:
     Application.ScreenUpdating = True
     Application.EnableEvents = True
     ActiveSheet.DisplayPageBreaks = True
@@ -83,7 +83,95 @@ ExitHandler:
  
 ErrHandler:
  MsgBox Err.Description
- Resume ExitHandler
+ Resume exithandler
+
+End Sub
+
+Sub Data_insertion_26_SFB()
+ 
+ Dim FilesToOpen
+ Dim ThisWorkbook, importWB As Workbook
+ Dim SheetName As String
+ 
+ Set ThisWorkbook = ActiveWorkbook
+ On Error GoTo exithandler
+ SheetName = "Ан.сч26_СФБ"
+ awLastCol = 12
+ Start = Now()
+ 
+Application.ScreenUpdating = False
+Application.EnableEvents = False
+ActiveSheet.DisplayPageBreaks = False
+Application.DisplayStatusBar = False
+Application.DisplayAlerts = False
+
+ThisWorkbook.Sheets(SheetName).Activate
+
+ FilesToOpen = Application.GetOpenFilename _
+ (FileFilter:="Microsoft Excel Files (*.xls), *.xls", _
+ MultiSelect:=True, Title:="Выберите файл с анализом 26 счёта")
+
+ If TypeName(FilesToOpen) = "Boolean" Then
+ GoTo exithandler
+ End If
+ 
+ThisWorkbook.Sheets(SheetName).Activate
+On Error Resume Next
+ActiveSheet.ShowAllData
+
+'вставка листов
+Set importWB = Workbooks.Open(Filename:=FilesToOpen(1))
+
+On Error Resume Next
+
+ importWB.Sheets(1).Activate
+
+'удаление предыдущих данных
+ ThisWorkbook.Sheets(SheetName).Activate
+awLastRow = Cells(Rows.Count, "E").End(xlUp).row
+'awLastCol = Cells(begin, Columns.Count).End(xlUp).Column
+
+Range(Cells(1, 1), Cells(awLastRow, awLastCol)).Select
+ With Selection
+        .Clear
+ End With
+
+ 'вставка данных
+ importWB.Sheets(1).Activate
+ iwLastRow = Cells(Rows.Count, "E").End(xlUp).row
+ importWB.Activate
+ Range(Cells(1, 1), Cells(iwLastRow, awLastCol)).Copy
+ 
+ ThisWorkbook.Sheets(SheetName).Activate
+ Range(Cells(1, 1), Cells(iwLastRow, awLastCol)).Select
+    With Selection
+           .PasteSpecial Paste:=xlPasteAll
+           .UnMerge
+           .Font.Name = "Times New Roman"
+           .WrapText = False
+           .MergeCells = False
+           .Font.Size = 8
+    End With
+    
+'завершение
+importWB.Close
+ThisWorkbook.Sheets(SheetName).Activate
+MsgBox ("Данные успешно вставлены")
+
+exithandler:
+    Application.ScreenUpdating = True
+    Application.EnableEvents = True
+    ActiveSheet.DisplayPageBreaks = True
+    Application.DisplayStatusBar = True
+    Application.DisplayAlerts = True
+ ThisWorkbook.Sheets(SheetName).Activate
+' Finish = (Now() - Start) * 24 * 60 * 60
+'MsgBox (Finish)
+ Exit Sub
+ 
+ErrHandler:
+ MsgBox Err.Description
+ Resume exithandler
 
 End Sub
 
@@ -94,7 +182,7 @@ Sub Data_insertion_44()
  Dim SheetName As String
  
  Set ThisWorkbook = ActiveWorkbook
- On Error GoTo ExitHandler
+ On Error GoTo exithandler
  SheetName = "Ан.сч44"
  awLastCol = 9
  Start = Now()
@@ -112,7 +200,7 @@ ThisWorkbook.Sheets(SheetName).Activate
  MultiSelect:=True, Title:="Выберите файл с анализом 44 счёта")
 
  If TypeName(FilesToOpen) = "Boolean" Then
- GoTo ExitHandler
+ GoTo exithandler
  End If
  
 ThisWorkbook.Sheets(SheetName).Activate
@@ -158,7 +246,7 @@ importWB.Close
 ThisWorkbook.Sheets(SheetName).Activate
 MsgBox ("Данные успешно вставлены")
 
-ExitHandler:
+exithandler:
     Application.ScreenUpdating = True
     Application.EnableEvents = True
     ActiveSheet.DisplayPageBreaks = True
@@ -171,7 +259,7 @@ ExitHandler:
  
 ErrHandler:
  MsgBox Err.Description
- Resume ExitHandler
+ Resume exithandler
 
 End Sub
 Sub Data_insertion_90()
@@ -181,7 +269,7 @@ Sub Data_insertion_90()
  Dim SheetName As String
  
  Set ThisWorkbook = ActiveWorkbook
- On Error GoTo ExitHandler
+ On Error GoTo exithandler
  SheetName = "Ан.сч90"
  awLastCol = 9
  Start = Now()
@@ -199,7 +287,7 @@ ThisWorkbook.Sheets(SheetName).Activate
  MultiSelect:=True, Title:="Выберите файл с анализом 90 счёта")
 
  If TypeName(FilesToOpen) = "Boolean" Then
- GoTo ExitHandler
+ GoTo exithandler
  End If
  
 ThisWorkbook.Sheets(SheetName).Activate
@@ -246,7 +334,7 @@ importWB.Close
 ThisWorkbook.Sheets("Preferences").Activate
 MsgBox ("Данные успешно вставлены")
 
-ExitHandler:
+exithandler:
     Application.ScreenUpdating = True
     Application.EnableEvents = True
     ActiveSheet.DisplayPageBreaks = True
@@ -260,7 +348,7 @@ ThisWorkbook.Sheets("Preferences").Activate
  
 ErrHandler:
  MsgBox Err.Description
- Resume ExitHandler
+ Resume exithandler
 
 End Sub
 
@@ -271,7 +359,7 @@ Sub Data_insertion_OFR()
  Dim SheetName As String
  
  Set ThisWorkbook = ActiveWorkbook
- On Error GoTo ExitHandler
+ On Error GoTo exithandler
  SheetName = "ОФР"
  awLastCol = 20
  Start = Now()
@@ -289,7 +377,7 @@ ThisWorkbook.Sheets(SheetName).Activate
  MultiSelect:=True, Title:="Выберите файл с первым листом ОФР")
 
  If TypeName(FilesToOpen) = "Boolean" Then
- GoTo ExitHandler
+ GoTo exithandler
  End If
  
 ThisWorkbook.Sheets(SheetName).Activate
@@ -391,7 +479,7 @@ Company = ThisWorkbook.Sheets(SheetName).Cells(10, 22).Value2
 Period = ThisWorkbook.Sheets(SheetName).Cells(10, 23).Value2
 'MsgBox ("Данные по компании " & Company & Period & " успешно добавлены")
 
-ExitHandler:
+exithandler:
     Application.ScreenUpdating = True
     Application.EnableEvents = True
     ActiveSheet.DisplayPageBreaks = True
@@ -404,7 +492,7 @@ ExitHandler:
  
 ErrHandler:
  MsgBox Err.Description
- Resume ExitHandler
+ Resume exithandler
 
 End Sub
 
@@ -425,7 +513,7 @@ beging:
  Dim ws As Worksheet
  
  Set ThisWorkbook = ActiveWorkbook
- On Error GoTo ExitHandler
+ On Error GoTo exithandler
  SheetName = "ССЧ22"
  
 Application.ScreenUpdating = False
@@ -441,7 +529,7 @@ ThisWorkbook.Sheets(SheetName).Activate
  MultiSelect:=True, Title:="Выберите файл с численностью и текучестью кадров")
 
  If TypeName(FilesToOpen) = "Boolean" Then
- GoTo ExitHandler
+ GoTo exithandler
  End If
 
 ThisWorkbook.Sheets(SheetName).Activate
@@ -510,7 +598,7 @@ If X <> Y Then
 End If
 MsgBox "Данные по численности добавлены"
 
-ExitHandler:
+exithandler:
     Application.ScreenUpdating = True
     Application.EnableEvents = True
     ActiveSheet.DisplayPageBreaks = True
@@ -523,6 +611,6 @@ ExitHandler:
  
 ErrHandler:
  MsgBox Err.Description
- Resume ExitHandler
+ Resume exithandler
 
 End Sub

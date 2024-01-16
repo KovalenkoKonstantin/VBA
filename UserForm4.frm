@@ -1,7 +1,7 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} UserForm4 
    Caption         =   "Выберите счёт"
-   ClientHeight    =   2505
+   ClientHeight    =   3225
    ClientLeft      =   120
    ClientTop       =   465
    ClientWidth     =   4560
@@ -22,7 +22,7 @@ UserForm4.Hide
  Dim SheetName As String
  
  Set ThisWorkbook = ActiveWorkbook
- On Error GoTo ExitHandler
+ On Error GoTo exithandler
  SheetName = "Ан.сч26"
  awLastCol = 9
  
@@ -40,7 +40,7 @@ ThisWorkbook.Sheets(SheetName).Activate
 
  If TypeName(FilesToOpen) = "Boolean" Then
  MsgBox ("Действие отменено")
- GoTo ExitHandler
+ GoTo exithandler
  End If
  
 ThisWorkbook.Sheets(SheetName).Activate
@@ -86,7 +86,7 @@ importWB.Close
 ThisWorkbook.Sheets(SheetName).Activate
 MsgBox ("Данные по анализу счёта 26 успешно добавлены")
 
-ExitHandler:
+exithandler:
     Application.ScreenUpdating = True
     Application.EnableEvents = True
     ActiveSheet.DisplayPageBreaks = True
@@ -99,7 +99,7 @@ ExitHandler:
  
 ErrHandler:
  MsgBox Err.Description
- Resume ExitHandler
+ Resume exithandler
 End Sub
 
 Private Sub CommandButton2_Click()
@@ -109,7 +109,7 @@ UserForm4.Hide
  Dim SheetName As String
  
  Set ThisWorkbook = ActiveWorkbook
- On Error GoTo ExitHandler
+ On Error GoTo exithandler
  SheetName = "Ан.сч44"
  awLastCol = 9
  Start = Now()
@@ -128,7 +128,7 @@ ThisWorkbook.Sheets(SheetName).Activate
 
  If TypeName(FilesToOpen) = "Boolean" Then
  MsgBox ("Действие отменено")
- GoTo ExitHandler
+ GoTo exithandler
  End If
  
 ThisWorkbook.Sheets(SheetName).Activate
@@ -174,7 +174,7 @@ importWB.Close
 ThisWorkbook.Sheets(SheetName).Activate
 MsgBox ("Данные по анализу счёта 44 успешно добавлены")
 
-ExitHandler:
+exithandler:
     Application.ScreenUpdating = True
     Application.EnableEvents = True
     ActiveSheet.DisplayPageBreaks = True
@@ -187,7 +187,7 @@ ExitHandler:
  
 ErrHandler:
  MsgBox Err.Description
- Resume ExitHandler
+ Resume exithandler
 End Sub
 
 Private Sub CommandButton3_Click()
@@ -197,7 +197,7 @@ UserForm4.Hide
  Dim SheetName As String
  
  Set ThisWorkbook = ActiveWorkbook
- On Error GoTo ExitHandler
+ On Error GoTo exithandler
  SheetName = "Ан.сч20"
  awLastCol = 9
  Start = Now()
@@ -216,7 +216,7 @@ ThisWorkbook.Sheets(SheetName).Activate
 
  If TypeName(FilesToOpen) = "Boolean" Then
  MsgBox ("Действие отменено")
- GoTo ExitHandler
+ GoTo exithandler
  End If
  
 ThisWorkbook.Sheets(SheetName).Activate
@@ -262,7 +262,7 @@ importWB.Close
 ThisWorkbook.Sheets(SheetName).Activate
 MsgBox ("Данные по анализу счёта 20 успешно добавлены")
 
-ExitHandler:
+exithandler:
     Application.ScreenUpdating = True
     Application.EnableEvents = True
     ActiveSheet.DisplayPageBreaks = True
@@ -275,10 +275,15 @@ ExitHandler:
  
 ErrHandler:
  MsgBox Err.Description
- Resume ExitHandler
+ Resume exithandler
 End Sub
 
 Private Sub CommandButton4_Click()
     UserForm4.Hide
     Data_insertion_90
+End Sub
+
+Private Sub CommandButton5_Click()
+    UserForm4.Hide
+    Data_insertion_26_SFB
 End Sub
