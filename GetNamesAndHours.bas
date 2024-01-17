@@ -1,4 +1,4 @@
-Attribute VB_Name = "GetNames"
+Attribute VB_Name = "GetNamesAndHours"
 Public Sub GetDistinctNames()
 
 Application.ScreenUpdating = False
@@ -13,6 +13,10 @@ Application.DisplayAlerts = False
     Dim ThisWorkbook, importWB As Workbook
     Dim DistinctList As Variant
     Dim FilesToOpen
+    Dim WorkbookLinks As Variant
+    Dim Wb As Workbook
+'    Dim n As Variant
+    Dim i As Long
     
 FilesToOpen = Application.GetOpenFilename _
  (FileFilter:="Microsoft Excel Files (*.xlsx), *.xlsx", _
@@ -22,6 +26,8 @@ FilesToOpen = Application.GetOpenFilename _
     Set ThisWorkbook = ActiveWorkbook
     SheetName = "РВ"
     ThisWorkbook.Sheets(SheetName).Activate
+    On Error Resume Next
+    ActiveSheet.ShowAllData
     Range("B4:B103").ClearContents
     
 Set importWB = Workbooks.Open(Filename:=FilesToOpen(1))
@@ -43,12 +49,56 @@ ThisWorkbook.Sheets(SheetName).Activate
     'записываю элементы в новый массив
       j = j + 1
     DistinctList(j) = DistinctList(i)
-'    Debug.Print DistinctList(j)
+    Debug.Print DistinctList(j)
 
 'вывожу элементы на лист в ячейку B4
-    Range("B" & i + 3).Value2 = DistinctList(j)
+    Range("B" & i + 2).Value2 = DistinctList(j)
     End If
   Next
+
+'добавление формулы в первую ячейку
+Range("J4").Select
+ActiveCell.FormulaR1C1 = "=SUMIFS('[" & importWB.Name & "]Задействование'!C6," _
+& "'[" & importWB.Name & "]Задействование'!C10,RC[12]," _
+& "'[" & importWB.Name & "]Задействование'!C11,RC[9]," _
+& "'[" & importWB.Name & "]Задействование'!C4,RC[-8])"
+
+'выделяю ячейку с формулой и копирую формулу
+Range("J4").Select
+Selection.Copy
+
+'выделение области вставки формул
+Range("J4:J103,J105:J204,J206:J305,J307:J406," _
+& "J408:J507,J509:J608,J610:J709,J711:J810,J812:J911," _
+& "J913:J1012,J1014:J1113,J1115:J1214,J1216:J1315,J1317:J1416," _
+& "J1418:J1517,J1519:J1618,J1620:J1719,J1721:J1820,J1822:J1921," _
+& "J1923:J2022,J2024:J2123,J2125:J2224,J2226:J2325").Select
+
+'добавление значений в весь выделенный диапазон
+Selection.PasteSpecial Paste:=xlPasteFormulas, Operation:=xlNone, _
+        SkipBlanks:=False, Transpose:=False
+        
+'скрываю лишнее устанавливаю фильтр по нулевым значениям
+ActiveSheet.Range("$A$2:$BF$2428").AutoFilter Field:=11, _
+    Criteria1:="<>0", Operator:=xlFilterValues
+    
+'разрываю связи с внешними книгами
+
+'        For Each n In ActiveWorkbook.Names:
+'        On Error Resume Next
+'            n.delete:
+'        Next
+
+Set Wb = ActiveWorkbook
+WorkbookLinks = Wb.LinkSources(Type:=xlLinkTypeExcelLinks)
+If IsArray(WorkbookLinks) Then
+    For i = LBound(WorkbookLinks) To UBound(WorkbookLinks)
+        Wb.BreakLink _
+                Name:=WorkbookLinks(i), _
+                Type:=xlLinkTypeExcelLinks
+    Next i
+Else
+End If
   
 importWB.Close
     Application.StatusBar = False
