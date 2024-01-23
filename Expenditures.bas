@@ -9,15 +9,15 @@ Sub Overheads()
  Dim SheetName, CompanyName As String
   
  Set ThisWorkbook = ActiveWorkbook
- On Error GoTo ExitHandler
+ On Error GoTo exithandler
  SheetName = "Expenditures"
 ' DistinctYear = 2021
- Limit = 138 'последняя колонка базы
+ Limit = 139 'последняя колонка базы
  begin = 12 'первый ряд вставки
  CompanyName = ThisWorkbook.Sheets("Preferences").Range("C7").Value2 'имя проекта
  
- Dim aw(1 To 138) As Variant
- Dim iw(1 To 138) As Variant
+ Dim aw(1 To 139) As Variant
+ Dim iw(1 To 139) As Variant
  
 Application.ScreenUpdating = False
 Application.EnableEvents = False
@@ -26,19 +26,15 @@ ActiveSheet.DisplayPageBreaks = False
 Application.DisplayAlerts = False
 Application.Calculation = xlManual
 
-MsgBoxEx "Расчётная ведомость должна быть с начала года!" _
- & vbCr & "В противном случае, не все проверки буду отработанны корректно." _
-    & vbCr & "...", vbCritical, "Pay attention", 20
-
 FilesToOpen = Application.GetOpenFilename _
  (FileFilter:="Microsoft Excel Files (*.xlsx), *.xlsx", _
  MultiSelect:=True, Title:="Выберите расчётную ведомость по компании " & CompanyName)
-  
+ 
  'статус бар
 Application.StatusBar = "Анализ данных..."
 
  If TypeName(FilesToOpen) = "Boolean" Then ',была нажата кнопка отмены выход из процедуры
- GoTo ExitHandler
+ GoTo exithandler
  End If
 
 'вставка листов
@@ -58,7 +54,7 @@ On Error Resume Next
 '    End With
     MsgBoxEx "Выбрана неправильная расчётная ведомость." _
     & vbCr & "Процесс прерван.", vbCritical, "Bad Day", 20
-    GoTo ExitHandler
+    GoTo exithandler
 ' ElseIf Range("G2").Value2 = DistinctYear Then
 ' Range("G2").Select
 '    With Selection:
@@ -476,9 +472,6 @@ For i = 1 To Limit
     If Worksheets(SheetName).Cells(DataRow, i) = "Год" Then
         aw(128) = i
     End If
-    If Worksheets(SheetName).Cells(DataRow, i) = "ФОТ ИТОГО" Then
-        aw(129) = i
-    End If
     If Worksheets(SheetName).Cells(DataRow, i) = "Доплата за работу в ночное время (праздничные и выходные дни)" Then
         aw(134) = i
     End If
@@ -493,6 +486,9 @@ For i = 1 To Limit
     End If
     If Worksheets(SheetName).Cells(DataRow, i) = "Сотовая связь" Then
         aw(138) = i
+    End If
+    If Worksheets(SheetName).Cells(DataRow, i) = "База взносов1" Then
+        aw(139) = i
     End If
     
 Next i
@@ -901,9 +897,6 @@ For i = 1 To Limit
     If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Премия месячная" Then '-
         iw(127) = i
     End If
-    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "ФОТ ИТОГО" Then '-
-        iw(129) = i
-    End If
     If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Доплата за работу в ночное время (праздничные и выходные дни)" Then '-
         iw(134) = i
     End If
@@ -918,6 +911,10 @@ For i = 1 To Limit
     End If
     If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Сотовая связь" Then '-
         iw(138) = i
+    End If
+' ----------------------------------------------------------------------------------------------------
+    If importWB.Sheets(1).Cells(ImportSecondDataRow, i) = "База взносов1" Then '-
+        iw(139) = i
     End If
     
 
@@ -1171,7 +1168,12 @@ Columns("EC:EC").Select
 Columns("EF:EF").Select
     Selection.NumberFormat = _
         "_-* #,##0.00 _?_-;-* #,##0.00 _?_-;_-* ""-""?? _?_-;_-@_-"
-Columns("I:I").Select
+
+Columns("EH:EH").Select
+    Selection.NumberFormat = _
+        "_-* #,##0.00 _?_-;-* #,##0.00 _?_-;_-* ""-""?? _?_-;_-@_-"
+
+Columns("EI:EI").Select
     Selection.NumberFormat = _
         "_-* #,##0.00 _?_-;-* #,##0.00 _?_-;_-* ""-""?? _?_-;_-@_-"
 
@@ -1187,7 +1189,7 @@ MsgBoxEx "Расчётная ведомость " _
 
 ThisWorkbook.Sheets("Calculation22").Activate
 
-ExitHandler:
+exithandler:
     On Error Resume Next
     importWB.Close
     Application.StatusBar = False
@@ -1202,7 +1204,7 @@ ExitHandler:
   
 ErrHandler:
  MsgBox Err.Description
- Resume ExitHandler
+ Resume exithandler
 
 End Sub
 
