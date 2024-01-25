@@ -13,12 +13,12 @@ Sub Data_Insertion_22()
  On Error GoTo exithandler
  SheetName = "Processing22"
  DistinctYear = 2022
- Limit = 136 'последняя колонка базы
+ Limit = 139 'последняя колонка базы
  begin = 12 'первый ряд вставки
  CompanyName = ThisWorkbook.Sheets("Preferences").Range("C7").Value2 'имя проекта
  
- Dim aw(1 To 136) As Variant
- Dim iw(1 To 136) As Variant
+ Dim aw(1 To 139) As Variant
+ Dim iw(1 To 139) As Variant
  
 Application.ScreenUpdating = False
 Application.EnableEvents = False
@@ -481,6 +481,15 @@ For i = 1 To Limit
     If Worksheets(SheetName).Cells(DataRow, i) = "Премия полугодовая" Then
         aw(136) = i
     End If
+    If Worksheets(SheetName).Cells(DataRow, i) = "Компенсация отпуска (Отпуск лицам, работающим в районах Крайнего Севера)" Then
+        aw(137) = i
+    End If
+    If Worksheets(SheetName).Cells(DataRow, i) = "База взносов ДГПХ" Then
+        aw(138) = i
+    End If
+    If Worksheets(SheetName).Cells(DataRow, i) = "% Страховых взносов ДГПХ" Then
+        aw(139) = i
+    End If
     
 Next i
  
@@ -897,6 +906,17 @@ For i = 1 To Limit
     If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Премия полугодовая" Then '-
         iw(136) = i
     End If
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Компенсация отпуска (Отпуск лицам, работающим в районах Крайнего Севера)" Then '-
+        iw(137) = i
+    End If
+' ----------------------------------------------------------------------------------------------------
+    If importWB.Sheets(1).Cells(ImportSecondDataRow, i) = "База взносов ДГПХ" Then '-
+        iw(138) = i
+    End If
+' ----------------------------------------------------------------------------------------------------
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "% Страховых взносов ДГПХ" Then '-
+        iw(139) = i
+    End If
     
 
 Next i
@@ -1153,6 +1173,12 @@ Columns("DW:DW").Select
     Selection.NumberFormat = _
         "_-* #,##0.00 _?_-;-* #,##0.00 _?_-;_-* ""-""?? _?_-;_-@_-"
 Columns("ED:ED").Select
+    Selection.NumberFormat = _
+        "_-* #,##0.00 _?_-;-* #,##0.00 _?_-;_-* ""-""?? _?_-;_-@_-"
+Columns("EI:EI").Select
+    Selection.NumberFormat = _
+        "_-* #,##0.00 _?_-;-* #,##0.00 _?_-;_-* ""-""?? _?_-;_-@_-"
+Columns("EH:EH").Select
     Selection.NumberFormat = _
         "_-* #,##0.00 _?_-;-* #,##0.00 _?_-;_-* ""-""?? _?_-;_-@_-"
 
