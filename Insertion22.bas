@@ -1005,13 +1005,15 @@ Application.StatusBar = "Добавление формул расчётной нормы часов. Выполнено: 89 
 'расчётная норма часов
 K = 3
 Cells(begin, aw(K)).Select
-    ActiveCell.FormulaR1C1 = _
-        "=IF(OR(CONCATENATE(RC[-1],"" "",RC[5])=RC[-2]," _
-        & "VLOOKUP(RC[-2],RC1:RC114,MATCH(R8C4,R9C1:R9C114,0),0)>0," _
-        & "VLOOKUP(RC[-2],RC1:RC114,MATCH(R7C4,R9C1:R9C114,0),0)>0," _
-        & "RC[4]=TRUE),"""",VLOOKUP(RC[-1],INDIRECT(CONCATENATE(""'"",VALUE(RC[5])," _
-        & """ произ. календарь'!$A:$BM"")),HLOOKUP(RC[20]," _
-        & "INDIRECT(CONCATENATE(""'"",VALUE(RC[5]),"" произ. календарь'!$2:$3"")),2,0),0))"
+    ActiveCell.FormulaR1C1 = "=IF(OR(CONCATENATE(RC[-1],"" "",RC[5])=RC[-2]," _
+    & "VLOOKUP(RC[-2],RC1:RC114,MATCH(R8C4,R9C1:R9C114,0),0)>0," _
+    & "VLOOKUP(RC[-2],RC1:RC114,MATCH(R7C4,R9C1:R9C114,0),0)>0," _
+    & "VLOOKUP(RC[-2],RC1:RC114,MATCH(R6C4,R9C1:R9C114,0),0)>0," _
+    & "RC[4]=TRUE),"""",VLOOKUP(RC[-1],INDIRECT(CONCATENATE(""'"",VALUE(RC[5])," _
+    & """ произ. календарь'!$A:$BM"")),HLOOKUP(RC[20],INDIRECT" _
+    & "(CONCATENATE(""'"",VALUE(RC" & _
+        "[5]),"" произ. календарь'!$2:$3"")),2,0),0))" & _
+        ""
     Cells(begin, aw(K)).Select
     Selection.AutoFill Destination:=Range(Cells(begin, aw(K)), Cells(iwLastRow, aw(K)))
     
@@ -1170,6 +1172,9 @@ Columns("EC:EC").Select
     Selection.NumberFormat = _
         "_-* #,##0.00 _?_-;-* #,##0.00 _?_-;_-* ""-""?? _?_-;_-@_-"
 Columns("DW:DW").Select
+    Selection.NumberFormat = _
+        "_-* #,##0.00 _?_-;-* #,##0.00 _?_-;_-* ""-""?? _?_-;_-@_-"
+Columns("DZ:DZ").Select
     Selection.NumberFormat = _
         "_-* #,##0.00 _?_-;-* #,##0.00 _?_-;_-* ""-""?? _?_-;_-@_-"
 Columns("ED:ED").Select
