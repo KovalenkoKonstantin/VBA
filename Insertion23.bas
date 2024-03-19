@@ -15,7 +15,7 @@ Sub Data_Insertion_23()
  DistinctYear = 2023
  Limit = 139 'последняя колонка базы
  begin = 12 'первый ряд вставки
- CompanyName = ThisWorkbook.Sheets("Preferences").Range("C7").Value2 'имя компании
+ CompanyName = ThisWorkbook.Sheets("Preferences").Range("C7").Value2 'имя проекта
  
  Dim aw(1 To 139) As Variant
  Dim iw(1 To 139) As Variant
@@ -30,7 +30,7 @@ Application.Calculation = xlManual
 FilesToOpen = Application.GetOpenFilename _
  (FileFilter:="Microsoft Excel Files (*.xlsx), *.xlsx", _
  MultiSelect:=True, Title:="Выберите расчётную ведомость по компании " _
- & CompanyName & " за " & Year(Date) & " год")
+ & CompanyName & " за " & Year(Date) - 1 & " год")
  
  'статус бар
 Application.StatusBar = "Анализ данных..."
@@ -472,6 +472,9 @@ For i = 1 To Limit
     If Worksheets(SheetName).Cells(DataRow, i) = "Год" Then
         aw(128) = i
     End If
+    If Worksheets(SheetName).Cells(DataRow, i) = "ФОТ ИТОГО" Then
+        aw(133) = i
+    End If
     If Worksheets(SheetName).Cells(DataRow, i) = "Доплата за работу в ночное время (праздничные и выходные дни)" Then
         aw(134) = i
     End If
@@ -897,6 +900,9 @@ For i = 1 To Limit
     If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Премия месячная" Then '-
         iw(127) = i
     End If
+    If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "ФОТ ИТОГО" Then '-
+        iw(133) = i
+    End If
     If importWB.Sheets(1).Cells(ImportFirstDataRow, i) = "Доплата за работу в ночное время (праздничные и выходные дни)" Then '-
         iw(134) = i
     End If
@@ -1005,13 +1011,15 @@ Application.StatusBar = "Добавление формул расчётной нормы часов. Выполнено: 89 
 'расчётная норма часов
 K = 3
 Cells(begin, aw(K)).Select
-    ActiveCell.FormulaR1C1 = _
-        "=IF(OR(CONCATENATE(RC[-1],"" "",RC[5])=RC[-2]," _
-        & "VLOOKUP(RC[-2],RC1:RC114,MATCH(R8C4,R9C1:R9C114,0),0)>0," _
-        & "VLOOKUP(RC[-2],RC1:RC114,MATCH(R7C4,R9C1:R9C114,0),0)>0," _
-        & "RC[4]=TRUE),"""",VLOOKUP(RC[-1],INDIRECT(CONCATENATE(""'"",VALUE(RC[5])," _
-        & """ произ. календарь'!$A:$BZ"")),HLOOKUP(RC[20]," _
-        & "INDIRECT(CONCATENATE(""'"",VALUE(RC[5]),"" произ. календарь'!$2:$3"")),2,0),0))"
+    ActiveCell.FormulaR1C1 = "=IF(OR(CONCATENATE(RC[-1],"" "",RC[5])=RC[-2]," _
+    & "VLOOKUP(RC[-2],RC1:RC114,MATCH(R8C4,R9C1:R9C114,0),0)>0," _
+    & "VLOOKUP(RC[-2],RC1:RC114,MATCH(R7C4,R9C1:R9C114,0),0)>0," _
+    & "VLOOKUP(RC[-2],RC1:RC114,MATCH(R6C4,R9C1:R9C114,0),0)>0," _
+    & "RC[4]=TRUE),"""",VLOOKUP(RC[-1],INDIRECT(CONCATENATE(""'"",VALUE(RC[5])," _
+    & """ произ. календарь'!$A:$BR"")),HLOOKUP(RC[20],INDIRECT" _
+    & "(CONCATENATE(""'"",VALUE(RC" & _
+        "[5]),"" произ. календарь'!$2:$3"")),2,0),0))" & _
+        ""
     Cells(begin, aw(K)).Select
     Selection.AutoFill Destination:=Range(Cells(begin, aw(K)), Cells(iwLastRow, aw(K)))
     
@@ -1021,8 +1029,10 @@ Application.StatusBar = "Добавление формул анализа нормы часов. Выполнено: 90 %"
 K = 4
 Cells(begin, aw(K)).Select
     ActiveCell.FormulaR1C1 = _
-        "=OR(RC[-1]="""",OR(RC[-1]=VALUE(RC[21]),VLOOKUP(RC[-3],RC1:RC114," _
-        & "MATCH(R8C4,R9C1:R9C114,0),0)>0))"
+        "=OR(RC[-1]="""",OR(RC[-1]=" _
+        & "VALUE(RC[21]),VLOOKUP(RC[-3],RC1:RC114," _
+        & "MATCH(R8C4,R9C1:R9C114,0),0)>0),SUM(RC[22]:RC[124])=0," _
+        & "NOT(ISNA(MATCH(RC[-3]&RC[-2]&RC[4],Изм.граф!C7,0))))"
     Range("A1").Copy
     Cells(begin, aw(K)).Select
     Selection.PasteSpecial Paste:=xlPasteFormats
@@ -1038,7 +1048,7 @@ Cells(begin, aw(K)).Select
         "=IF(OR(CONCATENATE(RC[-3],"" "",RC[3])=RC[-4]," _
         & "VLOOKUP(RC[-4],RC1:RC114,MATCH(R8C4,R9C1:R9C114,0),0)>0," _
         & "RC[2]=TRUE),"""",VLOOKUP(RC[-3],INDIRECT(CONCATENATE(""'"",VALUE(RC[3])," _
-        & """ произ. календарь'!$A$18:$BM$31"")),HLOOKUP(RC[18]," _
+        & """ произ. календарь'!$A$18:$BR$31"")),HLOOKUP(RC[18]," _
         & "INDIRECT(CONCATENATE(""'"",VALUE(RC[3]),"" произ. календарь'!$18:$19"")),2,0),0))"
     Cells(begin, aw(K)).Select
     Selection.AutoFill Destination:=Range(Cells(begin, aw(K)), Cells(iwLastRow, aw(K)))
@@ -1049,8 +1059,9 @@ Application.StatusBar = "Добавление формул анализа нормы дней. Выполнено: 92 %"
 K = 6
 Cells(begin, aw(K)).Select
     ActiveCell.FormulaR1C1 = _
-        "=OR(RC[-3]="""",OR(RC[-1]=VALUE(RC[18])," _
-        & "VLOOKUP(RC[-5],RC1:RC114,MATCH(R8C4,R9C1:R9C114,0),0)>0))"
+        "=OR(RC[-3]="""",OR(RC[-1]=VALUE(RC[18]),VLOOKUP(RC[-5]," _
+        & "RC1:RC114,MATCH(R8C4,R9C1:R9C114,0),0)>0),SUM(RC[20]:RC[122])=0," _
+        & "NOT(ISNA(MATCH(RC[-5]&RC[-4]&RC[2],Изм.граф!C7,0))))"
     Range("A1").Copy
     Cells(begin, aw(K)).Select
     Selection.PasteSpecial Paste:=xlPasteFormats
@@ -1166,6 +1177,9 @@ Columns("EC:EC").Select
 Columns("DW:DW").Select
     Selection.NumberFormat = _
         "_-* #,##0.00 _?_-;-* #,##0.00 _?_-;_-* ""-""?? _?_-;_-@_-"
+Columns("DZ:DZ").Select
+    Selection.NumberFormat = _
+        "_-* #,##0.00 _?_-;-* #,##0.00 _?_-;_-* ""-""?? _?_-;_-@_-"
 Columns("ED:ED").Select
     Selection.NumberFormat = _
         "_-* #,##0.00 _?_-;-* #,##0.00 _?_-;_-* ""-""?? _?_-;_-@_-"
@@ -1188,7 +1202,7 @@ ThisWorkbook.Sheets(SheetName).Visible = False
 '    & vbCr & "за " & ThisWorkbook.Sheets(SheetName).Range("B2").Value2 & " год" _
 '    & vbCr & "добавлена успешно", 0, "Выполнено", 25
 
-ThisWorkbook.Sheets("Calculation23").Activate
+'ThisWorkbook.Sheets("Calculation23").Activate
 
 exithandler:
     On Error Resume Next
@@ -1211,8 +1225,6 @@ errhandler:
  MsgBox Err.Description
  Resume exithandler
 End Sub
-
-
 
 
 
