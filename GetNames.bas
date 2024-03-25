@@ -35,18 +35,19 @@ Set FullNameColumn = ActiveSheet.UsedRange.Range("D5:D150") ' ƒиапазон значений.
     dimension = UBound(DistinctList, 1) 'размер массива
 
 ThisWorkbook.Sheets(SheetName).Activate
-  
+    
+  j = -1
   'идЄм циклом по элементам массива
-  For i = 1 To dimension
+  For i = 0 To dimension
   'предполагаю что длина имени не может быть меньше 5 знаков
     If Len(DistinctList(i)) > 5 Then
     'записываю элементы в новый массив
       j = j + 1
     DistinctList(j) = DistinctList(i)
-'    Debug.Print DistinctList(j)
+    Debug.Print DistinctList(j)
 
 'вывожу элементы на лист в €чейку B4
-    Range("B" & i + 3).Value2 = DistinctList(j)
+    Range("B" & i + 4).Value2 = DistinctList(j)
     End If
   Next
   
