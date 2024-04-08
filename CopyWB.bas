@@ -71,10 +71,12 @@ FilePath = Path & "\" & SaveName & ".xls"
 If Dir(FilePath) <> "" Then
     Kill FilePath
     ActiveWorkbook.SaveAs Filename:=Path & "\" & _
-    SaveName & ".xls"
+    SaveName & ".xlsx" _
+    , FileFormat:=xlOpenXMLWorkbook, CreateBackup:=False
 Else
     ActiveWorkbook.SaveAs Filename:=Path & "\" & _
-    SaveName & ".xls"
+    SaveName & ".xlsx" _
+    , FileFormat:=xlOpenXMLWorkbook, CreateBackup:=False
 End If
 
 'удаляю "Табель" из массива
@@ -88,14 +90,15 @@ For i = FindIndex To UBound(DistinctList)
     DistinctList(i - 1) = DistinctList(i)
 Next
 ReDim Preserve DistinctList(LBound(DistinctList) To i - 2)
-
-'дебаг
-Debug.Print Join(DistinctList, vbCrLf)
+'
+''дебаг
+'Debug.Print Join(DistinctList, vbCrLf)
 
 ActiveWorkbook.Sheets(DistinctList).Select
 
-'вызов окна печати
-Application.Dialogs(xlDialogPrint).Show
+''вызов окна печати
+'Application.Dialogs(xlDialogPrint).Show
+
 
 Application.StatusBar = False
 Application.ScreenUpdating = True
