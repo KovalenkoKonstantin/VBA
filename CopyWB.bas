@@ -11,13 +11,13 @@ Dim WbLinks
 Dim SaveName As String
 Dim DistinctList As Variant
 Dim FullNameColumn As Range
+Dim Val As String
 
 Path = ActiveWorkbook.Path
 SaveName = ActiveSheet.Range("H30").Text
 ThisWorkbook.Sheets("Preferences").Activate
 Set FullNameColumn = ActiveSheet.UsedRange.Range("I2:I20") ' Диапазон значений. С пустыми ячейками
 DistinctList = GetDistinctItems(FullNameColumn) ' Передаем диапазон в функцию.
-
 
 'удаляю значение массива содержащее пустую ячейку
 n = LBound(DistinctList) ' удаляемый элемент он первый т.к. массив отсортирован функцией
@@ -26,16 +26,15 @@ For i = n To UBound(DistinctList) - 1
 Next
 ReDim Preserve DistinctList(LBound(DistinctList) To i - 1)
 
-
-'дебаг
-Debug.Print Join(DistinctList, vbCrLf) ' Выводим результат.
-Debug.Print ("____________________________")
+''дебаг
+'Debug.Print Join(DistinctList, vbCrLf)
+'Debug.Print ("____________________________")
 'добавялю новый элемент массива
 ReDim Preserve DistinctList(UBound(DistinctList) + 1)
 'задаю имя нового элемента
 DistinctList(UBound(DistinctList)) = "Ninth"
-'дебаг
-Debug.Print Join(DistinctList, vbCrLf) ' Выводим результат.
+''дебаг
+'Debug.Print Join(DistinctList, vbCrLf)
 
 ActiveWorkbook.Sheets(DistinctList).Copy
 'значения как на экране
@@ -63,9 +62,9 @@ If Not IsEmpty(WbLinks) Then
     Next
 Else
 End If
-
-'по названию первого элемента массива активирую лист книги
-ActiveWorkbook.Sheets(DistinctList(LBound(DistinctList))).Select
+'
+''по названию первого элемента массива активирую лист книги
+'ActiveWorkbook.Sheets(DistinctList(LBound(DistinctList))).Select
 
 'удаление файла если уже существует
 FilePath = Path & "\" & SaveName & ".xls"
@@ -77,6 +76,26 @@ Else
     ActiveWorkbook.SaveAs Filename:=Path & "\" & _
     SaveName & ".xls"
 End If
+
+'удаляю "Табель" из массива
+Val = "Табель"
+For i = 1 To UBound(DistinctList, 1)
+        If Not IsError(Application.Match(Val, Application.Index(DistinctList, i, 0), 0)) Then
+            FindIndex = Application.Match(Val, Application.Index(DistinctList, i, 0), 0)
+        End If
+Next
+For i = FindIndex To UBound(DistinctList)
+    DistinctList(i - 1) = DistinctList(i)
+Next
+ReDim Preserve DistinctList(LBound(DistinctList) To i - 2)
+
+'дебаг
+Debug.Print Join(DistinctList, vbCrLf)
+
+ActiveWorkbook.Sheets(DistinctList).Select
+
+'вызов окна печати
+Application.Dialogs(xlDialogPrint).Show
 
 Application.StatusBar = False
 Application.ScreenUpdating = True

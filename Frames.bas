@@ -1,6 +1,13 @@
 Attribute VB_Name = "Frames"
 Sub Frames_Insertion()
 
+Application.ScreenUpdating = False
+Application.EnableEvents = False
+ActiveSheet.DisplayPageBreaks = False
+Application.DisplayStatusBar = False
+Application.DisplayAlerts = False
+
+
 Dim sh As Worksheet
 Dim ThisWorkbook As Workbook
 Dim new_name As String
@@ -26,4 +33,14 @@ For Each sh In ThisWorkbook.Worksheets
         i = i + 1
     Next i
 Next
+
+ThisWorkbook.Sheets("Preferences").Activate
+
+Application.StatusBar = False
+Application.ScreenUpdating = True
+Application.EnableEvents = True
+ActiveSheet.DisplayPageBreaks = True
+Application.DisplayStatusBar = True
+Application.DisplayAlerts = True
+
 End Sub
