@@ -8,7 +8,7 @@ Sub Insertion()
  ps = "123$"
   
  Set ThisWorkbook = ActiveWorkbook
- On Error GoTo exithandler
+ On Error GoTo ExitHandler
  SheetName = "Temp"
  Limit = 2 'последняя колонка базы
  begin = 1 'первый ряд вставки
@@ -17,9 +17,9 @@ Sub Insertion()
 Application.ScreenUpdating = False
 Application.EnableEvents = False
 ActiveSheet.DisplayPageBreaks = False
-'Application.DisplayStatusBar = False
+Application.DisplayStatusBar = False
 Application.DisplayAlerts = False
-Application.Calculation = xlManual
+'Application.Calculation = xlManual
 
 FilesToOpen = Application.GetOpenFilename _
  (FileFilter:="Microsoft Excel Files (*.xlsx), *.xlsx", _
@@ -27,11 +27,11 @@ FilesToOpen = Application.GetOpenFilename _
  
 
  If TypeName(FilesToOpen) = "Boolean" Then ',была нажата кнопка отмены выход из процедуры
- GoTo exithandler
+ GoTo ExitHandler
  End If
 
 'вставка листов
-Set importWB = Workbooks.Open(Filename:=FilesToOpen(1))
+Set importWB = Workbooks.Open(Filename:=FilesToOpen(1), UpdateLinks:=0)
 
 On Error Resume Next
 
@@ -52,9 +52,6 @@ Range(Cells(begin, 1), Cells(awLastRow, Limit)).Select
  With Selection
         .Clear
  End With
-
- 'статус бар
-Application.StatusBar = "Вставка данных"
 
  'вставка данных
  importWB.Sheets(1).Activate
@@ -79,12 +76,10 @@ Next i
 
 'форматы
 ThisWorkbook.Sheets(SheetName).Activate
-'Range("A1:B89").Select
-Range(Cells(begin, 1), Cells(iwLastRow - 1, i - 1)).Select
+Range(Cells(begin, 1), Cells(iwLastRow - 1, i)).Select
     Application.CutCopyMode = False
-    ActiveSheet.ListObjects.Add(xlSrcRange, Range(Cells(begin, 1), Cells(iwLastRow - 1, i - 1)), , xlYes).Name = _
+    ActiveSheet.ListObjects.Add(xlSrcRange, Range(Cells(begin, 1), Cells(iwLastRow - 1, i)), , xlYes).Name = _
         "Sorce"
-'    Range("Таблица6[#All]").Select
     ActiveSheet.ListObjects("Source").TableStyle = "TableStyleLight12"
 
 'завершение
@@ -92,23 +87,24 @@ ThisWorkbook.Sheets(SheetName).Activate
 'ThisWorkbook.Sheets(SheetName).Protect Password:=ps
 'ThisWorkbook.Sheets(SheetName).Visible = False
 
-exithandler:
+
+ExitHandler:
     On Error Resume Next
     importWB.Close
-    Application.StatusBar = False
-    Application.ScreenUpdating = True
-    Application.EnableEvents = True
-    ActiveSheet.DisplayPageBreaks = True
-    Application.DisplayStatusBar = True
-    Application.DisplayAlerts = True
-    Application.Calculation = xlAutomatic
-    ThisWorkbook.Activate
+'    Application.StatusBar = False
+'    Application.ScreenUpdating = True
+'    Application.EnableEvents = True
+'    ActiveSheet.DisplayPageBreaks = True
+'    Application.DisplayStatusBar = True
+'    Application.DisplayAlerts = True
+'    Application.Calculation = xlAutomatic
+'    ThisWorkbook.Activate
 '    ThisWorkbook.UnProtect Password:=ps
 '    ThisWorkbook.Protect Password:=ps
 '    ThisWorkbook.Protect Password:=ps
  Exit Sub
   
-errhandler:
+ErrHandler:
  MsgBox Err.Description
- Resume exithandler
+ Resume ExitHandler
 End Sub
