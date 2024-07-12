@@ -1,27 +1,35 @@
 Attribute VB_Name = "PythonIntegration"
-
 Sub Python()
-Dim ThisWorkbook, Command As String
-Filename = ActiveWorkbook.Name
+    ' Объявляем переменные для хранения имени книги и команды
+    Dim ThisWorkbook, Command As String
+    ' Получаем имя активной книги
+    Filename = ActiveWorkbook.Name
 
-'Python не умеет в \
-src = Replace(ActiveWorkbook.Path, "\", "/") + "/"
+    ' Заменяем обратные слеши на прямые в пути к активной книге
+    ' Python не умеет работать с обратными слешами
+    src = Replace(ActiveWorkbook.Path, "\", "/") + "/"
 
-'Debug.Print Filename
-'Debug.Print src
+    ' Выводим отладочную информацию
+    ' Debug.Print Filename
+    ' Debug.Print src
 
+    ' Устанавливаем статус-бар для отображения процесса сохранения книги
     Application.StatusBar = "Сохранение книги " & ActiveWorkbook.Name
+    ' Сохраняем активную книгу
     ActiveWorkbook.Save
+    ' Обновляем статус-бар для отображения процесса переноса данных
     Application.StatusBar = "Перенос данных в BackUp"
     
-'команда для xlwings
-Command = "import Save; Save.FileSaving('" + Filename + "', '" + src + "')"
+    ' Формируем команду для выполнения через xlwings
+    Command = "import Save; Save.FileSaving('" + Filename + "', '" + src + "')"
 
-'Debug.Print Command
+    ' Выводим отладочную информацию
+    ' Debug.Print Command
 
-'имя функции в xlwings
-RunPython (Command)
+    ' Выполняем команду Python через xlwings
+    ' Имя функции в xlwings
+    RunPython (Command)
 
-Application.StatusBar = False
-    
+    ' Сбрасываем статус-бар
+    Application.StatusBar = False
 End Sub
