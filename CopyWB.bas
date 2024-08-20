@@ -1,112 +1,115 @@
 Attribute VB_Name = "CopyWB"
 Sub Copy_W()
 
-Application.ScreenUpdating = False
-Application.EnableEvents = False
-ActiveSheet.DisplayPageBreaks = False
-Application.DisplayStatusBar = False
-Application.DisplayAlerts = False
+    Application.ScreenUpdating = False
+    Application.EnableEvents = False
+    ActiveSheet.DisplayPageBreaks = False
+    Application.DisplayStatusBar = False
+    Application.DisplayAlerts = False
 
-Dim WbLinks
-Dim SaveName As String
-Dim DistinctList As Variant
-Dim FullNameColumn As Range
-Dim Val As String
-
-Path = ActiveWorkbook.Path
-SaveName = ActiveSheet.Range("H30").Text
-ThisWorkbook.Sheets("Preferences").Activate
-Set FullNameColumn = ActiveSheet.UsedRange.Range("I2:I20") ' Диапазон значений. С пустыми ячейками
-DistinctList = GetDistinctItems(FullNameColumn) ' Передаем диапазон в функцию.
-
-'удаляю значение массива содержащее пустую ячейку
-n = LBound(DistinctList) ' удаляемый элемент он первый т.к. массив отсортирован функцией
-For i = n To UBound(DistinctList) - 1
-    DistinctList(i) = DistinctList(i + 1)
-Next
-ReDim Preserve DistinctList(LBound(DistinctList) To i - 1)
-
-''дебаг
-'Debug.Print Join(DistinctList, vbCrLf)
-'Debug.Print ("____________________________")
-'добавялю новый элемент массива
-ReDim Preserve DistinctList(UBound(DistinctList) + 1)
-'задаю имя нового элемента
-DistinctList(UBound(DistinctList)) = "Ninth"
-''дебаг
-'Debug.Print Join(DistinctList, vbCrLf)
-
-ActiveWorkbook.Sheets(DistinctList).Copy
-'значения как на экране
-ActiveWorkbook.PrecisionAsDisplayed = True
-'удаляю последний элемент массива
-ReDim Preserve DistinctList(UBound(DistinctList) - 1)
-
-Sheets(DistinctList).Select
-
-'создаю копию книги
-Cells.Select
-Selection.Copy
-Selection.PasteSpecial Paste:=xlPasteValues, Operation:=xlNone, SkipBlanks _
-    :=False, Transpose:=False
+    Dim WbLinks As Variant
+    Dim SaveName As String
+    Dim DistinctList As Variant
+    Dim FullNameColumn As Range
+    Dim i As Long
+    Dim Path As String
+    Dim FilePath As String
     
-'удаляю лишние листы
-Sheets("Ninth").delete
-Sheets("Табель").delete
+    ' Получаем путь к файлу и имя для сохранения
+    Path = ActiveWorkbook.Path
+    SaveName = ActiveSheet.Range("H30").Text
+    Set FullNameColumn = ThisWorkbook.Sheets("Preferences").Range("I2:I9").SpecialCells(xlCellTypeVisible) ' Получаем диапазон значений без пустых ячеек
+    
+    ' Получаем уникальные значения из указанного диапазона
+    DistinctList = GetDistinctItems(FullNameColumn)
+    If IsEmpty(DistinctList) Then Exit Sub ' Убедимся, что массив не пустой
 
-'разрываю связи
-WbLinks = ActiveWorkbook.LinkSources(Type:=xlLinkTypeExcelLinks)
-If Not IsEmpty(WbLinks) Then
-    For i = LBound(WbLinks) To UBound(WbLinks)
-        ActiveWorkbook.BreakLink Name:=WbLinks(i), Type:=xlLinkTypeExcelLinks
-    Next
-Else
-End If
-'
-''по названию первого элемента массива активирую лист книги
-'ActiveWorkbook.Sheets(DistinctList(LBound(DistinctList))).Select
-
-'удаление файла если уже существует
-FilePath = Path & "\" & SaveName & ".xls"
-If Dir(FilePath) <> "" Then
-    Kill FilePath
-    ActiveWorkbook.SaveAs Filename:=Path & "\" & _
-    SaveName & ".xlsx" _
-    , FileFormat:=xlOpenXMLWorkbook, CreateBackup:=False
-Else
-    ActiveWorkbook.SaveAs Filename:=Path & "\" & _
-    SaveName & ".xlsx" _
-    , FileFormat:=xlOpenXMLWorkbook, CreateBackup:=False
-End If
-
-'удаляю "Табель" из массива
-Val = "Табель"
-For i = 1 To UBound(DistinctList, 1)
-        If Not IsError(Application.Match(Val, Application.Index(DistinctList, i, 0), 0)) Then
-            FindIndex = Application.Match(Val, Application.Index(DistinctList, i, 0), 0)
+    ' Удаляем пустые значения (переписывание и изменение размера массива более оптимально)
+    Dim NewList() As Variant
+    Dim count As Long
+    ReDim NewList(0)
+    
+    For i = LBound(DistinctList) To UBound(DistinctList)
+        If Not IsEmpty(DistinctList(i)) Then
+            NewList(count) = DistinctList(i)
+            count = count + 1
+            ReDim Preserve NewList(count) ' Пересоздаем массив
         End If
-Next
-For i = FindIndex To UBound(DistinctList)
-    DistinctList(i - 1) = DistinctList(i)
-Next
-ReDim Preserve DistinctList(LBound(DistinctList) To i - 2)
-'
-''дебаг
-'Debug.Print Join(DistinctList, vbCrLf)
+    Next i
+    If count > 0 Then ReDim Preserve NewList(count - 1) ' Убираем последний ненужный элемент
 
-ActiveWorkbook.Sheets(DistinctList).Select
+    ' Добавляем новый элемент массива
+    ReDim Preserve NewList(UBound(NewList) + 1)
+    NewList(UBound(NewList)) = "Ninth"
 
-''вызов окна печати
-'Application.Dialogs(xlDialogPrint).Show
+    ' Копируем указанные листы
+    ActiveWorkbook.Sheets(NewList).Copy
+    ActiveWorkbook.PrecisionAsDisplayed = True
 
-
-Application.StatusBar = False
-Application.ScreenUpdating = True
-Application.EnableEvents = True
-ActiveSheet.DisplayPageBreaks = True
-Application.DisplayStatusBar = True
-Application.DisplayAlerts = True
-
-'NewWb.Close
     
+    ' Сохраняем значения с листа "Ф2 (1)" перед удалением
+    ActiveWorkbook.Sheets("Ф2 (1)").Activate
+    Cells.Select
+    Selection.Copy
+    Range("A1").Select
+    Selection.PasteSpecial Paste:=xlPasteValues
+    
+    ' Сохраняем значения с листа "ЗП (1)" перед удалением
+    ActiveWorkbook.Sheets("ЗП (1)").Activate
+    Cells.Select
+    Selection.Copy
+    Range("A1").Select
+    Selection.PasteSpecial Paste:=xlPasteValues
+    
+    
+    ' Удаляем лишние листы
+    On Error Resume Next ' Игнорируем ошибки при удалении
+    Sheets("Ninth").delete
+    Sheets("ПЗ").delete
+    On Error GoTo 0
+
+    ' Разрываем связи
+    WbLinks = ActiveWorkbook.LinkSources(Type:=xlLinkTypeExcelLinks)
+    If Not IsEmpty(WbLinks) Then
+        For i = LBound(WbLinks) To UBound(WbLinks)
+            ActiveWorkbook.BreakLink Name:=WbLinks(i), Type:=xlLinkTypeExcelLinks
+        Next i
+    End If
+
+    ' Для сохранения файла
+    FilePath = Path & "\" & SaveName & ".xls"
+    If Dir(FilePath) <> "" Then Kill FilePath
+    ActiveWorkbook.SaveAs Filename:=Path & "\" & SaveName & ".xlsx", FileFormat:=xlOpenXMLWorkbook, CreateBackup:=False
+
+    ' Удаление "Табель" из массива
+    Dim val As String: val = "Табель"
+    Dim FindIndex As Long
+    FindIndex = -1
+
+    For i = LBound(NewList) To UBound(NewList)
+        If NewList(i) = val Then
+            FindIndex = i
+            Exit For
+        End If
+    Next i
+
+    ' Удаляем элемент "Табель", если он был найден
+    If FindIndex <> -1 Then
+        For i = FindIndex To UBound(NewList) - 1
+            NewList(i) = NewList(i + 1)
+        Next i
+        ReDim Preserve NewList(LBound(NewList) To UBound(NewList) - 1)
+    End If
+
+    ' Снова выбираем оставшиеся листы
+    ActiveWorkbook.Sheets(1).Activate
+
+    ' Включаем все обратно
+    Application.StatusBar = False
+    Application.ScreenUpdating = True
+    Application.EnableEvents = True
+    ActiveSheet.DisplayPageBreaks = True
+    Application.DisplayStatusBar = True
+    Application.DisplayAlerts = True
+
 End Sub
