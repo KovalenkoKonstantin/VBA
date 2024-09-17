@@ -1,6 +1,10 @@
 Attribute VB_Name = "GetNamesAndHours"
 Public Sub GetDistinctNames()
 
+'' Сохраняем текущий режим вычислений
+'    Dim originalCalculationMode As XlCalculation
+'    originalCalculationMode = Application.Calculation
+
 Application.ScreenUpdating = False
 Application.EnableEvents = False
 ActiveSheet.DisplayPageBreaks = False
@@ -19,7 +23,7 @@ Application.DisplayAlerts = False
     Dim i As Long
     
 FilesToOpen = Application.GetOpenFilename _
- (FileFilter:="Microsoft Excel Files (*.xlsx), *.xlsx", _
+ (FileFilter:="Microsoft Excel Files (*.xlsb), *.xlsb", _
  MultiSelect:=True, Title:="Выберите данные по трудоёмкости")
     
     'Set FullNameColumn = ActiveSheet.UsedRange.Columns(4) ' Получаем первый столбец.
@@ -52,7 +56,7 @@ ThisWorkbook.Sheets(SheetName).Activate
     Debug.Print DistinctList(j)
 
 'вывожу элементы на лист в ячейку B4
-    Range("B" & i + 2).Value2 = DistinctList(j)
+    Range("B" & i + 3).Value2 = DistinctList(j)
     End If
   Next
 
@@ -78,29 +82,33 @@ Range("J4:J103,J105:J204,J206:J305,J307:J406," _
 Selection.PasteSpecial Paste:=xlPasteFormulas, Operation:=xlNone, _
         SkipBlanks:=False, Transpose:=False
         
+' Устанавливаем выделенный диапазон
+'    Set selectedRange = Range("K4:K2428")
+'' Выполняем пересчёт только для выделенного диапазона
+'    If Not selectedRange Is Nothing Then
+'        selectedRange.Calculate
+'    End If
+'
 'скрываю лишнее устанавливаю фильтр по нулевым значениям
-ActiveSheet.Range("$A$2:$BF$2428").AutoFilter Field:=11, _
-    Criteria1:="<>0", Operator:=xlFilterValues
+With ActiveSheet.ListObjects("РВ").Range
+    .AutoFilterMode = False ' Сброс текущего фильтра
+    .AutoFilter Field:=11, Criteria1:="<>0" _
+        , Operator:=xlAnd ' Фильтруем по 11-му полю
+End With
     
+
 'разрываю связи с внешними книгами
-
-'        For Each n In ActiveWorkbook.Names:
-'        On Error Resume Next
-'            n.delete:
-'        Next
-
 Set Wb = ActiveWorkbook
 WorkbookLinks = Wb.LinkSources(Type:=xlLinkTypeExcelLinks)
-If IsArray(WorkbookLinks) Then
+If Not IsEmpty(WorkbookLinks) Then
     For i = LBound(WorkbookLinks) To UBound(WorkbookLinks)
-        Wb.BreakLink _
-                Name:=WorkbookLinks(i), _
-                Type:=xlLinkTypeExcelLinks
+        On Error Resume Next ' Игнорируем ошибки
+        Wb.BreakLink Name:=WorkbookLinks(i), Type:=xlLinkTypeExcelLinks
+        On Error GoTo 0 ' Возвращаем нормальную обработку ошибок
     Next i
-Else
 End If
   
-importWB.Close
+''importWB.Close
     Application.StatusBar = False
     Application.ScreenUpdating = True
     Application.EnableEvents = True
