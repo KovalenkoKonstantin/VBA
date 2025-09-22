@@ -6,6 +6,8 @@ Sub Clone2()
   Dim ThisWorkbook As Workbook
   Dim SheetName As String
   Dim Sht As Worksheet
+  Dim Start As Integer
+  Dim Finish As Integer
   
 Application.ScreenUpdating = False
 Application.EnableEvents = False
@@ -17,6 +19,8 @@ Application.Calculation = xlManual
   Set ThisWorkbook = ActiveWorkbook
   SheetName = "2"
   kolvo = 14
+  Start = 4
+  Finish = 7
   
   'удаление предыдущих данных
   On Error Resume Next
@@ -28,7 +32,7 @@ Application.Calculation = xlManual
     "Выполнено: " & Int(100 * i / kolvo) & "%."
   Next i
   
-  For i = 3 To 6
+  For i = Start To Finish
     Sheets("2_2" & i).delete
     'статус бар
     Application.StatusBar = "Удаление листов. Второй диапазон. " & _
@@ -42,14 +46,14 @@ Application.Calculation = xlManual
     "Выполнено: " & Int(100 * i / 2) & "%."
   Next i
   
-  For i = 3 To 6
+  For i = Start To Finish
     Sheets("2_1_2" & i).delete
     'статус бар
     Application.StatusBar = "Удаление листов. Четвёртый диапазон. " & _
     "Выполнено: " & Int(100 * i / 4) & "%."
   Next i
   
-  For i = 3 To 6
+  For i = Start To Finish
     Sheets("2_2_2" & i).delete
     'статус бар
     Application.StatusBar = "Удаление листов. Пятый диапазон. " & _
@@ -76,31 +80,36 @@ Application.Calculation = xlManual
 'End If
 
 'переименование листов
-On Error Resume Next
-For Each Sht In Worksheets
-    'статус бар
-    Application.StatusBar = "Переименование листов."
-    If Sht.Name = "21" Then Sht.Name = "2_23"
-    If Sht.Name = "22" Then Sht.Name = "2_24"
-    If Sht.Name = "23" Then Sht.Name = "2_25"
-    If Sht.Name = "24" Then Sht.Name = "2_26"
-    If Sht.Name = "25" Then Sht.Name = "2_1"
-    If Sht.Name = "26" Then Sht.Name = "2_1_23"
-    If Sht.Name = "27" Then Sht.Name = "2_1_24"
-    If Sht.Name = "28" Then Sht.Name = "2_1_25"
-    If Sht.Name = "29" Then Sht.Name = "2_1_26"
-    If Sht.Name = "210" Then Sht.Name = "2_2"
-    If Sht.Name = "211" Then Sht.Name = "2_2_23"
-    If Sht.Name = "212" Then Sht.Name = "2_2_24"
-    If Sht.Name = "213" Then Sht.Name = "2_2_25"
-    If Sht.Name = "214" Then Sht.Name = "2_2_26"
-Next
+'статус бар
+Application.StatusBar = "Переименование листов."
+For Each Sht In ThisWorkbook.Worksheets
+    Select Case Sht.Name
+        Case "21":  Sht.Name = "2_2" & CStr(Start)
+        Case "22":  Sht.Name = "2_2" & CStr(Start + 1)
+        Case "23":  Sht.Name = "2_2" & CStr(Start + 2)
+        Case "24":  Sht.Name = "2_2" & CStr(Start + 3)
+
+        Case "25":  Sht.Name = "2_1"
+
+        Case "26":  Sht.Name = "2_1_2" & CStr(Start)
+        Case "27":  Sht.Name = "2_1_2" & CStr(Start + 1)
+        Case "28":  Sht.Name = "2_1_2" & CStr(Start + 2)
+        Case "29":  Sht.Name = "2_1_2" & CStr(Start + 3)
+
+        Case "210": Sht.Name = "2_2"
+        
+        Case "211": Sht.Name = "2_2_2" & CStr(Start)
+        Case "212": Sht.Name = "2_2_2" & CStr(Start + 1)
+        Case "213": Sht.Name = "2_2_2" & CStr(Start + 2)
+        Case "214": Sht.Name = "2_2_2" & CStr(Start + 3)
+    End Select
+Next Sht
 
 'выставление настроек
   On Error Resume Next
   
   'года
-  For i = 3 To 6
+  For i = Start To Finish
     Sheets("2_2" & i).Activate
         [Q4] = "202" & i
         Range("E68:F68").ClearContents
@@ -133,7 +142,7 @@ Next
   Next i
   
   'Этап 1
-  For i = 3 To 6
+  For i = Start To Finish
     Sheets("2_1_2" & i).Activate
         [Q3] = "Этап 1"
         [Q4] = "202" & i
@@ -152,7 +161,7 @@ Next
   Next i
   
   'Этап 2
-  For i = 3 To 6
+  For i = Start To Finish
     Sheets("2_2_2" & i).Activate
         [Q3] = "Этап 2"
         [Q4] = "202" & i
@@ -220,6 +229,8 @@ Sub Clone6()
   Dim SheetName, var As String
   Dim Sht As Worksheet
   Dim WorkRng As Range
+  Dim Start As Integer
+  Dim Finish As Integer
   
 Application.ScreenUpdating = False
 Application.EnableEvents = False
@@ -231,6 +242,8 @@ Application.Calculation = xlManual
   Set ThisWorkbook = ActiveWorkbook
   SheetName = "6"
   kolvo = 15
+  Start = 4
+  Finish = 7
   
   'удаление предыдущих данных
 
@@ -243,7 +256,7 @@ Application.Calculation = xlManual
     "Выполнено: " & Int(100 * i / kolvo) & "%."
   Next i
   
-  For i = 3 To 6
+  For i = Start To Finish
     Sheets("6_2" & i).delete
     'статус бар
     Application.StatusBar = "Удаление листов. Второй диапазон. " & _
@@ -257,14 +270,14 @@ Application.Calculation = xlManual
     "Выполнено: " & Int(100 * i / 2) & "%."
   Next i
   
-  For i = 3 To 6
+  For i = Start To Finish
     Sheets("6_1_2" & i).delete
     'статус бар
     Application.StatusBar = "Удаление листов. Четвёртый диапазон. " & _
     "Выполнено: " & Int(100 * i / 4) & "%."
   Next i
   
-  For i = 3 To 6
+  For i = Start To Finish
     Sheets("6_2_2" & i).delete
     'статус бар
     Application.StatusBar = "Удаление листов. Пятый диапазон. " & _
@@ -315,7 +328,7 @@ Next
   On Error Resume Next
   
   'года
-  For i = 3 To 6
+  For i = Start To Finish
     Sheets("6_2" & i).Activate
         [AD2] = "202" & i
 
@@ -334,7 +347,7 @@ Next
   Next i
   
   'Этап 1
-  For i = 3 To 6
+  For i = Start To Finish
     Sheets("6_1_2" & i).Activate
         [AD1] = "Этап 1"
         [AD2] = "202" & i
@@ -344,7 +357,7 @@ Next
   Next i
   
   'Этап 2
-  For i = 3 To 6
+  For i = Start To Finish
     Sheets("6_2_2" & i).Activate
         [AD1] = "Этап 2"
         [AD2] = "202" & i
@@ -371,6 +384,8 @@ Sub Clone7()
   Dim SheetName, var As String
   Dim Sht As Worksheet
   Dim WorkRng As Range
+  Dim Start As Integer
+  Dim Finish As Integer
   
 Application.ScreenUpdating = False
 Application.EnableEvents = False
@@ -382,6 +397,8 @@ Application.Calculation = xlManual
   Set ThisWorkbook = ActiveWorkbook
   SheetName = "7"
   kolvo = 15
+  Start = 4
+  Finish = 7
   
   'удаление предыдущих данных
 
@@ -394,7 +411,7 @@ Application.Calculation = xlManual
     "Выполнено: " & Int(100 * i / kolvo) & "%."
   Next i
   
-  For i = 1 To 5
+  For i = Start To Finish
     Sheets("7_2" & i).delete
     'статус бар
     Application.StatusBar = "Удаление листов. Второй диапазон. " & _
@@ -408,14 +425,14 @@ Application.Calculation = xlManual
     "Выполнено: " & Int(100 * i / 2) & "%."
   Next i
   
-  For i = 1 To 5
+  For i = Start To Finish
     Sheets("7_1_2" & i).delete
     'статус бар
     Application.StatusBar = "Удаление листов. Четвёртый диапазон. " & _
     "Выполнено: " & Int(100 * i / 4) & "%."
   Next i
   
-  For i = 1 To 5
+  For i = Start To Finish
     Sheets("7_2_2" & i).delete
     'статус бар
     Application.StatusBar = "Удаление листов. Пятый диапазон. " & _
@@ -442,31 +459,36 @@ Application.Calculation = xlManual
 'End If
 
 'переименование листов
-On Error Resume Next
-For Each Sht In Worksheets
-    'статус бар
-    Application.StatusBar = "Переименование листов."
-    If Sht.Name = "72" Then Sht.Name = "7_22"
-    If Sht.Name = "73" Then Sht.Name = "7_23"
-    If Sht.Name = "74" Then Sht.Name = "7_24"
-    If Sht.Name = "75" Then Sht.Name = "7_25"
-    If Sht.Name = "76" Then Sht.Name = "7_1"
-    If Sht.Name = "77" Then Sht.Name = "7_1_22"
-    If Sht.Name = "78" Then Sht.Name = "7_1_23"
-    If Sht.Name = "79" Then Sht.Name = "7_1_24"
-    If Sht.Name = "710" Then Sht.Name = "7_1_25"
-    If Sht.Name = "711" Then Sht.Name = "7_2"
-    If Sht.Name = "712" Then Sht.Name = "7_2_22"
-    If Sht.Name = "713" Then Sht.Name = "7_2_23"
-    If Sht.Name = "714" Then Sht.Name = "7_2_24"
-    If Sht.Name = "715" Then Sht.Name = "7_2_25"
-Next
+'статус бар
+Application.StatusBar = "Переименование листов."
+
+For Each Sht In ThisWorkbook.Worksheets
+    Select Case Sht.Name
+        Case "71":  Sht.Name = "7_2" & CStr(Start)
+        Case "72":  Sht.Name = "7_2" & CStr(Start + 1)
+        Case "73":  Sht.Name = "7_2" & CStr(Start + 2)
+        Case "74":  Sht.Name = "7_2" & CStr(Start + 3)
+
+        Case "75":  Sht.Name = "7_1"
+
+        Case "76":  Sht.Name = "7_1_2" & CStr(Start)
+        Case "77":  Sht.Name = "7_1_2" & CStr(Start + 1)
+        Case "78":  Sht.Name = "7_1_2" & CStr(Start + 2)
+        Case "79":  Sht.Name = "7_1_2" & CStr(Start + 3)
+
+        Case "710": Sht.Name = "7_2"
+        Case "711": Sht.Name = "7_2_2" & CStr(Start)
+        Case "712": Sht.Name = "7_2_2" & CStr(Start + 1)
+        Case "713": Sht.Name = "7_2_2" & CStr(Start + 2)
+        Case "714": Sht.Name = "7_2_2" & CStr(Start + 3)
+    End Select
+Next Sht
 
 'выставление настроек
   On Error Resume Next
   
   'года
-  For i = 2 To 5
+  For i = Start To Finish
     Sheets("7_2" & i).Activate
         [L3] = "202" & i
 
@@ -485,7 +507,7 @@ Next
   Next i
   
   'Этап 1
-  For i = 2 To 5
+  For i = Start To Finish
     Sheets("7_1_2" & i).Activate
         [L2] = "Этап 1"
         [L3] = "202" & i
@@ -495,7 +517,7 @@ Next
   Next i
   
   'Этап 2
-  For i = 2 To 5
+  For i = Start To Finish
     Sheets("7_2_2" & i).Activate
         [L2] = "Этап 2"
         [L3] = "202" & i
@@ -522,6 +544,8 @@ Sub Clone9()
   Dim SheetName, var As String
   Dim Sht As Worksheet
   Dim WorkRng As Range
+  Dim Start As Integer
+  Dim Finish As Integer
   
 Application.ScreenUpdating = False
 Application.EnableEvents = False
@@ -533,6 +557,8 @@ Application.Calculation = xlManual
   Set ThisWorkbook = ActiveWorkbook
   SheetName = "9"
   kolvo = 14
+  Start = 4
+  Finish = 7
   
   'удаление предыдущих данных
   On Error Resume Next
@@ -544,7 +570,7 @@ Application.Calculation = xlManual
     "Выполнено: " & Int(100 * i / kolvo) & "%."
   Next i
   
-  For i = 3 To 6
+  For i = Start To Finish
     Sheets("9_2" & i).delete
     'статус бар
     Application.StatusBar = "Удаление листов. Второй диапазон. " & _
@@ -558,14 +584,14 @@ Application.Calculation = xlManual
     "Выполнено: " & Int(100 * i / 2) & "%."
   Next i
   
-  For i = 3 To 6
+  For i = Start To Finish
     Sheets("9_1_2" & i).delete
     'статус бар
     Application.StatusBar = "Удаление листов. Четвёртый диапазон. " & _
     "Выполнено: " & Int(100 * i / 4) & "%."
   Next i
   
-  For i = 3 To 6
+  For i = Start To Finish
     Sheets("9_2_2" & i).delete
     'статус бар
     Application.StatusBar = "Удаление листов. Пятый диапазон. " & _
@@ -592,31 +618,36 @@ Application.Calculation = xlManual
 'End If
 
 'переименование листов
-On Error Resume Next
-For Each Sht In Worksheets
-    'статус бар
-    Application.StatusBar = "Переименование листов."
-    If Sht.Name = "91" Then Sht.Name = "9_23"
-    If Sht.Name = "92" Then Sht.Name = "9_24"
-    If Sht.Name = "93" Then Sht.Name = "9_25"
-    If Sht.Name = "94" Then Sht.Name = "9_26"
-    If Sht.Name = "95" Then Sht.Name = "9_1"
-    If Sht.Name = "96" Then Sht.Name = "9_1_23"
-    If Sht.Name = "97" Then Sht.Name = "9_1_24"
-    If Sht.Name = "98" Then Sht.Name = "9_1_25"
-    If Sht.Name = "99" Then Sht.Name = "9_1_26"
-    If Sht.Name = "910" Then Sht.Name = "9_2"
-    If Sht.Name = "911" Then Sht.Name = "9_2_23"
-    If Sht.Name = "912" Then Sht.Name = "9_2_24"
-    If Sht.Name = "913" Then Sht.Name = "9_2_25"
-    If Sht.Name = "914" Then Sht.Name = "9_2_26"
-Next
+'статус бар
+Application.StatusBar = "Переименование листов."
+    
+For Each Sht In ThisWorkbook.Worksheets
+    Select Case Sht.Name
+        Case "91":  Sht.Name = "9_2" & CStr(Start)
+        Case "92":  Sht.Name = "9_2" & CStr(Start + 1)
+        Case "93":  Sht.Name = "9_2" & CStr(Start + 2)
+        Case "94":  Sht.Name = "9_2" & CStr(Start + 3)
+
+        Case "95":  Sht.Name = "9_1"
+
+        Case "96":  Sht.Name = "9_1_2" & CStr(Start)
+        Case "97":  Sht.Name = "9_1_2" & CStr(Start + 1)
+        Case "98":  Sht.Name = "9_1_2" & CStr(Start + 2)
+        Case "99":  Sht.Name = "9_1_2" & CStr(Start + 3)
+
+        Case "910": Sht.Name = "9_2"
+        Case "911": Sht.Name = "9_2_2" & CStr(Start)
+        Case "912": Sht.Name = "9_2_2" & CStr(Start + 1)
+        Case "913": Sht.Name = "9_2_2" & CStr(Start + 2)
+        Case "914": Sht.Name = "9_2_2" & CStr(Start + 3)
+    End Select
+Next Sht
 
 'выставление настроек
   On Error Resume Next
   
   'года
-  For i = 3 To 6
+  For i = Start To Finish
     Sheets("9_2" & i).Activate
         [O2] = "202" & i
         Range("Z:AI").Clear
@@ -644,7 +675,7 @@ Next
   Next i
   
   'Этап 1
-  For i = 3 To 6
+  For i = Start To Finish
     Sheets("9_1_2" & i).Activate
         [O1] = "Этап 1"
         [O2] = "202" & i
@@ -655,7 +686,7 @@ Next
   Next i
   
   'Этап 2
-  For i = 3 To 6
+  For i = Start To Finish
     Sheets("9_2_2" & i).Activate
         [O1] = "Этап 2"
         [O2] = "202" & i
@@ -682,6 +713,8 @@ Sub Clone20()
   Dim ThisWorkbook As Workbook
   Dim SheetName As String
   Dim Sht As Worksheet
+  Dim Start As Integer
+  Dim Finish As Integer
   
 Application.ScreenUpdating = False
 Application.EnableEvents = False
@@ -693,6 +726,8 @@ Application.Calculation = xlManual
   Set ThisWorkbook = ActiveWorkbook
   SheetName = "20"
   kolvo = 14
+  Start = 4
+  Finish = 7
   
   'удаление предыдущих данных
   
@@ -707,7 +742,7 @@ Application.Calculation = xlManual
     "Выполнено: " & Int(100 * i / kolvo) & "%."
   Next i
   
-  For i = 3 To 6
+  For i = Start To Finish
     Sheets("20_2" & i).delete
     'статус бар
     Application.StatusBar = "Удаление листов. Второй диапазон. " & _
@@ -721,14 +756,14 @@ Application.Calculation = xlManual
     "Выполнено: " & Int(100 * i / 2) & "%."
   Next i
   
-  For i = 3 To 6
+  For i = Start To Finish
     Sheets("20_1_2" & i).delete
     'статус бар
     Application.StatusBar = "Удаление листов. Четвёртый диапазон. " & _
     "Выполнено: " & Int(100 * i / 4) & "%."
   Next i
   
-  For i = 3 To 6
+  For i = Start To Finish
     Sheets("20_2_2" & i).delete
     'статус бар
     Application.StatusBar = "Удаление листов. Пятый диапазон. " & _
@@ -755,30 +790,37 @@ Application.Calculation = xlManual
 'End If
 
 'переименование листов
-On Error Resume Next
-For Each Sht In Worksheets
-    'статус бар
-    Application.StatusBar = "Переименование листов."
-    If Sht.Name = "201" Then Sht.Name = "20_23"
-    If Sht.Name = "202" Then Sht.Name = "20_24"
-    If Sht.Name = "203" Then Sht.Name = "20_25"
-    If Sht.Name = "204" Then Sht.Name = "20_26"
-    If Sht.Name = "205" Then Sht.Name = "20_1"
-    If Sht.Name = "206" Then Sht.Name = "20_1_23"
-    If Sht.Name = "207" Then Sht.Name = "20_1_24"
-    If Sht.Name = "208" Then Sht.Name = "20_1_25"
-    If Sht.Name = "209" Then Sht.Name = "20_1_26"
-    If Sht.Name = "2010" Then Sht.Name = "20_2"
-    If Sht.Name = "2011" Then Sht.Name = "20_2_23"
-    If Sht.Name = "2012" Then Sht.Name = "20_2_24"
-    If Sht.Name = "2013" Then Sht.Name = "20_2_25"
-    If Sht.Name = "2014" Then Sht.Name = "20_2_26"
-Next
+
+'статус бар
+Application.StatusBar = "Переименование листов."
+
+
+For Each Sht In ThisWorkbook.Worksheets
+    Select Case Sht.Name
+        Case "201":  Sht.Name = "20_2" & CStr(Start)
+        Case "202":  Sht.Name = "20_2" & CStr(Start + 1)
+        Case "203":  Sht.Name = "20_2" & CStr(Start + 2)
+        Case "204":  Sht.Name = "20_2" & CStr(Start + 3)
+
+        Case "205":  Sht.Name = "20_1"
+
+        Case "206":  Sht.Name = "20_1_2" & CStr(Start)
+        Case "207":  Sht.Name = "20_1_2" & CStr(Start + 1)
+        Case "208":  Sht.Name = "20_1_2" & CStr(Start + 2)
+        Case "209":  Sht.Name = "20_1_2" & CStr(Start + 3)
+
+        Case "2010": Sht.Name = "20_2"
+        Case "2011": Sht.Name = "20_2_2" & CStr(Start)
+        Case "2012": Sht.Name = "20_2_2" & CStr(Start + 1)
+        Case "2013": Sht.Name = "20_2_2" & CStr(Start + 2)
+        Case "2014": Sht.Name = "20_2_2" & CStr(Start + 3)
+    End Select
+Next Sht
 
 'выставление настроек
   On Error Resume Next
   
-  For i = 3 To 6
+  For i = Start To Finish
     Sheets("20_2" & i).Activate
         [H2] = "202" & i
         [C59] = "2_2" & i
@@ -800,7 +842,7 @@ Next
         "Выполнено: " & Int(100 * i / 2) & "%."
   Next i
   
-  For i = 3 To 6
+  For i = Start To Finish
     Sheets("20_1_2" & i).Activate
         [H1] = "Этап 1"
         [H2] = "202" & i
@@ -812,7 +854,7 @@ Next
         "Выполнено: " & Int(100 * i / 4) & "%."
   Next i
   
-  For i = 3 To 6
+  For i = Start To Finish
     Sheets("20_2_2" & i).Activate
         [H1] = "Этап 2"
         [H2] = "202" & i
@@ -843,6 +885,8 @@ Sub Clone4()
     Dim ThisWorkbook As Workbook
     Dim SheetName As String
     Dim Sht As Worksheet
+    Dim Start As Integer
+    Dim Finish As Integer
 
     Application.ScreenUpdating = False
     Application.EnableEvents = False
@@ -853,18 +897,20 @@ Sub Clone4()
     Set ThisWorkbook = ActiveWorkbook
     SheetName = "4"
     kolvo = 15
+    Start = 4
+    Finish = 7
 
     ' Удаление существующих листов
     On Error Resume Next
-    For i = 23 To 26
+    For i = 2 & CStr(Start) To 2 & CStr(Start + 3)
         Sheets("4_" & i).delete
         Application.StatusBar = "Удаление листов."
     Next i
-    For i = 23 To 26
+    For i = 2 & CStr(Start) To 2 & CStr(Start + 3)
         Sheets("4_1_" & i).delete
         Application.StatusBar = "Удаление листов."
     Next i
-    For i = 23 To 26
+    For i = 2 & CStr(Start) To 2 & CStr(Start + 3)
         Sheets("4_2_" & i).delete
         Application.StatusBar = "Удаление листов."
     Next i
@@ -905,17 +951,17 @@ Sub Clone4()
 
     ' Обновление значений
     On Error Resume Next
-    For i = 23 To 26
+    For i = 2 & CStr(Start) To 2 & CStr(Start + 3)
         Sheets("4_" & i).Activate
         [AH4] = "20" & i
         Application.StatusBar = "Обновление значений листов. Выполнено: " & Int(100 * (i - 23) / (kolvo - 1)) & "%."
     Next i
-    For i = 23 To 26
+    For i = 2 & CStr(Start) To 2 & CStr(Start + 3)
         Sheets("4_1" & i).Activate
         [AH4] = "20" & i
         Application.StatusBar = "Обновление значений листов. Выполнено: " & Int(100 * (i - 23) / (kolvo - 1)) & "%."
     Next i
-    For i = 23 To 26
+    For i = 2 & CStr(Start) To 2 & CStr(Start + 3)
         Sheets("4_2" & i).Activate
         [AH4] = "20" & i
         Application.StatusBar = "Обновление значений листов. Выполнено: " & Int(100 * (i - 23) / (kolvo - 1)) & "%."
